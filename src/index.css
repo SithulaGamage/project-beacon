@@ -1,0 +1,21 @@
+/* Global reset and font */
+@import url('https://fonts.cdnfonts.com/css/satoshi');
+@import url('https://fonts.cdnfonts.com/css/agdasima');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  font-family: 'Satoshi', sans-serif;
+
+}
+
+body {
+  background-color: #000;
+  overflow-x: hidden;
+}
+
+:root {
+  --width: 85%;
+}

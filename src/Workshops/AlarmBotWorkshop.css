@@ -1,0 +1,247 @@
+/* ============================= */
+/* Container */
+/* ============================= */
+.alarmbot-container {
+  width: var(--width);
+  margin: 0 auto;
+  padding: 50px 0px 100px;
+  color: #fff;
+}
+
+/* ============================= */
+/* Back to Workshops Button */
+/* ============================= */
+.alarmbot-back-button-container {
+  width: 85%;
+  margin: 0 auto;
+  padding: 110px 0px 0px;
+}
+
+.alarmbot-back-button {
+  z-index: 101;
+  backdrop-filter: blur(12px); /* blur background behind container */
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.25); /* semi-transparent dark overlay */
+
+  position: fixed;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(181, 255, 109, 0.12);
+  border: 1px solid rgba(181, 255, 109, 0.25);
+  border-radius: 50px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #b5ff6d;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.alarmbot-back-button:hover {
+  background: rgba(181, 255, 109, 0.2);
+  transform: translateX(-2px);
+}
+
+
+/* ============================= */
+/* Header */
+/* ============================= */
+.alarmbot-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.alarmbot-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 20px;
+  margin-bottom: 24px;
+
+  background: rgba(181, 255, 109, 0.12);
+  border: 1px solid rgba(181, 255, 109, 0.25);
+  border-radius: 50px;
+
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #b5ff6d;
+}
+
+.alarmbot-title {
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.alarmbot-subtitle {
+  font-size: 18px;
+  max-width: 760px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ============================= */
+/* Overview */
+/* ============================= */
+.alarmbot-overview {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 48px 56px;
+  text-align: center;
+}
+
+.alarmbot-overview p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ============================= */
+/* Info Grid */
+/* ============================= */
+.alarmbot-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-bottom: 100px;
+}
+
+.alarmbot-info-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 28px;
+}
+
+.alarmbot-info-card svg {
+  color: #b5ff6d;
+}
+
+.alarmbot-info-card span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.alarmbot-info-card p {
+  margin: 0;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ============================= */
+/* Sections */
+/* ============================= */
+.alarmbot-section {
+  margin-bottom: 100px;
+}
+
+.alarmbot-section h2 {
+  text-align: center;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 48px;
+}
+
+/* ============================= */
+/* Learn Grid */
+/* ============================= */
+.alarmbot-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.alarmbot-learn-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px 32px;
+  text-align: center;
+
+  transition: all 0.3s ease;
+}
+
+.alarmbot-learn-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.alarmbot-learn-card svg {
+  color: #b5ff6d;
+  margin-bottom: 16px;
+}
+
+.alarmbot-learn-card h3 {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.alarmbot-learn-card p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ============================= */
+/* Outcomes */
+/* ============================= */
+.alarmbot-outcomes ul {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: 20px;
+}
+
+.alarmbot-outcomes li {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================= */
+/* CTA */
+/* ============================= */
+.alarmbot-cta {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 64px 48px;
+}
+
+.alarmbot-cta h2 {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.alarmbot-cta p {
+  max-width: 720px;
+  margin: 0 auto 32px;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.alarmbot-cta-button {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #b5ff6d;
+  color: #000;
+  border-radius: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.alarmbot-cta-button:hover {
+  background: #9de64b;
+  transform: translateY(-2px);
+}

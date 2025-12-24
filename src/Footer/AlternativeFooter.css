@@ -1,0 +1,141 @@
+/* footer */
+.alternative-footer-container {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 80px 0 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* main info section */
+.alternative-footer-main-block {
+  display: grid;
+  width: 85%;
+
+  padding: 0px 0px 80px 0px;
+  grid-template-columns: 1.5fr 1fr;
+
+  gap: 80px;
+}
+
+/* brand section */
+.alternative-footer-brand-section {
+  display: flex;
+  flex-direction: column;
+
+  gap: 24px;
+}
+
+.alternative-footer-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.alternative-footer-logo-icon {
+  width: 32px;
+  height: 32px;
+
+  background: #b5ff6d;
+  border-radius: 8px;
+}
+
+.alternative-footer-brand-description {
+  max-width: 480px;
+  margin: 0;
+
+  font-size: 15px;
+  
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.alternative-footer-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #b5ff6d;
+
+  font-size: 15px;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.alternative-footer-email:hover {
+  color: #77c528;
+}
+
+/* links section */
+.alternative-footer-links-section {
+  display: flex;
+  justify-content: right;
+  text-align: right;
+
+  gap: 80px;
+}
+
+.alternative-footer-links-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.alternative-footer-links-column h3 {
+  margin: 0 0 8px 0;
+  
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.alternative-footer-links-column a {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.alternative-footer-links-column a:hover {
+  color: #fff;
+}
+
+/* bottom bar */
+.alternative-footer-bottom {
+  max-width: 1280px;
+  width: 100%;
+  padding: 32px 0px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.alternative-footer-bottom p {
+  margin: 0;
+}
+
+.alternative-footer-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.alternative-contact-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
