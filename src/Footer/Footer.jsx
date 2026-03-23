@@ -18,15 +18,14 @@ function Footer() {
         <div className='homepage-footer-cta-title'>Let's collaborate together for the next big workshop</div>
 
         <StarBorder
-          as="button"
+          as={Link}
+          to="/get-started"
           className="homepage-footer-contact-button"
           color="white"
           speed="5s"
         >
           <EmailRoundedIcon />
-          <Link to="/get-started" className='contact-link'>
-            <span>Contact Us</span>
-          </Link>
+          <span className='contact-link'>Contact Us</span>
         </StarBorder>
       </div>
 

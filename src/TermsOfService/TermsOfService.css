@@ -3,7 +3,7 @@
   width: var(--width);
   margin: 0 auto;
   padding: 160px 0px 100px;
-  color: #fff;
+  color: var(--text-colour);
 }
 
 /* header */
@@ -49,7 +49,7 @@
   font-size: 22px;
   font-weight: 600;
   margin-bottom: 12px;
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .terms-section p {

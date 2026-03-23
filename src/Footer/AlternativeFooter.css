@@ -12,13 +12,13 @@
 
 /* main info section */
 .alternative-footer-main-block {
+  max-width: var(--max-width);
   display: grid;
-  width: 85%;
-
-  padding: 0px 0px 80px 0px;
+  width: var(--width);
+  gap: 40px;
+  
+  padding: 0 0 80px 0;
   grid-template-columns: 1.5fr 1fr;
-
-  gap: 80px;
 }
 
 /* brand section */
@@ -36,20 +36,21 @@
 
   font-size: 20px;
   font-weight: 600;
-  color: #fff;
+  color: var(--text-colour);
 }
 
-.alternative-footer-logo-icon {
-  width: 32px;
-  height: 32px;
+.alternative-footer-logo-icon img {
+  width: 48px;
+  height: 48px;
 
-  background: #b5ff6d;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .alternative-footer-brand-description {
   max-width: 480px;
   margin: 0;
+  text-align: justify;
 
   font-size: 15px;
   
@@ -61,7 +62,7 @@
   align-items: center;
   gap: 8px;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
 
   font-size: 15px;
   text-decoration: none;
@@ -70,7 +71,7 @@
 }
 
 .alternative-footer-email:hover {
-  color: #77c528;
+  color: var(--primary-colour-gradient);
 }
 
 /* links section */
@@ -79,7 +80,7 @@
   justify-content: right;
   text-align: right;
 
-  gap: 80px;
+  gap: 40px;
 }
 
 .alternative-footer-links-column {
@@ -111,15 +112,21 @@
 }
 
 /* bottom bar */
-.alternative-footer-bottom {
-  max-width: 1280px;
+.alternative-footer-bottom-container {
   width: 100%;
   padding: 32px 0px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
 
+.alternative-footer-bottom {
+  max-width: var(--max-width);
+  width: var(--width);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
+
+  margin: 0 auto;
 
   font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
@@ -132,10 +139,32 @@
 .alternative-footer-badges {
   display: flex;
   gap: 8px;
+  text-align: right;
 }
 
 .alternative-contact-link {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+}
+
+.alternative-footer-links-column a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.7);
+  transition: 0.2s ease;
+}
+
+.alternative-footer-links-column a:hover {
+  color: var(--primary-colour);
+}
+
+
+@media (max-width: 590px) {
+  .alternative-footer-container {
+    padding: 0px;
+  }
+
+  .alternative-footer-main-block {
+    display: none;
+  }
 }

@@ -16,16 +16,9 @@ const teamData = [
     name: 'Sithula Gamage',
     role: 'Founder & Lead Facilitator',
     linkedin: 'https://www.linkedin.com/in/sithulagamage/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQGF1T1LAKrRVg/profile-displayphoto-scale_200_200/B56ZnyKQU_IsAY-/0/1760704399886?e=1767830400&v=beta&t=6EAQ2dhjxvbNWpNN3EXcs__ufSRG8KPM5RYrZi_JJ78',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQGF1T1LAKrRVg/profile-displayphoto-scale_400_400/B56ZnyKQU_IsAg-/0/1760704399886?e=1772064000&v=beta&t=168LbTqJmUWC1UQ8pB4pGaIKwhIyFGMzuVvLvXVhUIw',
     bio: 'Supports alignment with NSW syllabus outcomes, risk assessments, and best-practice classroom delivery.'
   },
-  {
-    name: 'Raiyan Raza',
-    role: 'Secretary',
-    linkedin: 'https://www.linkedin.com/in/raiyanraza/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQGXpFTYr8H9bQ/profile-displayphoto-shrink_200_200/B56ZVQp3UJHsAc-/0/1740814907026?e=1767830400&v=beta&t=KVBhI85ngZJuVNpVe6vOsrfUyMndhhwh8mKwaOxc5lU',
-    bio: 'Experienced facilitators with WWCC clearance and backgrounds in robotics, electronics, and programming.'
-  }
 ]
 
 function Team() {

@@ -1,145 +1,138 @@
-/* ============================= */
-/* Container */
-/* ============================= */
+/* CONTAINER */
 .alarmbot-container {
+  max-width: var(--max-width);
   width: var(--width);
   margin: 0 auto;
-  padding: 50px 0px 100px;
-  color: #fff;
+  padding: 140px 0 100px;
+  color: var(--text-colour);
 }
 
-/* ============================= */
-/* Back to Workshops Button */
-/* ============================= */
-.alarmbot-back-button-container {
-  width: 85%;
-  margin: 0 auto;
-  padding: 110px 0px 0px;
-}
-
-.alarmbot-back-button {
-  z-index: 101;
-  backdrop-filter: blur(12px); /* blur background behind container */
-  -webkit-backdrop-filter: blur(12px);
-  background: rgba(0, 0, 0, 0.25); /* semi-transparent dark overlay */
-
-  position: fixed;
-  display: inline-flex;
+/* HERO */
+.alarmbot-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 2fr;
+  gap: 60px;
   align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: rgba(181, 255, 109, 0.12);
-  border: 1px solid rgba(181, 255, 109, 0.25);
-  border-radius: 50px;
-
-  font-size: 14px;
-  font-weight: 600;
-  color: #b5ff6d;
-  text-decoration: none;
-  transition: all 0.2s ease;
+  margin-bottom: 90px;
 }
 
-.alarmbot-back-button:hover {
-  background: rgba(181, 255, 109, 0.2);
-  transform: translateX(-2px);
-}
-
-
-/* ============================= */
-/* Header */
-/* ============================= */
-.alarmbot-header {
-  text-align: center;
-  margin-bottom: 80px;
+.alarmbot-hero-text {
+  text-align: left;
 }
 
 .alarmbot-label {
   display: inline-flex;
-  align-items: center;
   padding: 8px 20px;
-  margin-bottom: 24px;
-
-  background: rgba(181, 255, 109, 0.12);
-  border: 1px solid rgba(181, 255, 109, 0.25);
+  margin-bottom: 18px;
+  background: var(--label-block-background);
+  border: 1px solid var(--label-block-border);
   border-radius: 50px;
-
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .alarmbot-title {
   font-size: 56px;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-.alarmbot-subtitle {
-  font-size: 18px;
-  max-width: 760px;
-  margin: 0 auto;
-  color: rgba(255, 255, 255, 0.65);
-}
-
-/* ============================= */
-/* Overview */
-/* ============================= */
-.alarmbot-overview {
-  max-width: 900px;
-  margin: 0 auto 80px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
-  padding: 48px 56px;
-  text-align: center;
-}
-
-.alarmbot-overview p {
+.alarmbot-hero-description {
   font-size: 18px;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.75);
+  max-width: 560px;
+  text-align: justify;
 }
 
-/* ============================= */
-/* Info Grid */
-/* ============================= */
-.alarmbot-info-grid {
+/* HERO MEDIA */
+.alarmbot-hero-media {
+  display: grid;
+  gap: 16px;
+}
+
+/* IMAGE MEDIA BOX */
+.media-image {
+  padding: 0;
+  overflow: hidden;
+}
+
+.media-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 15px;
+}
+
+.alarmbot-media-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.4);
+  font-size: 14px;
+  text-align: center;
+  padding: 5px;
+}
+
+.alarmbot-media-box:first-child {
+  grid-column: span 2;
+}
+
+.alarmbot-media-box.small {
+  font-size: 12px;
+}
+
+/* DETAILS GRID */
+.alarmbot-details-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
-  margin-bottom: 100px;
 }
 
-.alarmbot-info-card {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  padding: 24px 28px;
+.alarmbot-details-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 36px 32px;
 }
 
-.alarmbot-info-card svg {
-  color: #b5ff6d;
+.alarmbot-details-card h3 {
+  font-size: 28px;
+  margin-bottom: 16px;
 }
 
-.alarmbot-info-card span {
-  font-size: 14px;
-  font-weight: 600;
+.alarmbot-details-card ul {
+  padding-left: 18px;
+  margin-bottom: 16px;
 }
 
-.alarmbot-info-card p {
-  margin: 0;
+.alarmbot-details-card li {
+  margin-bottom: 4px;
+  color: rgba(255,255,255,0.7);
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.6);
 }
 
-/* ============================= */
-/* Sections */
-/* ============================= */
+.alarmbot-note {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+
+/* CTA COLUMN */
+.alarmbot-details-cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* LEARN SECTION */
 .alarmbot-section {
   margin-bottom: 100px;
 }
@@ -151,9 +144,6 @@
   margin-bottom: 48px;
 }
 
-/* ============================= */
-/* Learn Grid */
-/* ============================= */
 .alarmbot-learn-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -161,24 +151,23 @@
 }
 
 .alarmbot-learn-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 24px;
   padding: 40px 32px;
   text-align: center;
-
   transition: all 0.3s ease;
 }
 
 .alarmbot-learn-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
 }
 
 .alarmbot-learn-card svg {
-  color: #b5ff6d;
+  color: var(--primary-colour);
   margin-bottom: 16px;
 }
 
@@ -189,12 +178,10 @@
 
 .alarmbot-learn-card p {
   font-size: 15px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255,255,255,0.65);
 }
 
-/* ============================= */
-/* Outcomes */
-/* ============================= */
+/* OUTCOMES */
 .alarmbot-outcomes ul {
   max-width: 760px;
   margin: 0 auto;
@@ -204,16 +191,14 @@
 .alarmbot-outcomes li {
   font-size: 16px;
   margin-bottom: 12px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255,255,255,0.7);
 }
 
-/* ============================= */
 /* CTA */
-/* ============================= */
 .alarmbot-cta {
   text-align: center;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 28px;
   padding: 64px 48px;
 }
@@ -227,13 +212,13 @@
   max-width: 720px;
   margin: 0 auto 32px;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255,255,255,0.65);
 }
 
 .alarmbot-cta-button {
   display: inline-block;
   padding: 14px 32px;
-  background: #b5ff6d;
+  background: var(--primary-colour);
   color: #000;
   border-radius: 14px;
   font-weight: 600;
@@ -242,6 +227,185 @@
 }
 
 .alarmbot-cta-button:hover {
-  background: #9de64b;
+  background: var(--primary-colour-gradient);
   transform: translateY(-2px);
+}
+
+.alarmbot-secondary-button {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 14px;
+  border: 1px solid var(--primary-colour);
+  color: var(--primary-colour);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.alarmbot-secondary-button:hover {
+  background: var(--primary-colour);
+  color: #000;
+}
+
+/* ================= GALLERY ================= */
+
+.alarmbot-gallery-section {
+  margin-top: 120px;
+  text-align: center;
+}
+
+.alarmbot-gallery-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 50px;
+}
+
+.alarmbot-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.alarmbot-gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.alarmbot-gallery-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.alarmbot-gallery-item:hover img {
+  transform: scale(1.08);
+}
+
+.alarmbot-gallery-item:hover {
+  border-color: rgba(255,255,255,0.15);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+.alarmbot-gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0.05));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.alarmbot-gallery-item:hover::after {
+  opacity: 1;
+}
+
+/* ================= LIGHTBOX ================= */
+
+.alarmbot-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.alarmbot-lightbox-img {
+  max-width: 92%;
+  max-height: 90%;
+  border-radius: 16px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+  animation: zoomIn 0.3s ease;
+}
+
+.alarmbot-lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  font-size: 42px;
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.alarmbot-lightbox-close:hover {
+  opacity: 0.6;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+@media (max-width: 880px) {
+  .alarmbot-details-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .alarmbot-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 770px) {
+  .alarmbot-title {
+    font-size: 40px;
+  }
+
+  .alarmbot-hero-description {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 590px) {
+
+  /* STACK HERO */
+  .alarmbot-hero {
+    grid-template-columns: 1fr;   /* single column */
+    gap: 40px;
+    text-align: center;
+  }
+
+  /* Move image below text */
+  .alarmbot-hero-text {
+    order: 1;
+    text-align: center;
+  }
+
+  .alarmbot-hero-media {
+    order: 2;
+  }
+
+  /* Center description properly */
+  .alarmbot-hero-description {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* Keep gallery responsive */
+  .alarmbot-gallery-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .alarmbot-gallery-title {
+    font-size: 32px;
+  }
 }

@@ -1,13 +1,11 @@
 import './Workshops.css'
 import AlternativeFooter from '../Footer/AlternativeFooter'
 
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import AlarmOnRoundedIcon from '@mui/icons-material/AlarmOnRounded'
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded'
-import AccessTimeRoundedIcon from '@mui/icons-material/AccessTimeRounded'
-import GroupsRoundedIcon from '@mui/icons-material/GroupsRounded'
-import BoltRoundedIcon from '@mui/icons-material/BoltRounded'
 import UpdateRoundedIcon from '@mui/icons-material/UpdateRounded'
 
 /* workshops data */
@@ -15,57 +13,37 @@ const workshopsData = [
   {
     icon: <AlarmOnRoundedIcon />,
     title: 'Alarm Bot Workshop',
-    tagline: 'Build, wire, and program a functional alarm system',
+    tagline: 'Build, wire, and program an alarm bot to take home',
     description:
-      'Students design and build a working alarm bot using real electronics and Arduino code. Through guided instruction, students learn how sensors, outputs, and logic combine to form an engineered system.',
-    highlights: [
-      'Arduino programming fundamentals',
-      'Breadboard wiring & electronics safety',
-      'Sensors, buzzers, and LEDs',
-      'Debugging and iteration'
-    ],
+      'Students learn about the necessary engineering skills required to build a wheeled Alarm Bot, with a customisable buzzer sequence and motion path - perfect for waking themselves up just in time for school! The workshop guides the student all the way from the fundamentals of small-scale circuitry to programming the bot in Arduino.',
     duration: '120 minutes',
     yearLevels: 'Years 7 - 10',
     link: '/workshops/alarm-bot'
   },
-  // {
-  //   icon: <BoltRoundedIcon />,
-  //   title: 'Lightning Circuit Challenge',
-  //   tagline: 'Design fast and efficient circuits under time pressure',
-  //   description:
-  //     'Students tackle a series of hands-on circuit challenges, learning to optimize speed and reliability. This workshop encourages creative problem solving with electronics and teamwork.',
-  //   highlights: [
-  //     'Circuit design under time constraints',
-  //     'LEDs, resistors & switches',
-  //     'Collaborative problem solving',
-  //     'Hands-on prototyping'
-  //   ],
-  //   duration: '75 minutes',
-  //   yearLevels: 'Years 8–10',
-  //   link: '/lightning-circuit-challenge'
-  // }
 ]
 
-/* info strip data */
-const workshopsInfoData = [
+const faqData = [
   {
-    icon: <AccessTimeRoundedIcon />,
-    label: 'Duration',
-    value: '120-minute sessions'
+    question: 'Do students need prior coding or electronics experience?',
+    answer: 'No, all required learning content and skills are taught during the workshop. For higher-level skills such as coding in Arduino, we provide templates for the majority of the code and only ask students to code small snippets which they can then test.'
   },
   {
-    icon: <GroupsRoundedIcon />,
-    label: 'Year Levels',
-    value: 'Years 7 - 10'
+    question: 'What do schools need to provide?',
+    answer: 'Specific requirements for each type of workshop can be found within their respective incursion packs. Though we usually ask that workshops be held in computer labs, or if a school has a BYOD policy, then students bring their own laptops.'
   },
   {
-    icon: <BoltRoundedIcon />,
-    label: 'Requirements',
-    value: 'No prior experience required'
-  }
+    question: 'Why should I choose you as an incursion provider?',
+    answer: 'We pride ourselves on being the only STEM incursion provider that allows students an opportunity to take home what they create, ensuring a lasting and tangible connection to the world of robotics, post-workshop.'
+  },
 ]
 
 function Workshops() {
+  const [openIndex, setOpenIndex] = useState(null)
+
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
   return (
     <>
       {/* main container */}
@@ -96,12 +74,6 @@ function Workshops() {
               <div className="workshops-card-tagline">{workshop.tagline}</div>
               <div className="workshops-card-description">{workshop.description}</div>
 
-              <ul className="workshops-card-list">
-                {workshop.highlights.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
-              </ul>
-
               <div className="workshops-card-meta">
                 <span>{workshop.duration}</span>
                 <span>{workshop.yearLevels}</span>
@@ -124,7 +96,7 @@ function Workshops() {
             </div>
 
             <div className="workshops-card-description">
-              We’re actively developing new hands-on engineering workshops that build on
+              We're actively developing new hands-on engineering workshops that build on
               electronics, robotics, and real-world problem solving.
             </div>
 
@@ -138,7 +110,7 @@ function Workshops() {
         <div className="workshops-divider"></div>
 
         {/* summary */}
-        <div className="workshops-summary">
+        {/* <div className="workshops-summary">
           <div className="workshops-summary-title">
             Why Choose Our Workshops?
           </div>
@@ -150,10 +122,10 @@ function Workshops() {
           <div className="workshops-summary-text">
             Each workshop is carefully structured to be engaging, collaborative, and suitable for beginners. No prior experience required.
           </div>
-        </div>
+        </div> */}
 
         {/* info strip */}
-        <div className="workshops-info">
+        {/* <div className="workshops-info">
           {workshopsInfoData.map((item, index) => (
             <div key={index} className="workshops-info-item">
               {item.icon}
@@ -164,7 +136,35 @@ function Workshops() {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
+        
+        {/* FAQ Section */}
+        <div className="workshops-faq">
+          <div className="workshops-faq-title">Frequently Asked Questions</div>
+
+          <div className="workshops-faq-list">
+            {faqData.map((faq, index) => (
+              <div
+                key={index}
+                className={`workshops-faq-item ${openIndex === index ? 'open' : ''}`}
+              >
+                <button
+                  className="workshops-faq-question"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <span>{faq.question}</span>
+                  <span className="faq-icon">{openIndex === index ? '−' : '+'}</span>
+                </button>
+
+                <div className="workshops-faq-answer">
+                  <div className="workshops-faq-answer-inner">
+                    <p>{faq.answer}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div> 
       </div>
       
       {/* footer */}

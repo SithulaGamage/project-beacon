@@ -1,8 +1,8 @@
 /*  */
 /* workshops container */
 .workshops-container {
+  max-width: var(--max-width);
   width: var(--width);
-  max-width: 1280px;
 
   margin: 0 auto;
   padding: 150px 0 0;
@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
 
-  color: #fff;
+  color: var(--text-colour);
 }
 
 /*  */
@@ -29,8 +29,8 @@
   padding: 8px 20px;
   margin-bottom: 24px;
 
-  background: rgba(181, 255, 109, 0.12);
-  border: 1px solid rgba(181, 255, 109, 0.25);
+  background: var(--label-block-background);
+  border: 1px solid var(--label-block-border);
   border-radius: 50px;
 
   font-size: 14px;
@@ -38,7 +38,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .workshops-title {
@@ -49,11 +49,11 @@
 }
 
 .workshops-subtitle {
+  width: var(--subtitle-width);
   font-size: 18px;
   font-weight: 400;
 
   color: rgba(255, 255, 255, 0.65);
-  max-width: 760px;
 
   margin: 0 auto;
 }
@@ -62,7 +62,8 @@
 /* workshops grid */
 .workshops-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* change this value to 3 in the future, or could leave at 2 */
+  grid-template-columns: repeat(2, 1fr);
   gap: 32px;
 }
 
@@ -99,11 +100,11 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(181, 255, 109, 0.12);
-  border: 1px solid rgba(181, 255, 109, 0.25);
+  background: var(--label-block-background);
+  border: 1px solid var(--label-block-border);
   border-radius: 18px;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .workshops-card-title {
@@ -117,7 +118,7 @@
   font-size: 14px;
   font-weight: 600;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
   margin-bottom: 12px;
 }
 
@@ -128,6 +129,8 @@
 
   color: rgba(255, 255, 255, 0.65);
   margin-bottom: 20px;
+
+  text-align: justify;
 }
 
 .workshops-card-list {
@@ -158,7 +161,7 @@
 .workshops-cta-button {
   margin-top: 20px;
 
-  background: #b5ff6d;
+  background: var(--primary-colour);
   color: #000;
 
   padding: 12px 28px;
@@ -173,8 +176,8 @@
 }
 
 .workshops-cta-button:hover {
-  background: #9de64b;
-  transform: translateY(-2px);
+  background: var(--primary-colour-gradient);
+  /* transform: translateY(-2px); */
 }
 
 /*  */
@@ -204,10 +207,10 @@
 /* divider */
 .workshops-divider {
   position: relative;
-  width: calc(1280px / 2);
+  width: var(--width);
   height: 4px;
 
-  background: linear-gradient(90deg, #b5ff6d, #7fc800);
+  background: linear-gradient(90deg, var(--primary-colour), var(--primary-colour-gradient));
   border-radius: 2px;
 
   margin: 80px auto;
@@ -270,7 +273,7 @@
   font-size: 28px;
   font-weight: 700;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
   margin-bottom: 20px;
 }
 
@@ -305,7 +308,7 @@
 }
 
 .workshops-info-item svg {
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .workshops-info-item p {
@@ -320,4 +323,106 @@
 .workshops-info-item span {
   font-size: 16px;
   font-weight: 600;
+}
+
+
+/* FAQ Section - Optimized for smooth performance */
+.workshops-faq {
+  margin-bottom: 120px;
+}
+
+.workshops-faq-title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--primary-colour);
+}
+
+.workshops-faq-list {
+  width: var(--width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workshops-faq-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.workshops-faq-item.open {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.workshops-faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 20px 24px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  gap: 20px;
+}
+
+.workshops-faq-question:hover {
+  opacity: 0.8;
+}
+
+.faq-icon {
+  font-size: 22px;
+  color: var(--primary-colour);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.workshops-faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+/* Using CSS Grid for smooth height transitions */
+.workshops-faq-answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.workshops-faq-item.open .workshops-faq-answer {
+  grid-template-rows: 1fr;
+}
+
+.workshops-faq-answer-inner {
+  overflow: hidden;
+}
+
+.workshops-faq-answer p {
+  margin: 0;
+  padding: 0 24px 20px 24px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 720px) {
+  .workshops-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .workshops-title {
+    font-size: 42px;
+  }
 }

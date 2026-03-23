@@ -12,7 +12,7 @@ const missionPillars = [
     icon: <EngineeringRoundedIcon />,
     title: 'Authentic Engineering',
     description:
-      'We believe students learn best by building real systems. Our programs focus on genuine engineering practices, not simulations.'
+      'Students learn best by building real systems. Our programs focus on genuine engineering practices, not simulations.'
   },
   {
     icon: <SchoolRoundedIcon />,
@@ -24,7 +24,7 @@ const missionPillars = [
     icon: <GroupsRoundedIcon />,
     title: 'Equity & Inclusion',
     description:
-      'Every participant takes home their own project, ensuring equal access to hands-on STEM learning.'
+      'Every participant takes home their own project, ensuring equal access to meaningful, hands-on STEM learning.'
   }
 ]
 
@@ -44,19 +44,8 @@ function Mission() {
           <div className="mission-title">Building Confidence Through Engineering</div>
 
           <div className="mission-subtitle">
-            Project Beacon exists to make high-quality, hands-on engineering education accessible to every student - empowering young people with skills that extend far beyond the classroom.
+            Project Beacon’s goal is to bring the world of STEM directly into the hands of young student innovators. Our interactive, curriculum-aligned workshops aim to teach students the fundamentals of robotics, from manufacturing through to programming and testing. Our workshops are built around students creating robots they can take home, inspiring continual experimentation and future learning.
           </div>
-        </div>
-
-        {/* core statement */}
-        {/* NEED SOMETHING BETTER HERE */}
-        <div className="mission-statement">
-          <p>
-            We design and deliver immersive robotics workshops that place students in
-            the role of engineers. By working with real electronics, code, and mechanical
-            systems, students develop problem-solving skills, technical confidence, and
-            a deeper understanding of how technology shapes the world around them.
-          </p>
         </div>
 
         {/* mission pillars */}

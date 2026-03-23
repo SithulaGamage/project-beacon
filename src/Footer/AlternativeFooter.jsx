@@ -10,21 +10,22 @@ function AlternativeFooter() {
       <div className='alternative-footer-main-block'>
         <div className='alternative-footer-brand-section'>
           <div className='alternative-footer-brand-logo'>
-            <div className='alternative-footer-logo-icon'></div>
+            <div className='alternative-footer-logo-icon'>
+              <img src="../../images/pb.png" alt="Students building Alarm Bot" />
+            </div>
             <span>Project Beacon</span>
           </div>
 
           <p className='alternative-footer-brand-description'>
-            Bringing accessible, high-quality robotics education to Australian high schools.
-            Hands-on Arduino coding, 3D printing, and real engineering skills for Years 7–10.
+            Bringing accessible hands-on robotics workshops. It is STEM learning that builds both technical skills and belief in their ability to innovate. We focus on capability, confidence, and real-world application.
           </p>
 
           <a
-            href="mailto:hello@projectbeacon.edu.au"
+            href="mailto:support@projectbeacon.org.au"
             className='alternative-footer-email'
           >
             <EmailRoundedIcon />
-            hello@projectbeacon.edu.au
+            support@projectbeacon.org.au
           </a>
         </div>
 
@@ -33,26 +34,44 @@ function AlternativeFooter() {
             <h3>Navigation</h3>
             <Link to="/workshops">Workshops</Link>
             <Link to="/our-mission">Our Mission</Link>
-            <Link to="/our-team">Our Team</Link>
+            {/* <Link to="/our-team">Our Team</Link> */}
             <Link to="/resources">Resources</Link>
             <Link to="/get-started">Enquire</Link>
           </div>
 
           <div className='alternative-footer-links-column'>
             <h3>Information</h3>
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/terms-of-service">Terms of Service</Link>
-            <Link to="/compliance">Safety & Compliance</Link>
+            <a
+              href="../../downloads/Privacy Policy.pdf"
+              download
+              className="footer-download-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </a>
+
+            <a
+              href="../../downloads/Project Beacon Child Safe Statement of Commitment.pdf"
+              download
+              className="footer-download-link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Safety & Compliance
+            </a>
           </div>
         </div>
       </div>
 
       {/* bottom bar */}
-      <div className='alternative-footer-bottom'>
-        <p>© 2025 Project Beacon. All rights reserved.</p>
-        <p className='alternative-footer-badges'>
-          NSW Curriculum Aligned · Fully Insured · WWCC Compliant
-        </p>
+      <div className='alternative-footer-bottom-container'>
+        <div className='alternative-footer-bottom'>
+          <p>© 2025 Project Beacon. All rights reserved.</p>
+          <p className='alternative-footer-badges'>
+            NSW Curriculum Aligned · Fully Insured · WWCC Compliant
+          </p>
+        </div>
       </div>
     </div>
   )

@@ -4,19 +4,17 @@ import { Link } from 'react-router-dom'
 import Footer from '../Footer/Footer.jsx'
 import DarkVeil from '../components/DarkVeil.jsx'
 
-import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
 import SecurityRoundedIcon from '@mui/icons-material/SecurityRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import HomeRepairServiceRoundedIcon from '@mui/icons-material/HomeRepairServiceRounded';
-import ElectricBoltRoundedIcon from '@mui/icons-material/ElectricBoltRounded';
-import LockRoundedIcon from '@mui/icons-material/LockRounded';
+
 
 import StarBorder from '../components/StarBorder.jsx';
 import ShinyText from '../components/ShinyText.jsx';
@@ -33,7 +31,7 @@ const projectBeaconCardsData = [
 			</>
 		),
     description:
-      "Designed for students of all backgrounds and experience levels. No prior coding or electronics knowledge required.",
+      "No experience needed. We guide students step-by-step from basics to building a working robot. Designed for mixed-ability classrooms so every student can succeed.",
   },
   {
 		title: (
@@ -45,7 +43,7 @@ const projectBeaconCardsData = [
 			</>
 		),
     description:
-      "Developing practical engineering capability through design thinking, problem solving, and real-world systems.",
+      "Students learn how real systems work through coding, circuits, sensors, and mechanical design. Practical skills used in real engineering, not just theory.",
   },
   {
 		title: (
@@ -57,7 +55,7 @@ const projectBeaconCardsData = [
 			</>
 		),
     description:
-      "Every student takes home their own robot, ensuring equal access to meaningful STEM learning.",
+      "Every student builds and keeps their own functional robot. We remove cost and access barriers so all students can experience creating technology.",
   }
 ];
 
@@ -92,51 +90,15 @@ const schoolsCardsData = [
 				<span>
 					<CheckCircleRoundedIcon />
 				</span>
-				WWC Compliance
+				WWCC Compliance
 			</>
 		),
     description:
       "All facilitators hold valid Working With Children Checks and relevant certifications.",
   },
-  {
-    title: (
-			<>
-				<span>
-					<HomeRepairServiceRoundedIcon />
-				</span>
-				All Materials Supplied
-			</>
-		),
-    description:
-      "Every component, tool, and resource provided. From Arduino boards to 3D-printed parts.",
-  },
-  {
-    title: (
-			<>
-				<span>
-					<ElectricBoltRoundedIcon />
-				</span>
-				No Teacher Prep Required
-			</>
-		),
-    description:
-      "Completely turnkey experience. Teachers can observe or participate. No prior setup needed.",
-  },
-  {
-    title: (
-			<>
-				<span>
-					<LockRoundedIcon />
-				</span>
-				Safe, Tested Components
-			</>
-		),
-    description:
-      "Age-appropriate materials tested for safety. Low-voltage electronics and quality-assured parts.",
-  },
 ];
 
-const spotlightColorHEX = '#b6ff6d6e'
+const spotlightColorHEX = '#d49b0040'
 
 function Homepage() {
   return (
@@ -151,19 +113,21 @@ function Homepage() {
         <div className="homepage-hero-container">
           {/* text */}
           <div className="homepage-hero-text-container">
-            <div className="homepage-hero-title">Youth Robotics Incursion</div>
+            {/* <div className="homepage-hero-title">Robotics in Action</div> */}
+            <div className="homepage-hero-title">New Alarm Bot Workshop</div>
+            
             {/* NEED TO REWORD THIS */}
-            <div className="homepage-hero-subtitle">
-              Turning classrooms into real engineering environments for students
-            </div>
+            {/* <div className="homepage-hero-subtitle">Turning classrooms into real engineering environments for students</div> */}
+            <div className="homepage-hero-subtitle">Practical, project-based robotics workshops designed for real engineering learning</div>
           </div>
 
           {/* call to action */}
           <div className="homepage-hero-call-to-action-container">
-            <div className="homepage-hero-call-to-action-incursion-pack-button">
-              <DownloadRoundedIcon />
-              <span>Download Incursion Pack</span>
-            </div>
+            <Link to="/workshops/alarm-bot" className="homepage-hero-call-to-action-incursion-pack-button">
+              {/* <DownloadRoundedIcon /> */}
+              <span>Explore New Workshop</span>
+              <ArrowForwardRoundedIcon />
+            </Link>
 
             <StarBorder
               as="button"
@@ -225,7 +189,7 @@ function Homepage() {
           </div>
 
           {/* text */}
-          <div className='homepage-section-title'>Risk-Free for Schools</div>
+          <div className='homepage-section-title'>Hassle-Free for Schools</div>
           <div className='homepage-section-subtitle'>
             We handle every compliance, safety, and logistical requirement so you can focus on providing amazing opportunities for your students.
           </div>

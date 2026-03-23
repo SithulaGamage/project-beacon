@@ -1,6 +1,7 @@
 /*  */
 /* mission container */
 .mission-container {
+  max-width: var(--max-width);
   width: var(--width);
 
   display: flex;
@@ -9,7 +10,7 @@
   margin: 0 auto;
   padding: 150px 0 0;
 
-  color: #fff;
+  color: var(--text-colour);
 }
 
 /*  */
@@ -28,8 +29,8 @@
   padding: 8px 20px;
   margin-bottom: 24px;
 
-  background: rgba(181, 255, 109, 0.12);
-  border: 1px solid rgba(181, 255, 109, 0.25);
+  background: var(--label-block-background);
+  border: 1px solid var(--label-block-border);
   border-radius: 50px;
 
   font-size: 14px;
@@ -37,7 +38,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .mission-title {
@@ -51,31 +52,12 @@
   font-size: 18px;
   font-weight: 400;
 
+  width: var(--subtitle-width);
+
   color: rgba(255, 255, 255, 0.65);
-  max-width: 760px;
+  width: 80%;
   
   margin: 0 auto;
-}
-
-/*  */
-/* core statement */
-.mission-statement {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
-
-  padding: 48px 56px;
-  max-width: 900px;
-  text-align: center;
-  margin-bottom: 80px;
-}
-
-.mission-statement p {
-  font-size: 20px;
-  line-height: 1.8;
-
-  color: rgba(255, 255, 255, 0.75);
-  margin: 0;
 }
 
 /*  */
@@ -84,6 +66,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+
+  margin-top: 30px;
 }
 
 /* mission card */
@@ -115,11 +99,11 @@
   align-items: center;
   justify-content: center;
 
-  background: rgba(181, 255, 109, 0.12);
-  border: 1px solid rgba(181, 255, 109, 0.25);
+  background: var(--label-block-background);
+  border: 1px solid var(--label-block-border);
   border-radius: 18px;
 
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 /* mission card title */
@@ -145,7 +129,7 @@
 /* closing section */
 .mission-closing {
   text-align: center;
-  margin: 100px 0;
+  margin: 120px 0;
 }
 
 .mission-closing-title {
@@ -162,4 +146,36 @@
   margin: 0 auto;
 
   color: rgba(255, 255, 255, 0.65);
+}
+
+@media (max-width: 880px) {
+  .mission-pillars {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .mission-subtitle {
+    text-align: justify;
+  }
+
+  .mission-closing-text {
+    text-align: justify;
+  }
+}
+
+@media (max-width: 450px) {
+  .mission-title {
+    font-size: 42px;
+  }
+
+  .mission-closing-title {
+    font-size: 32px;
+  }
+
+  .mission-subtitle,
+  .mission-card-description,
+  .mission-closing-text {
+    font-size: 14px;
+  }
 }

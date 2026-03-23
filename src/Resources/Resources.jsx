@@ -1,17 +1,13 @@
 import './Resources.css'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import AlternativeFooter from '../Footer/AlternativeFooter.jsx'
 
 import LockIcon from '@mui/icons-material/Lock'
 import DownloadIcon from '@mui/icons-material/Download'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
-import BoltIcon from '@mui/icons-material/Bolt'
 import ComputerIcon from '@mui/icons-material/Computer'
-import BuildIcon from '@mui/icons-material/Build'
-import DescriptionIcon from '@mui/icons-material/Description'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
-
-import StarBorder from '../components/StarBorder.jsx'
 
 const resourcesData = [
   {
@@ -19,50 +15,34 @@ const resourcesData = [
     title: 'Student Build Manual',
     description: 'Step-by-step assembly guide with diagrams and safety instructions.',
     fileSize: '2.4 MB',
-    fileType: 'PDF'
-  },
-  {
-    icon: <BoltIcon />,
-    title: 'Wiring Diagrams',
-    description: 'Detailed breadboard layouts and component connection guides.',
-    fileSize: '1.8 MB',
-    fileType: 'PDF'
+    fileType: 'PDF',
+    link: '/files/AlarmBot-Build-Manual.pdf'
   },
   {
     icon: <ComputerIcon />,
-    title: 'Arduino Code Templates',
-    description: 'Pre-written code with comments and customization examples.',
-    fileSize: '0.5 MB',
-    fileType: 'ZIP'
-  },
-  {
-    icon: <BuildIcon />,
-    title: 'Troubleshooting Guide',
-    description: 'Common issues and solutions for debugging hardware and software.',
-    fileSize: '1.2 MB',
-    fileType: 'PDF'
-  },
-  {
-    icon: <DescriptionIcon />,
-    title: 'Curriculum Mapping Document',
-    description: 'NSW syllabus alignment and learning outcome documentation.',
-    fileSize: '0.8 MB',
-    fileType: 'PDF'
-  },
-  {
-    icon: <RocketLaunchIcon />,
-    title: 'Extension Activities',
-    description: 'Advanced challenges and modifications for high-achieving students.',
-    fileSize: '1.5 MB',
-    fileType: 'PDF'
+    title: 'Workshop Code Templates',
+    description: 'Access pre-written Arduino code for each workshop project.',
+    fileType: 'Workshops',
+    workshops: [
+      {
+        name: 'Alarm Bot Workshop',
+        link: '/resources/alarm-bot-template-code'
+      },
+      // {
+      //   name: 'Line Following Robot',
+      //   link: '/resources/line-follower-code'
+      // },
+      // {
+      //   name: 'Obstacle Avoidance Robot',
+      //   link: '/resources/obstacle-bot-code'
+      // }
+    ]
   }
 ]
 
 function Resources() {
   const [isUnlocked, setIsUnlocked] = useState(() => {
-    // remember to uncomment this
-    // return localStorage.getItem('resourcesUnlocked') === 'true'
-    // return localStorage.getItem('resourcesUnlocked') === 'false'
+    return localStorage.getItem('resourcesUnlocked') === 'false'
   })
 
   const [accessCode, setAccessCode] = useState('')
@@ -80,20 +60,17 @@ function Resources() {
   }
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleUnlock()
-    }
+    if (e.key === 'Enter') handleUnlock()
   }
 
+  // locked view
   if (!isUnlocked) {
     return (
-      <div className='resources-container'>
-        {/* header */}
+      <div className='resources-container locked'>
         <div className='resources-header'>
           <div className='resources-title'>Resources</div>
         </div>
 
-        {/* locked card */}
         <div className='resources-locked-card'>
           <div className='resources-locked-icon'>
             <LockIcon />
@@ -113,7 +90,7 @@ function Resources() {
               placeholder='Enter access code'
               value={accessCode}
               onChange={(e) => setAccessCode(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
             />
 
             <button
@@ -128,11 +105,10 @@ function Resources() {
     )
   }
 
+  // unlocked view
   return (
     <>
-      {/* main container */}
-      <div className='resources-container'>
-        {/* header */}
+      <div className='resources-container unlocked'>
         <div className='resources-header'>
           <div className='resources-title'>Resources</div>
           <p className='resources-subtitle'>
@@ -140,7 +116,6 @@ function Resources() {
           </p>
         </div>
 
-        {/* grid */}
         <div className='resources-grid'>
           {resourcesData.map((resource, index) => (
             <div key={index} className='resources-card'>
@@ -153,19 +128,39 @@ function Resources() {
               <p className='resources-card-description'>{resource.description}</p>
 
               <div className='resources-card-footer'>
-                <span className='resources-card-file-size'>{resource.fileSize}</span>
+                {resource.fileSize && (
+                  <span className='resources-card-file-size'>{resource.fileSize}</span>
+                )}
 
-                <button className='resources-card-download-button'>
-                  <DownloadIcon />
-                  Download
-                </button>
+                {resource.fileType === 'Workshops' ? (
+                  <div className="resources-workshop-buttons">
+                    {resource.workshops.map((workshop, i) => (
+                      <Link
+                        key={i}
+                        to={workshop.link}
+                        className="resources-workshop-button"
+                      >
+                        <RocketLaunchIcon />
+                        {workshop.name}
+                      </Link>
+                    ))}
+                  </div>
+                ) : resource.fileType === 'PDF' ? (
+                  <a
+                    href={resource.link}
+                    className='resources-card-download-button'
+                    download
+                  >
+                    <DownloadIcon />
+                    Download
+                  </a>
+                ) : null}
               </div>
             </div>
           ))}
         </div>
-        
-        {/* additional support */}
-        <div className='resources-support-section'>
+
+        {/* <div className='resources-support-section'>
           <div className='resources-support-title'>Need Additional Support?</div>
           <p className='resources-support-description'>
             Our team is available to help with resource questions, technical support, or curriculum integration guidance.
@@ -173,10 +168,9 @@ function Resources() {
           <button className='resources-support-button'>
             Contact Support Team
           </button>
-        </div>
+        </div> */}
       </div>
 
-      {/* footer */}
       <AlternativeFooter />
     </>
   )

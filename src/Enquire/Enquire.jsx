@@ -1,41 +1,47 @@
 import './Enquire.css'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import emailjs from 'emailjs-com'
 
 import AlternativeFooter from '../Footer/AlternativeFooter'
 
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded'
-import PhoneRoundedIcon from '@mui/icons-material/PhoneRounded'
 import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded'
 import ElectricBoltRoundedIcon from '@mui/icons-material/ElectricBoltRounded'
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
+import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded'
 
 function Enquire() {
   const formRef = useRef()
 
+  const [status, setStatus] = useState(null) // success | error | null
+  const [loading, setLoading] = useState(false)
+
   const sendEmail = (e) => {
     e.preventDefault()
+    setLoading(true)
+    setStatus(null)
 
     emailjs
       .sendForm(
-        'YOUR_SERVICE_ID',     // 🔴 replace
-        'YOUR_TEMPLATE_ID',    // 🔴 replace
+        'service_cqgyohi',
+        'template_emalvgp',
         formRef.current,
-        'YOUR_PUBLIC_KEY'      // 🔴 replace
+        'WUiNf9ApK_txsx0VX'
       )
       .then(() => {
-        alert('Enquiry sent successfully!')
+        setStatus('success')
+        setLoading(false)
         formRef.current.reset()
       })
       .catch(() => {
-        alert('Something went wrong. Please try again.')
+        setStatus('error')
+        setLoading(false)
       })
   }
 
   return (
     <>
-      {/* main container */}
       <div className="enquire-container">
-        {/* header */}
         <div className="enquire-header">
           <h1 className="enquire-title">Enquire About a Workshop</h1>
           <p className="enquire-subtitle">
@@ -43,10 +49,30 @@ function Enquire() {
           </p>
         </div>
 
-        {/* main layout */}
         <div className="enquire-content">
-          {/* form */}
           <form className="enquire-form" ref={formRef} onSubmit={sendEmail}>
+            
+            {/* ✅ Success / Error Message */}
+            {status === 'success' && (
+              <div className="enquire-message success">
+                <CheckCircleRoundedIcon />
+                <div>
+                  <strong>Enquiry Sent Successfully!</strong>
+                  <p>Our team will respond within 24 hours.</p>
+                </div>
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="enquire-message error">
+                <ErrorRoundedIcon />
+                <div>
+                  <strong>Something went wrong.</strong>
+                  <p>Please try again or email us directly.</p>
+                </div>
+              </div>
+            )}
+
             <div className="enquire-grid">
               <div className="enquire-field">
                 <label>School Name *</label>
@@ -99,12 +125,16 @@ function Enquire() {
               <textarea name="message" rows="5" />
             </div>
 
-            <button type="submit" className="enquire-submit">
-              Submit Enquiry
+            <button
+              type="submit"
+              className="enquire-submit"
+              disabled={loading}
+            >
+              {loading ? 'Sending...' : 'Submit Enquiry'}
             </button>
           </form>
 
-          {/* sidebar */}
+          {/* Sidebar unchanged */}
           <div className="enquire-sidebar">
             <div className="enquire-info-card">
               <h3>Contact Information</h3>
@@ -113,16 +143,7 @@ function Enquire() {
                 <EmailRoundedIcon />
                 <div>
                   <span>Email</span>
-                  <p>hello@projectbeacon.edu.au</p>
-                </div>
-              </div>
-
-              <div className="enquire-info-item">
-                <PhoneRoundedIcon />
-                <div>
-                  <span>Phone</span>
-                  <p>+61 433 035 707</p>
-                  <p>+61 433 035 707</p>
+                  <p>support@projectbeacon.org.au</p>
                 </div>
               </div>
 
@@ -154,7 +175,6 @@ function Enquire() {
         </div>
       </div>
 
-      {/* footer */}
       <AlternativeFooter />
     </>
   )

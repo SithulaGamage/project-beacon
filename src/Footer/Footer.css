@@ -1,8 +1,7 @@
-
 /* footer */
 .homepage-footer-container {
   width: 100%;
-  margin-top: 80px;
+  margin: 0px auto;
   padding: 80px 0 0;
   
   background: rgba(255, 255, 255, 0.01);
@@ -15,8 +14,7 @@
 
 /* cta section */
 .homepage-footer-cta-section {
-  max-width: 1280px;
-  width: 100%;
+  width: var(--width);
   padding: 0 40px;
   
   display: flex;
@@ -34,20 +32,20 @@
   gap: 8px;
   
   padding: 8px 20px;
-  background: rgba(181, 255, 109, 0.1);
-  border: 1px solid rgba(181, 255, 109, 0.2);
+  background: var(--label-block-background);
+  border: 1px solid var(--label-block-border);
   border-radius: 50px;
   
   font-size: 14px;
   font-weight: 500;
-  color: #b5ff6d;
+  color: var(--primary-colour);
 }
 
 .homepage-footer-availability-dot {
   width: 8px;
   height: 8px;
 
-  background: #b5ff6d;
+  background: var(--primary-colour);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -65,7 +63,7 @@
 
   max-width: 800px;
   
-  color: #fff;
+  color: var(--text-colour);
 }
 
 .homepage-footer-contact-button {
@@ -76,6 +74,9 @@
   cursor: pointer;
   
   transition: all 0.15s ease;
+
+  text-decoration: none;
+  display: inline-block;
 }
 
 .homepage-footer-contact-button:hover {
@@ -83,20 +84,15 @@
   transform: translateY(-2px);
 }
 
-/* main info section */
-.homepage-footer-main-block {
-  max-width: 1280px;
-  width: 100%;
-  padding: 80px 0px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  
-  display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 80px;
-}
-
 .contact-link {
   text-decoration: none;
+  display: inline-block;
   color: inherit;
   cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .homepage-footer-cta-title {
+    font-size: 42px;
+  }
 }

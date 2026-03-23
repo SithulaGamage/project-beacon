@@ -18,6 +18,8 @@ import ScrollToTop from './ScrollToTop/ScrollToTop.jsx'
 
 import AlarmBotWorkshop from './Workshops/AlarmBotWorkshop.jsx'
 
+import AlarmBotCode from './Resources/AlarmBotCode.jsx'
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
@@ -33,11 +35,13 @@ createRoot(document.getElementById('root')).render(
         <Route path="/resources" element={<Resources />} />
         <Route path="/get-started" element={<Enquire />} />
 
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/compliance" element={<Compliance />} />
+        <Route path="/compliance" element={<Compliance />} /> */}
 
         <Route path="/workshops/alarm-bot" element={<AlarmBotWorkshop />} />
+
+        <Route path="/resources/alarm-bot-template-code" element={<AlarmBotCode />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
