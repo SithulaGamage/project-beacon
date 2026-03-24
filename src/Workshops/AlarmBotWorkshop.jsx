@@ -9,11 +9,13 @@ function AlarmBot() {
   const galleryImages = [
     "/alarm-bot-workshop/DSC_4146.jpg",
     // "/alarm-bot-workshop/DSC_4149.jpg",
-    "/alarm-bot-workshop/DSC_4173.jpg",
+    // "/alarm-bot-workshop/DSC_4173.jpg",
     "/alarm-bot-workshop/DSC_4223.jpg",
+    "/alarm-bot-workshop/computer_with_code_and_bot.JPG",
     "/alarm-bot-workshop/DSC_4179.jpg",
+    "/alarm-bot-workshop/prizes_on_table.JPG",
     "/alarm-bot-workshop/DSC_4182.jpg",
-    "/alarm-bot-workshop/DSC_4176.jpg",
+    // "/alarm-bot-workshop/DSC_4176.jpg",
   ]
 
   return (
