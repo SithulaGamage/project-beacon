@@ -23,37 +23,37 @@ import SpotlightCard from '../components/SpotlightCard.jsx'
 const projectBeaconCardsData = [
   {
     title: (
-			<>
-				<span>
-					<SchoolRoundedIcon />
-				</span>
-				Accessible to All
-			</>
-		),
+      <>
+        <span>
+          <img src="/logo/alarmbot_icon.png" alt="Alarm Bot Icon" style={{ width: '24px', height: '24px' }} />
+        </span>
+        Accessible to All
+      </>
+    ),
     description:
       "No experience needed. We guide students step-by-step from basics to building a working robot. Designed for mixed-ability classrooms so every student can succeed.",
   },
   {
-		title: (
-			<>
-				<span>
-					<SettingsRoundedIcon />
-				</span>
-				Real Engineering Skills
-			</>
-		),
+    title: (
+      <>
+        <span>
+          <SettingsRoundedIcon />
+        </span>
+        Real Engineering Skills
+      </>
+    ),
     description:
       "Students learn how real systems work through coding, circuits, sensors, and mechanical design. Practical skills used in real engineering, not just theory.",
   },
   {
-		title: (
-			<>
-				<span>
-					<StarRoundedIcon />
-				</span>
-				Equity & Inspiration
-			</>
-		),
+    title: (
+      <>
+        <span>
+          <StarRoundedIcon />
+        </span>
+        Equity & Inspiration
+      </>
+    ),
     description:
       "Every student builds and keeps their own functional robot. We remove cost and access barriers so all students can experience creating technology.",
   }
@@ -61,38 +61,38 @@ const projectBeaconCardsData = [
 
 const schoolsCardsData = [
   {
-		title: (
-			<>
-				<span>
-					<ContentPasteRoundedIcon />
-				</span>
-				Risk Assessment Provided
-			</>
-		),
+    title: (
+      <>
+        <span>
+          <ContentPasteRoundedIcon />
+        </span>
+        Risk Assessment Provided
+      </>
+    ),
     description:
       "Complete risk assessment documentation prepared for your school's approval process.",
   },
   {
     title: (
-			<>
-				<span>
-					<SecurityRoundedIcon />
-				</span>
-				Public Liability Insurance
-			</>
-		),
+      <>
+        <span>
+          <SecurityRoundedIcon />
+        </span>
+        Public Liability Insurance
+      </>
+    ),
     description:
       "Fully insured program with comprehensive public liability coverage for all activities.",
   },
   {
     title: (
-			<>
-				<span>
-					<CheckCircleRoundedIcon />
-				</span>
-				WWCC Compliance
-			</>
-		),
+      <>
+        <span>
+          <CheckCircleRoundedIcon />
+        </span>
+        WWCC Compliance
+      </>
+    ),
     description:
       "All facilitators hold valid Working With Children Checks and relevant certifications.",
   },
@@ -115,7 +115,7 @@ function Homepage() {
           <div className="homepage-hero-text-container">
             {/* <div className="homepage-hero-title">Robotics in Action</div> */}
             <div className="homepage-hero-title">New Alarm Bot Workshop</div>
-            
+
             {/* NEED TO REWORD THIS */}
             {/* <div className="homepage-hero-subtitle">Turning classrooms into real engineering environments for students</div> */}
             <div className="homepage-hero-subtitle">Practical, project-based robotics workshops designed for real engineering learning</div>
@@ -150,7 +150,7 @@ function Homepage() {
             <AutoAwesomeOutlinedIcon />
             <ShinyText
               text="Background"
-              disabled={false} 
+              disabled={false}
               speed={3}
             />
           </div>
@@ -182,8 +182,8 @@ function Homepage() {
           <div className='homepage-section-label'>
             <AutoAwesomeOutlinedIcon />
             <ShinyText
-              text="What's in it for you" 
-              disabled={false} 
+              text="What's in it for you"
+              disabled={false}
               speed={3}
             />
           </div>

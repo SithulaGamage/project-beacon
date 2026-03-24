@@ -4,19 +4,18 @@ import AlternativeFooter from '../Footer/AlternativeFooter'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import AlarmOnRoundedIcon from '@mui/icons-material/AlarmOnRounded'
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded'
 import UpdateRoundedIcon from '@mui/icons-material/UpdateRounded'
 
 /* workshops data */
 const workshopsData = [
   {
-    icon: <AlarmOnRoundedIcon />,
+    icon: <img src="/logo/alarmbot_icon.png" alt="Alarm Bot Icon" style={{ width: '72px', height: '72px' }} />,
     title: 'Alarm Bot Workshop',
     tagline: 'Build, wire, and program an alarm bot to take home',
     description:
       'Students learn about the necessary engineering skills required to build a wheeled Alarm Bot, with a customisable buzzer sequence and motion path - perfect for waking themselves up just in time for school! The workshop guides the student all the way from the fundamentals of small-scale circuitry to programming the bot in Arduino.',
-    duration: '120 minutes',
+    duration: '2 hours',
     yearLevels: 'Years 7 - 10',
     link: '/workshops/alarm-bot'
   },
@@ -137,7 +136,7 @@ function Workshops() {
             </div>
           ))}
         </div> */}
-        
+
         {/* FAQ Section */}
         <div className="workshops-faq">
           <div className="workshops-faq-title">Frequently Asked Questions</div>
@@ -164,9 +163,9 @@ function Workshops() {
               </div>
             ))}
           </div>
-        </div> 
+        </div>
       </div>
-      
+
       {/* footer */}
       <AlternativeFooter />
     </>
