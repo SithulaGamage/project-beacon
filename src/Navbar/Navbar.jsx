@@ -19,7 +19,7 @@ function Navbar() {
       <div className='navbar-container'>
         {/* logo */}
         <Link to="/" className='navbar-logo-container'>
-          <img src="/public/logo/pb.png" alt="Project Beacon Logo" className="navbar-logo-image" />
+          <img src="/logo/pb.png" alt="Project Beacon Logo" className="navbar-logo-image" />
           <div className='navbar-logo-text'>Project Beacon</div>
         </Link>
 
