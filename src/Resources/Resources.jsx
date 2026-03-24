@@ -51,7 +51,7 @@ function Resources() {
   const handleUnlock = () => {
     if (accessCode === 'beacon2025') {
       setIsUnlocked(true)
-      localStorage.setItem('resourcesUnlocked', 'true')
+      localStorage.setItem('resourcesUnlocked', 'false')
       setError(false)
     } else {
       setError(true)
