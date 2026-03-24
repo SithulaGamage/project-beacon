@@ -7,13 +7,13 @@ function AlarmBot() {
   const [activeImg, setActiveImg] = useState(null)
 
   const galleryImages = [
-    "../../images/alarm-bot-workshop/DSC_4146.jpg",
-    // "../../images/alarm-bot-workshop/DSC_4149.jpg",
-    "../../images/alarm-bot-workshop/DSC_4173.jpg",
-    "../../images/alarm-bot-workshop/DSC_4223.jpg",
-    "../../images/alarm-bot-workshop/DSC_4179.jpg",
-    "../../images/alarm-bot-workshop/DSC_4182.jpg",
-    "../../images/alarm-bot-workshop/DSC_4176.jpg",
+    "../../src/images/alarm-bot-workshop/DSC_4146.jpg",
+    // "../../src/images/alarm-bot-workshop/DSC_4149.jpg",
+    "../../src/images/alarm-bot-workshop/DSC_4173.jpg",
+    "../../src/images/alarm-bot-workshop/DSC_4223.jpg",
+    "../../src/images/alarm-bot-workshop/DSC_4179.jpg",
+    "../../src/images/alarm-bot-workshop/DSC_4182.jpg",
+    "../../src/images/alarm-bot-workshop/DSC_4176.jpg",
   ]
 
   return (
@@ -34,7 +34,7 @@ function AlarmBot() {
 
           <div className="alarmbot-hero-media">
             <div className="alarmbot-media-box media-image">
-              <img src="../../images/alarm-bot-workshop/DSC_4171.jpg" alt="Students building Alarm Bot" />
+              <img src="../../src/images/alarm-bot-workshop/DSC_4171.jpg" />
             </div>
           </div>
         </div>
