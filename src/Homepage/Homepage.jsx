@@ -25,7 +25,7 @@ const projectBeaconCardsData = [
     title: (
       <>
         <span>
-          <img src="/logo/alarmbot_icon.png" alt="Alarm Bot Icon" style={{ width: '24px', height: '24px' }} />
+          <SchoolRoundedIcon />
         </span>
         Accessible to All
       </>

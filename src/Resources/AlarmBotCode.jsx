@@ -725,52 +725,51 @@ function AlarmBotCode() {
 
     URL.revokeObjectURL(url);
   };
-  
+
 
   return (
     <>
-        <div className="code-page">
+      <div className="code-page">
         <div className="code-header">
-            <h1>Code Templates</h1>
-            <p>Copy and paste ready-to-use templates for your projects.</p>
+          <h1>Code Templates</h1>
         </div>
 
         <div className="code-grid">
-            {templates.map((template, index) => (
+          {templates.map((template, index) => (
             <div className="code-card" key={index}>
-                <div className="code-card-header">
-                  <div>
-                    <h2>{template.title}</h2>
-                    <p>{template.description}</p>
-                  </div>
-
-                  <div className="code-actions">
-                    <button
-                      className={`copy-btn ${copiedIndex === index ? "copied" : ""}`}
-                      onClick={() => handleCopy(template.code, index)}
-                    >
-                      {copiedIndex === index ? <CheckIcon /> : <ContentCopyIcon />}
-                      {copiedIndex === index ? "Copied" : "Copy"}
-                    </button>
-
-                    <button
-                      className="download-btn"
-                      onClick={() => handleDownload(template.code, template.title)}
-                    >
-                      Download
-                    </button>
-                  </div>
+              <div className="code-card-header">
+                <div>
+                  <h2>{template.title}</h2>
+                  <p>{template.description}</p>
                 </div>
 
-                <pre className="code-block">
-                <code>{template.code}</code>
-                </pre>
-            </div>
-            ))}
-        </div>
-        </div>
+                <div className="code-actions">
+                  <button
+                    className={`copy-btn ${copiedIndex === index ? "copied" : ""}`}
+                    onClick={() => handleCopy(template.code, index)}
+                  >
+                    {copiedIndex === index ? <CheckIcon /> : <ContentCopyIcon />}
+                    {copiedIndex === index ? "Copied" : "Copy"}
+                  </button>
 
-        <AlternativeFooter />
+                  <button
+                    className="download-btn"
+                    onClick={() => handleDownload(template.code, template.title)}
+                  >
+                    Download
+                  </button>
+                </div>
+              </div>
+
+              <pre className="code-block">
+                <code>{template.code}</code>
+              </pre>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <AlternativeFooter />
     </>
   );
 }
