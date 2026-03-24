@@ -11,22 +11,27 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
 
 const resourcesData = [
   {
-    icon: <MenuBookIcon />,
-    title: 'Student Build Manual',
-    description: 'Step-by-step assembly guide with diagrams and safety instructions.',
-    fileSize: '2.4 MB',
-    fileType: 'PDF',
-    link: '/files/AlarmBot-Build-Manual.pdf'
-  },
-  {
-    icon: <ComputerIcon />,
-    title: 'Workshop Code Templates',
-    description: 'Access pre-written Arduino code for each workshop project.',
-    fileType: 'Workshops',
-    workshops: [
+    title: 'Student Resources',
+    subblocks: [
       {
-        name: 'Alarm Bot Workshop',
-        link: '/resources/alarm-bot-template-code'
+        icon: <MenuBookIcon />,
+        title: 'Student Build Manual',
+        description: 'Step-by-step assembly guide with diagrams and safety instructions.',
+        fileSize: '2.4 MB',
+        fileType: 'PDF',
+        link: '/files/AlarmBot-Build-Manual.pdf'
+      },
+      {
+        icon: <ComputerIcon />,
+        title: 'Workshop Code Templates',
+        description: 'Access pre-written Arduino code for each workshop project.',
+        fileType: 'Workshops',
+        workshops: [
+          {
+            name: 'Alarm Bot Workshop',
+            link: '/resources/alarm-bot-template-code'
+          }
+        ]
       }
     ]
   }
@@ -37,7 +42,6 @@ function Resources() {
   const [accessCode, setAccessCode] = useState('')
   const [error, setError] = useState(false)
 
-  // Check sessionStorage on mount
   useEffect(() => {
     const unlocked = sessionStorage.getItem('resourcesUnlocked') === 'true'
     if (unlocked) setIsUnlocked(true)
@@ -46,7 +50,7 @@ function Resources() {
   const handleUnlock = () => {
     if (accessCode === 'beacon2025') {
       setIsUnlocked(true)
-      sessionStorage.setItem('resourcesUnlocked', 'true') // persists for this tab
+      sessionStorage.setItem('resourcesUnlocked', 'true')
       setError(false)
     } else {
       setError(true)
@@ -58,7 +62,6 @@ function Resources() {
     if (e.key === 'Enter') handleUnlock()
   }
 
-  // Locked view
   if (!isUnlocked) {
     return (
       <div className='resources-container locked'>
@@ -100,7 +103,6 @@ function Resources() {
     )
   }
 
-  // Unlocked view
   return (
     <>
       <div className='resources-container unlocked'>
@@ -114,43 +116,51 @@ function Resources() {
         <div className='resources-grid'>
           {resourcesData.map((resource, index) => (
             <div key={index} className='resources-card'>
-              <div className='resources-card-header'>
-                <div className='resources-card-icon'>{resource.icon}</div>
-                <span className='resources-card-file-type'>{resource.fileType}</span>
-              </div>
-
               <div className='resources-card-title'>{resource.title}</div>
-              <p className='resources-card-description'>{resource.description}</p>
 
-              <div className='resources-card-footer'>
-                {resource.fileSize && (
-                  <span className='resources-card-file-size'>{resource.fileSize}</span>
-                )}
-
-                {resource.fileType === 'Workshops' ? (
-                  <div className="resources-workshop-buttons">
-                    {resource.workshops.map((workshop, i) => (
-                      <Link
-                        key={i}
-                        to={workshop.link}
-                        className="resources-workshop-button"
-                      >
-                        <RocketLaunchIcon />
-                        {workshop.name}
-                      </Link>
-                    ))}
+              {resource.subblocks.map((subblock, i) => (
+                <div key={i} className='resources-subblock'>
+                  <div className='resources-card-header'>
+                    <div className='resources-card-icon'>{subblock.icon}</div>
+                    <span className='resources-card-file-type'>{subblock.fileType}</span>
                   </div>
-                ) : resource.fileType === 'PDF' ? (
-                  <a
-                    href={resource.link}
-                    className='resources-card-download-button'
-                    download
-                  >
-                    <DownloadIcon />
-                    Download
-                  </a>
-                ) : null}
-              </div>
+
+                  <div className='resources-card-subtitle'>{subblock.title}</div>
+                  <p className='resources-card-description'>{subblock.description}</p>
+
+                  <div className='resources-card-footer'>
+                    {subblock.fileSize && (
+                      <span className='resources-card-file-size'>{subblock.fileSize}</span>
+                    )}
+
+                    {subblock.fileType === 'Workshops' ? (
+                      <div className="resources-workshop-buttons">
+                        {subblock.workshops.map((workshop, j) => (
+                          <Link
+                            key={j}
+                            to={workshop.link}
+                            className="resources-workshop-button"
+                          >
+                            <RocketLaunchIcon />
+                            {workshop.name}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : subblock.fileType === 'PDF' ? (
+                      <a
+                        href={subblock.link}
+                        className='resources-card-download-button'
+                        download
+                      >
+                        <DownloadIcon />
+                        Download
+                      </a>
+                    ) : null}
+                  </div>
+
+                  {i < resource.subblocks.length - 1 && <hr className="resources-subblock-separator" />}
+                </div>
+              ))}
             </div>
           ))}
         </div>
