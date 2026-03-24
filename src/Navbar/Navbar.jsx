@@ -34,7 +34,7 @@ function Navbar() {
 
         {/* CTA */}
         <Link to="/get-started" className='navbar-call-to-action-link-container'>
-          <div className='navbar-call-to-action-link-text'>Enquire Now</div>
+          <div className='navbar-call-to-action-link-text'>Book Now</div>
         </Link>
 
         {/* hamburger */}

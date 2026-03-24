@@ -10,11 +10,6 @@ function Footer() {
     <div className='homepage-footer-container'>
       {/* CTA section */}
       <div className='homepage-footer-cta-section'>
-        <div className='homepage-footer-availability'>
-          <span className='homepage-footer-availability-dot'></span>
-          Available for work
-        </div>
-
         <div className='homepage-footer-cta-title'>Let's collaborate together for the next big workshop</div>
 
         <StarBorder
