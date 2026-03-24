@@ -11,7 +11,7 @@ function AlternativeFooter() {
         <div className='alternative-footer-brand-section'>
           <div className='alternative-footer-brand-logo'>
             <div className='alternative-footer-logo-icon'>
-              <img src="../../src/images/pb.png" alt="PB Logo" />
+              <img src="/src/images/pb.png" alt="PB Logo" />
             </div>
             <span>Project Beacon</span>
           </div>
@@ -42,7 +42,7 @@ function AlternativeFooter() {
           <div className='alternative-footer-links-column'>
             <h3>Information</h3>
             <a
-              href="../downloads/Privacy-Policy.pdf"
+              href="src/downloads/Privacy-Policy.pdf"
               download
               className="footer-download-link"
               target="_blank"
@@ -52,7 +52,7 @@ function AlternativeFooter() {
             </a>
 
             <a
-              href="../downloads/Project-Beacon-Child-Safe-Statement-of-Commitment.pdf"
+              href="src/downloads/Project-Beacon-Child-Safe-Statement-of-Commitment.pdf"
               download
               className="footer-download-link"
               target="_blank"
