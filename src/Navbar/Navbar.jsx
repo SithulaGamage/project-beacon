@@ -27,7 +27,7 @@ function Navbar() {
           <Link to="/workshops" className='navbar-main-link'>
             Workshops
           </Link>
-          <Link to="/our-mission" className='navbar-main-link'>Our Mission</Link>
+          {/* <Link to="/our-mission" className='navbar-main-link'>Our Mission</Link> */}
           <Link to="/resources" className='navbar-main-link'>Resources</Link>
         </div>
 
@@ -56,7 +56,7 @@ function Navbar() {
       {/* mobile menu */}
       <div className={`navbar-mobile-menu ${menuOpen ? 'open' : ''}`}>
         <Link to="/workshops" onClick={() => setMenuOpen(false)}>Workshops</Link>
-        <Link to="/our-mission" onClick={() => setMenuOpen(false)}>Our Mission</Link>
+        {/* <Link to="/our-mission" onClick={() => setMenuOpen(false)}>Our Mission</Link> */}
         <Link to="/resources" onClick={() => setMenuOpen(false)}>Resources</Link>
         <Link
           to="/get-started"
