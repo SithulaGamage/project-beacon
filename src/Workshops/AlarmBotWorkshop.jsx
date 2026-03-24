@@ -7,13 +7,13 @@ function AlarmBot() {
   const [activeImg, setActiveImg] = useState(null)
 
   const galleryImages = [
-    "/src/Workshops/alarm-bot-workshop/DSC_4146.jpg",
-    // "/src/images/alarm-bot-workshop/DSC_4149.jpg",
-    "/src/Workshops/alarm-bot-workshop/DSC_4173.jpg",
-    "/src/Workshops/alarm-bot-workshop/DSC_4223.jpg",
-    "/src/Workshops/alarm-bot-workshop/DSC_4179.jpg",
-    "/src/Workshops/alarm-bot-workshop/DSC_4182.jpg",
-    "/src/Workshops/alarm-bot-workshop/DSC_4176.jpg",
+    "/public/alarm-bot-workshop/DSC_4146.jpg",
+    // "/public/alarm-bot-workshop/DSC_4149.jpg",
+    "/public/alarm-bot-workshop/DSC_4173.jpg",
+    "/public/alarm-bot-workshop/DSC_4223.jpg",
+    "/public/alarm-bot-workshop/DSC_4179.jpg",
+    "/public/alarm-bot-workshop/DSC_4182.jpg",
+    "/public/alarm-bot-workshop/DSC_4176.jpg",
   ]
 
   return (
@@ -34,7 +34,7 @@ function AlarmBot() {
 
           <div className="alarmbot-hero-media">
             <div className="alarmbot-media-box media-image">
-              <img src="/src/Workshops/alarm-bot-workshop/DSC_4171.jpg" />
+              <img src="/public/alarm-bot-workshop/DSC_4171.jpg" />
             </div>
           </div>
         </div>
