@@ -11,7 +11,7 @@ function AlternativeFooter() {
         <div className='alternative-footer-brand-section'>
           <div className='alternative-footer-brand-logo'>
             <div className='alternative-footer-logo-icon'>
-              <img src="/src/images/pb.png" alt="PB Logo" />
+              <img src="/src/Footer/logo/pb.png" alt="PB Logo" />
             </div>
             <span>Project Beacon</span>
           </div>
