@@ -1,5 +1,5 @@
 import './Resources.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import AlternativeFooter from '../Footer/AlternativeFooter.jsx'
 
@@ -27,31 +27,26 @@ const resourcesData = [
       {
         name: 'Alarm Bot Workshop',
         link: '/resources/alarm-bot-template-code'
-      },
-      // {
-      //   name: 'Line Following Robot',
-      //   link: '/resources/line-follower-code'
-      // },
-      // {
-      //   name: 'Obstacle Avoidance Robot',
-      //   link: '/resources/obstacle-bot-code'
-      // }
+      }
     ]
   }
 ]
 
 function Resources() {
-  const [isUnlocked, setIsUnlocked] = useState(() => {
-    return localStorage.getItem('resourcesUnlocked') === 'false'
-  })
-
+  const [isUnlocked, setIsUnlocked] = useState(false)
   const [accessCode, setAccessCode] = useState('')
   const [error, setError] = useState(false)
+
+  // Check sessionStorage on mount
+  useEffect(() => {
+    const unlocked = sessionStorage.getItem('resourcesUnlocked') === 'true'
+    if (unlocked) setIsUnlocked(true)
+  }, [])
 
   const handleUnlock = () => {
     if (accessCode === 'beacon2025') {
       setIsUnlocked(true)
-      localStorage.setItem('resourcesUnlocked', 'false')
+      sessionStorage.setItem('resourcesUnlocked', 'true') // persists for this tab
       setError(false)
     } else {
       setError(true)
@@ -63,7 +58,7 @@ function Resources() {
     if (e.key === 'Enter') handleUnlock()
   }
 
-  // locked view
+  // Locked view
   if (!isUnlocked) {
     return (
       <div className='resources-container locked'>
@@ -105,7 +100,7 @@ function Resources() {
     )
   }
 
-  // unlocked view
+  // Unlocked view
   return (
     <>
       <div className='resources-container unlocked'>
@@ -159,16 +154,6 @@ function Resources() {
             </div>
           ))}
         </div>
-
-        {/* <div className='resources-support-section'>
-          <div className='resources-support-title'>Need Additional Support?</div>
-          <p className='resources-support-description'>
-            Our team is available to help with resource questions, technical support, or curriculum integration guidance.
-          </p>
-          <button className='resources-support-button'>
-            Contact Support Team
-          </button>
-        </div> */}
       </div>
 
       <AlternativeFooter />
