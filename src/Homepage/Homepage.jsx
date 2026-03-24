@@ -236,15 +236,14 @@ function Homepage() {
             </Link>
 
             <StarBorder
-              as="button"
+              as={Link}
+              to="/get-started"
               className="homepage-hero-call-to-action-enquire-now-button"
               color="white"
               speed="5s"
             >
               <EmailRoundedIcon />
-              <Link to="/get-started" className='contact-link'>
-                <span>Book Now</span>
-              </Link>
+              <span className='contact-link'>Book Now</span>
             </StarBorder>
           </div>
 

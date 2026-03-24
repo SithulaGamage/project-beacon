@@ -228,6 +228,8 @@
 
   position: relative;
   overflow: hidden;
+
+  text-decoration: none;
 }
 
 /* hover */
@@ -266,7 +268,7 @@
 .homepage-hero-showcase {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 36px;
 
   margin-top: 40px;
   padding: 0 20px;
@@ -388,7 +390,7 @@
 
   margin-top: 5px;
   margin-bottom: 32px;
-  text-align: justify;
+  text-align: center;
 }
 
 /* centered modifiers */
@@ -590,13 +592,20 @@
 
 /* ─────────────────────────────── */
 /* responsive */
+@media (max-width: 1150px) {
+  .homepage-hero-showcase-card {
+    width: 280px;
+    height: 190px;
+  }
+}
+
 @media (max-width: 960px) {
   .homepage-section-cards {
     grid-template-columns: repeat(1, 1fr);
   }
 
   .homepage-section-card-description {
-    text-align: justify;
+    text-align: center;
   }
 
   .homepage-hero-showcase {
@@ -625,6 +634,11 @@
 
 
 @media (max-width: 720px) {
+  .homepage-hero-showcase-card {
+    width: calc(280px * 1.4);
+    height: calc(190px * 1.4);
+  }
+
   .homepage-hero-title {
     font-size: 100px;
   }
