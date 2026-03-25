@@ -272,7 +272,7 @@ function Homepage() {
         {/* 'what's in it for you' section */}
         <div className='homepage-section secondary scroll-reveal' ref={sectionTwoRef}>
           {/* text */}
-          <div className='homepage-section-title'>Hassle-Free for Schools</div>
+          <div className='homepage-section-title centered'>Hassle-Free for Schools</div>
           <div className='homepage-section-subtitle'>
             We handle every compliance, safety, and logistical requirement so you can focus on providing amazing opportunities for your students.
           </div>
