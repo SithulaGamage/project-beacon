@@ -64,7 +64,7 @@ function Navbar() {
           className="mobile-cta"
           onClick={() => setMenuOpen(false)}
         >
-          Enquire Now
+          Book Now
         </Link>
       </div>
     </>

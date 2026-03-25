@@ -57,6 +57,12 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+.alternative-footer-contact-links-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 .alternative-footer-email {
   display: inline-flex;
   align-items: center;

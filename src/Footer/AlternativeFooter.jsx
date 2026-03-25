@@ -2,6 +2,7 @@ import './AlternativeFooter.css'
 import { Link } from 'react-router-dom'
 
 import EmailRoundedIcon from '@mui/icons-material/EmailRounded'
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 function AlternativeFooter() {
   return (
@@ -21,13 +22,24 @@ function AlternativeFooter() {
             Bringing accessible hands-on robotics workshops. It is STEM learning that builds both technical skills and belief in their ability to innovate. We focus on capability, confidence, and real-world application.
           </p>
 
-          <a
-            href="mailto:support@projectbeacon.org.au"
-            className='alternative-footer-email'
-          >
-            <EmailRoundedIcon />
-            support@projectbeacon.org.au
-          </a>
+          <div className='alternative-footer-contact-links-section'>
+            <a
+              href="mailto:support@projectbeacon.org.au"
+              className='alternative-footer-email'
+            >
+              <EmailRoundedIcon />
+              support@projectbeacon.org.au
+            </a>
+
+            <a
+              href="https://www.linkedin.com/company/project-beacon-aus/"
+              target='_blank'
+              className='alternative-footer-email'
+            >
+              <LinkedInIcon />
+              Project Beacon Linkedin
+            </a>
+          </div>
         </div>
 
         <div className='alternative-footer-links-section'>
