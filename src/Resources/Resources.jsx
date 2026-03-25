@@ -148,7 +148,7 @@ function Resources() {
                       </div>
                     ) : subblock.fileType === 'PDF' ? (
                       <a
-                        href={subblock.link}
+                        href="/alarm-bot-workshop/Alarm Bot Workshop Manual.pdf"
                         className='resources-card-download-button'
                         download
                       >

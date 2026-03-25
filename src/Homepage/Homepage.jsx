@@ -11,6 +11,7 @@ import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import StarRoundedIcon from '@mui/icons-material/StarRounded';
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
+import DownloadRoundedIcon from '@mui/icons-material/DownloadRounded';
 import RocketLaunchRoundedIcon from '@mui/icons-material/RocketLaunchRounded';
 
 import ContentPasteRoundedIcon from '@mui/icons-material/ContentPasteRounded';
@@ -236,14 +237,14 @@ function Homepage() {
             </Link>
 
             <StarBorder
-              as={Link}
-              to="/get-started"
+              href="/info-pack.pdf"
+              download
               className="homepage-hero-call-to-action-enquire-now-button"
               color="white"
               speed="5s"
             >
-              <EmailRoundedIcon />
-              <span className='contact-link'>Book Now</span>
+              <DownloadRoundedIcon />
+              <span>Download Info-Pack</span>
             </StarBorder>
           </div>
 
