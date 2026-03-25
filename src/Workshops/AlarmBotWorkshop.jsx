@@ -30,7 +30,7 @@ function AlarmBot() {
             <p className="alarmbot-hero-description">
               The Alarm Bot is a robot designed and 3D printed in-house by our team. While it includes all the similar functions of a typical alarm clock - a screen and buzzer -
               it also features two motorised wheels to drive across the room. Students in this workshop will learn about the 3D printing manufacturing process, circuitry, electrical
-              components and the Arduino coding language. The workshop will conclude with a fun trivia session after which students can take their bots home. 
+              components and the Arduino coding language. The workshop will conclude with a fun trivia session after which students can take their bots home.
             </p>
           </div>
 
