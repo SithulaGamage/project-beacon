@@ -17,7 +17,7 @@ const resourcesData = [
         icon: <MenuBookIcon />,
         title: 'Alarm Bot Manual',
         description: 'Step-by-step assembly guide with diagrams and safety instructions.',
-        fileSize: '2.4 MB',
+        fileSize: '6.8 MB',
         fileType: 'PDF',
         link: '/files/AlarmBot-Build-Manual.pdf'
       },
