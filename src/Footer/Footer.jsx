@@ -17,7 +17,7 @@ function Footer() {
           to="/get-started"
           className="homepage-footer-contact-button"
           color="white"
-          speed="5s"
+          speed="6s"
         >
           <EmailRoundedIcon />
           <span className='contact-link'>Contact Us</span>
