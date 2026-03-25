@@ -15,7 +15,7 @@ const resourcesData = [
     subblocks: [
       {
         icon: <MenuBookIcon />,
-        title: 'Student Build Manual',
+        title: 'Alarm Bot Manual',
         description: 'Step-by-step assembly guide with diagrams and safety instructions.',
         fileSize: '2.4 MB',
         fileType: 'PDF',
