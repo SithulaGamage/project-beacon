@@ -15,9 +15,9 @@ const resourcesData = [
     subblocks: [
       {
         icon: <MenuBookIcon />,
-        title: 'Student Build Manual',
+        title: 'Alarm Bot Manual',
         description: 'Step-by-step assembly guide with diagrams and safety instructions.',
-        fileSize: '2.4 MB',
+        fileSize: '6.8 MB',
         fileType: 'PDF',
         link: '/files/AlarmBot-Build-Manual.pdf'
       },
@@ -148,7 +148,7 @@ function Resources() {
                       </div>
                     ) : subblock.fileType === 'PDF' ? (
                       <a
-                        href={subblock.link}
+                        href="/alarm-bot-workshop/Alarm Bot Workshop Manual.pdf"
                         className='resources-card-download-button'
                         download
                       >

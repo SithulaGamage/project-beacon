@@ -46,9 +46,10 @@ function AlarmBot() {
           <div className="alarmbot-details-card">
             <h3>Workshop Details</h3>
             <ul>
-              <li><strong>Price:</strong> Contact for quote</li>
-              <li><strong>Duration:</strong> 90 - 120 minutes</li>
+              <li><strong>Price:</strong> $35 per student</li>
+              <li><strong>Duration:</strong> 2 hours</li>
               <li><strong>Year Levels:</strong> Years 7 - 10</li>
+              <li><strong>School Requirements:</strong> See info pack</li>
             </ul>
           </div>
 
@@ -56,9 +57,9 @@ function AlarmBot() {
             <h3>Curriculum Links</h3>
             <p>This workshop supports learning in:</p>
             <ul>
-              <li>Digital Technologies</li>
-              <li>Design & Technologies</li>
-              <li>STEM & Engineering Pathways</li>
+              <li>Mandatory Technology (Years 7-8)</li>
+              <li>iSTEM Elective (Years 9-10)</li>
+              <li>Computing Technology Elective (Years 9-10)</li>
             </ul>
             <p className="alarmbot-note">
               Detailed learning outcomes are included in the Incursion Information Pack.
