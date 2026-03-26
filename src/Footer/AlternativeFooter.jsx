@@ -43,7 +43,7 @@ function AlternativeFooter() {
           <div className='alternative-footer-links-column'>
             <h3>Information</h3>
             <a
-              href="src/downloads/Privacy-Policy.pdf"
+              href="footer-files/Privacy Policy.pdf"
               download
               className="footer-download-link"
               target="_blank"
@@ -53,7 +53,7 @@ function AlternativeFooter() {
             </a>
 
             <a
-              href="src/downloads/Project-Beacon-Child-Safe-Statement-of-Commitment.pdf"
+              href="footer-files/Project Beacon Child Safe Statement of Commitment.pdf"
               download
               className="footer-download-link"
               target="_blank"

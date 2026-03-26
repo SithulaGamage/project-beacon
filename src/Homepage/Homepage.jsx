@@ -237,7 +237,8 @@ function Homepage() {
             </Link>
 
             <StarBorder
-              href="/info-pack.pdf"
+              as="a"
+              href="/alarm-bot-workshop/ALARM BOT WORKSHOP INCURSION PACK.pdf"
               download
               className="homepage-hero-call-to-action-enquire-now-button"
               color="white"
