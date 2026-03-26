@@ -70,7 +70,7 @@ function AlarmBot() {
             <h3>Bring This Workshop to Your School</h3>
             <Link to="/get-started" className="alarmbot-cta-button">Enquire Now</Link>
             <a
-              href="/downloads/"
+              href="/info-pack.pdf"
               download
               className="alarmbot-secondary-button"
               target="_blank"
