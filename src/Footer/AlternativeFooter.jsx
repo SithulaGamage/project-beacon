@@ -59,7 +59,7 @@ function AlternativeFooter() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Safety & Compliance
+              Child Safety Policy
             </a>
           </div>
         </div>
