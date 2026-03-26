@@ -9,11 +9,13 @@
 /* ================= HEADER ================= */
 
 .code-header {
+  margin: 0 auto;
   text-align: center;
   margin-bottom: 60px;
 }
 
 .code-header h1 {
+  width: 100%;
   font-size: 52px;
   margin-bottom: 12px;
 }
@@ -120,6 +122,10 @@
 
   /* Smoother scrolling */
   scroll-behavior: smooth;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 /* ================= SCROLLBAR ================= */
@@ -171,12 +177,6 @@
 @media (max-width: 1400px) {
   .code-grid {
     grid-template-columns: 1fr; /* single column for large tablets/laptops */
-  }
-
-  .code-block {
-    white-space: pre-wrap;
-    word-break: break-word;
-    overflow-wrap: anywhere;
   }
 }
 

@@ -323,7 +323,7 @@
 
 /* hover to level */
 .homepage-hero-showcase-card:hover {
-  transform: rotate(0deg) scale(1.08) translateY(-8px) !important;
+  transform: rotate(0deg) scale(1.08) translateY(-4px) !important;
   box-shadow:
     0 20px 60px rgba(212, 155, 0, 0.2),
     0 8px 32px rgba(0, 0, 0, 0.5),
@@ -403,7 +403,7 @@
   justify-content: center;
 }
 
-.homepage-section-title.centered {
+.homepage-section-title {
   text-align: center;
 }
 
@@ -614,8 +614,8 @@
   }
 
   .homepage-hero-showcase-card {
-    width: 280px;
-    height: 190px;
+    width: 100%;
+    height: calc(190px * 1.6);
   }
 
   .homepage-hero-showcase-card:nth-child(1),
@@ -630,15 +630,20 @@
   .homepage-stats-container {
     gap: 40px;
   }
+
+  .homepage-hero-showcase-card:hover {
+    transform: none !important;
+    box-shadow: none;
+    z-index: auto;
+  }
+
+  .homepage-hero-showcase-card:hover img {
+    transform: none;
+  }
 }
 
 
 @media (max-width: 720px) {
-  .homepage-hero-showcase-card {
-    width: calc(280px * 1.4);
-    height: calc(190px * 1.4);
-  }
-
   .homepage-hero-title {
     font-size: 100px;
   }
@@ -662,6 +667,12 @@
 
   .homepage-stats-strip {
     margin-top: 80px;
+  }
+}
+
+@media (max-width: 590px) {
+  .homepage-hero-container {
+    padding-top: var(--section-padding-top);
   }
 }
 
