@@ -46,7 +46,7 @@ function AlarmBot() {
           <div className="alarmbot-details-card">
             <h3>Workshop Details</h3>
             <ul>
-              <li><strong>Price:</strong> $35 per student</li>
+              <li><strong>Price:</strong> $30 per student ($25 for low SES schools)</li>
               <li><strong>Duration:</strong> 2 hours</li>
               <li><strong>Year Levels:</strong> Years 7 - 10</li>
               <li><strong>School Requirements:</strong> See info pack</li>
