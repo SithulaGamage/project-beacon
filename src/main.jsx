@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
+import { HelmetProvider } from "react-helmet-async";
 import './index.css'
 
 import Navbar from './Navbar/Navbar.jsx'
@@ -23,26 +24,28 @@ import AlarmBotCode from './Resources/AlarmBotCode.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <ScrollToTop />
+      <HelmetProvider>
+        <ScrollToTop />
 
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
 
-        <Route path="/our-mission" element={<OurMission />} />
-        <Route path="/our-team" element={<OurTeam />} />
-        <Route path="/workshops" element={<Workshops />} />
-        <Route path="/resources" element={<Resources />} />
-        <Route path="/get-started" element={<Enquire />} />
+          <Route path="/our-mission" element={<OurMission />} />
+          <Route path="/our-team" element={<OurTeam />} />
+          <Route path="/workshops" element={<Workshops />} />
+          <Route path="/resources" element={<Resources />} />
+          <Route path="/get-started" element={<Enquire />} />
 
-        {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/compliance" element={<Compliance />} /> */}
+          {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/compliance" element={<Compliance />} /> */}
 
-        <Route path="/workshops/alarm-bot" element={<AlarmBotWorkshop />} />
+          <Route path="/workshops/alarm-bot" element={<AlarmBotWorkshop />} />
 
-        <Route path="/resources/alarm-bot-template-code" element={<AlarmBotCode />} />
-      </Routes>
+          <Route path="/resources/alarm-bot-template-code" element={<AlarmBotCode />} />
+        </Routes>
+      </HelmetProvider>
     </BrowserRouter>
   </StrictMode>,
 )

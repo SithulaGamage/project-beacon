@@ -1,4 +1,5 @@
 import './Homepage.css'
+import SEO from '../SEO.jsx'
 
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState, useCallback } from 'react'
@@ -207,6 +208,8 @@ function Homepage() {
 
   return (
     <>
+      <SEO title="Project Beacon | STEM Robotics Workshops for Schools" />
+
       {/* dark veil background */}
       <div className='dark-veil-background'>
         <DarkVeil />
