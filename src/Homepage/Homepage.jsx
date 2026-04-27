@@ -1,5 +1,5 @@
 import './Homepage.css'
-import SEO from '../SEO.jsx'
+import SEO from '../SEO/SEO.jsx'
 
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState, useCallback } from 'react'
