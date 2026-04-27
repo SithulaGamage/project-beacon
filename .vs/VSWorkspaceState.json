@@ -1,7 +1,15 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src",
+    "\\src\\Homepage",
+    "\\src\\lib",
+    "\\src\\OurMission",
+    "\\src\\OurTeam",
+    "\\src\\PrivacyPolicy",
+    "\\src\\Resources",
+    "\\src\\Workshops"
   ],
-  "SelectedNode": "\\C:\\Users\\codyt\\Source\\Repos\\SithulaGamage\\project-beacon",
+  "SelectedNode": "\\src\\Workshops\\AlarmBotWorkshop.css",
   "PreviewInSolutionExplorer": false
 }

@@ -164,7 +164,7 @@ function Homepage() {
           </h2>
 
           <div className='homepage-section-bubble'>
-            Project Beacon’s goal is to bring the world of STEM directly into the hands of young student innovators. Our interactive, curriculum-aligned incursions aim to teach students the fundamentals of robotics, from manufacturing through to programming and testing. Our workshops are built around students creating robots they can take home, inspiring continual experimentation and future learning.
+            Project Beacon’s goal is to bring the world of STEM directly into the hands of young student innovators. Our interactive, curriculum-aligned incursions teaches students the fundamentals of robotics, from manufacturing through to programming and testing. Our workshops are built around students creating robots they can take home, inspiring continual experimentation and future learning.
           </div>
         </section>
 
