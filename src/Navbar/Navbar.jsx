@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
+  // lock body scroll when menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
@@ -15,19 +16,11 @@ function Navbar() {
 
   return (
     <>
-      {/* NAV LANDMARK ADDED */}
-      <nav className='navbar-container' aria-label="Main Navigation">
-
-        {/* logo (site identity) */}
-        <Link to="/" className='navbar-logo-container' aria-label="Project Beacon Home">
-          <img
-            src="/logo/pb.png"
-            alt="Project Beacon Logo"
-            className="navbar-logo-image"
-          />
-
-          {/* semantic improvement: keep text but mark as site name */}
-          <span className='navbar-logo-text'>Project Beacon</span>
+      <div className='navbar-container'>
+        {/* logo */}
+        <Link to="/" className='navbar-logo-container'>
+          <img src="/logo/pb.png" alt="Project Beacon Logo" className="navbar-logo-image" />
+          <div className='navbar-logo-text'>Project Beacon</div>
         </Link>
 
         {/* desktop links */}
@@ -35,62 +28,39 @@ function Navbar() {
           <Link to="/workshops" className='navbar-main-link'>
             Workshops
           </Link>
-
           {/* <Link to="/our-mission" className='navbar-main-link'>Our Mission</Link> */}
-
-          <Link to="/resources" className='navbar-main-link'>
-            Resources
-          </Link>
+          <Link to="/resources" className='navbar-main-link'>Resources</Link>
         </div>
 
         {/* CTA */}
-        <Link
-          to="/enquire"
-          className='navbar-call-to-action-link-container'
-          aria-label="Book a Workshop"
-        >
-          <span className='navbar-call-to-action-link-text'>
-            Book Now
-          </span>
+        <Link to="/get-started" className='navbar-call-to-action-link-container'>
+          <div className='navbar-call-to-action-link-text'>Book Now</div>
         </Link>
 
         {/* hamburger */}
-        <button
+        <div
           className={`navbar-hamburger ${menuOpen ? 'active' : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
         >
           <span></span>
           <span></span>
           <span></span>
-        </button>
-
-      </nav>
+        </div>
+      </div>
 
       {/* overlay */}
       <div
         className={`navbar-overlay ${menuOpen ? 'open' : ''}`}
         onClick={() => setMenuOpen(false)}
-        aria-hidden="true"
       />
 
       {/* mobile menu */}
       <div className={`navbar-mobile-menu ${menuOpen ? 'open' : ''}`}>
-        <Link to="/workshops" onClick={() => setMenuOpen(false)}>
-          Workshops
-        </Link>
-
-        {/* <Link to="/our-mission" onClick={() => setMenuOpen(false)}>
-          Our Mission
-        </Link> */}
-
-        <Link to="/resources" onClick={() => setMenuOpen(false)}>
-          Resources
-        </Link>
-
+        <Link to="/workshops" onClick={() => setMenuOpen(false)}>Workshops</Link>
+        {/* <Link to="/our-mission" onClick={() => setMenuOpen(false)}>Our Mission</Link> */}
+        <Link to="/resources" onClick={() => setMenuOpen(false)}>Resources</Link>
         <Link
-          to="/get-started"
+          to="/enquire"
           className="mobile-cta"
           onClick={() => setMenuOpen(false)}
         >
