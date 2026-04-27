@@ -164,7 +164,7 @@ function Homepage() {
           </h2>
 
           <div className='homepage-section-bubble'>
-            Project Beacon’s goal is to bring the world of STEM directly into the hands of young student innovators. Our interactive, curriculum-aligned incursions teaches students the fundamentals of robotics, from manufacturing through to programming and testing. Our workshops are built around students creating robots they can take home, inspiring continual experimentation and future learning.
+            Project Beacon delivers engaging robotics incursions for NSW schools, bringing the world of STEM directly into the hands of young student innovators. Our workshops have been diligently aligned to NESA's cirruculum, teaching students the fundamentals of robotics, from 3D-printing through to programming and testing. Each session is built around students creating their own robot to take home, encouraging continued experimentation and learning post-workshop. 
           </div>
         </section>
 
