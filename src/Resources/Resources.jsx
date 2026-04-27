@@ -8,6 +8,7 @@ import DownloadIcon from '@mui/icons-material/Download'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import ComputerIcon from '@mui/icons-material/Computer'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
+import SEO from '../SEO/SEO.jsx'
 
 const resourcesData = [
   {
@@ -65,6 +66,11 @@ function Resources() {
   if (!isUnlocked) {
     return (
       <div className='resources-container locked'>
+        <SEO
+          title="Resources | Project Beacon"
+          description="lorem ipsum"
+        />
+
         <div className='resources-header'>
           <div className='resources-title'>Resources</div>
         </div>
@@ -105,9 +111,17 @@ function Resources() {
 
   return (
     <>
+      {/* CHANGE THIS CODY */}
+      <SEO
+        title="Resources | Project Beacon"
+        description="Download Project Beacon’s STEM robotics resources including Alarm Bot manuals, Arduino code templates, and workshop materials for schools."
+      />
+
       <div className='resources-container unlocked'>
         <div className='resources-header'>
-          <div className='resources-title'>Resources</div>
+          {/* FIX: was div → now H1 */}
+          <h1 className='resources-title'>Resources</h1>
+
           <p className='resources-subtitle'>
             Comprehensive materials for educators. Access student manuals, code templates, and curriculum documentation.
           </p>
@@ -116,21 +130,30 @@ function Resources() {
         <div className='resources-grid'>
           {resourcesData.map((resource, index) => (
             <div key={index} className='resources-card'>
-              <div className='resources-card-title'>{resource.title}</div>
+              
+              {/* FIX: card section title → H2 */}
+              <h2 className='resources-card-title'>{resource.title}</h2>
 
               {resource.subblocks.map((subblock, i) => (
                 <div key={i} className='resources-subblock'>
+                  
                   <div className='resources-card-header'>
                     <div className='resources-card-icon'>{subblock.icon}</div>
                     <span className='resources-card-file-type'>{subblock.fileType}</span>
                   </div>
 
-                  <div className='resources-card-subtitle'>{subblock.title}</div>
-                  <p className='resources-card-description'>{subblock.description}</p>
+                  {/* already correct as heading-level content → keep as semantic subheading */}
+                  <h3 className='resources-card-subtitle'>{subblock.title}</h3>
+
+                  <p className='resources-card-description'>
+                    {subblock.description}
+                  </p>
 
                   <div className='resources-card-footer'>
                     {subblock.fileSize && (
-                      <span className='resources-card-file-size'>{subblock.fileSize}</span>
+                      <span className='resources-card-file-size'>
+                        {subblock.fileSize}
+                      </span>
                     )}
 
                     {subblock.fileType === 'Workshops' ? (
@@ -158,7 +181,9 @@ function Resources() {
                     ) : null}
                   </div>
 
-                  {i < resource.subblocks.length - 1 && <hr className="resources-subblock-separator" />}
+                  {i < resource.subblocks.length - 1 && (
+                    <hr className="resources-subblock-separator" />
+                  )}
                 </div>
               ))}
             </div>
@@ -168,7 +193,7 @@ function Resources() {
 
       <AlternativeFooter />
     </>
-  )
+  );
 }
 
 export default Resources

@@ -15,7 +15,11 @@ function AlternativeFooter() {
               {/* <img src="/src/Footer/logo/pb.png" alt="PB Logo" /> */}
               <img src="/logo/pb.png" alt="PB Logo" />
             </div>
-            <span>Project Beacon</span>
+
+            {/* CHANGED: span → H2 for semantic brand heading */}
+            <h2 className="alternative-footer-brand-name">
+              Project Beacon
+            </h2>
           </div>
 
           <p className='alternative-footer-brand-description'>
@@ -46,10 +50,10 @@ function AlternativeFooter() {
           <div className='alternative-footer-links-column'>
             <h3>Navigation</h3>
             <Link to="/workshops">Workshops</Link>
-            <Link to="/our-mission">Our Mission</Link>
+            {/* <Link to="/our-mission">Our Mission</Link> */}
             {/* <Link to="/our-team">Our Team</Link> */}
             <Link to="/resources">Resources</Link>
-            <Link to="/get-started">Enquire</Link>
+            <Link to="/enquire">Enquire</Link>
           </div>
 
           <div className='alternative-footer-links-column'>

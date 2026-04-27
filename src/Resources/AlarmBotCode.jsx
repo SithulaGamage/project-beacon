@@ -3,6 +3,7 @@ import "./AlarmBotCode.css";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CheckIcon from "@mui/icons-material/Check";
 import AlternativeFooter from "../Footer/AlternativeFooter";
+import SEO from "../SEO/SEO";
 
 const templates = [
   {
@@ -729,8 +730,15 @@ function AlarmBotCode() {
 
   return (
     <>
+      {/* CHANGE THIS CODY */}
+      <SEO
+        title="Code Templates | Project Beacon"
+        description="Download and explore Project Beacon’s Arduino code templates for the Alarm Bot workshop, including movement, sound, and full system integration."
+      />
+
       <div className="code-page">
         <div className="code-header">
+          {/* H1 is correct for page */}
           <h1>Code Templates</h1>
         </div>
 
@@ -739,7 +747,9 @@ function AlarmBotCode() {
             <div className="code-card" key={index}>
               <div className="code-card-header">
                 <div>
+                  {/* keep H2 for each template section (correct SEO structure) */}
                   <h2>{template.title}</h2>
+
                   <p>{template.description}</p>
                 </div>
 

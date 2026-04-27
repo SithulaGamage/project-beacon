@@ -9,11 +9,12 @@ import LocationOnRoundedIcon from '@mui/icons-material/LocationOnRounded'
 import ElectricBoltRoundedIcon from '@mui/icons-material/ElectricBoltRounded'
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded'
+import SEO from '../SEO/SEO'
 
 function Enquire() {
   const formRef = useRef()
 
-  const [status, setStatus] = useState(null) // success | error | null
+  const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const sendEmail = (e) => {
@@ -41,18 +42,27 @@ function Enquire() {
 
   return (
     <>
+      <SEO
+        title="Enquire | Project Beacon"
+        description="lorem ipsum"
+      />
+
       <div className="enquire-container">
+
+        {/* HERO / PAGE HEADER */}
         <div className="enquire-header">
           <h1 className="enquire-title">Enquire About a Workshop</h1>
+
           <p className="enquire-subtitle">
             Complete the form below and we'll get back to you within 24 hours with availability, pricing confirmation, and next steps.
           </p>
         </div>
 
         <div className="enquire-content">
+
+          {/* FORM SECTION */}
           <form className="enquire-form" ref={formRef} onSubmit={sendEmail}>
-            
-            {/* ✅ Success / Error Message */}
+
             {status === 'success' && (
               <div className="enquire-message success">
                 <CheckCircleRoundedIcon />
@@ -134,10 +144,11 @@ function Enquire() {
             </button>
           </form>
 
-          {/* Sidebar unchanged */}
+          {/* SIDEBAR */}
           <div className="enquire-sidebar">
+
             <div className="enquire-info-card">
-              <h3>Contact Information</h3>
+              <h2>Contact Information</h2>
 
               <div className="enquire-info-item">
                 <EmailRoundedIcon />
@@ -171,6 +182,7 @@ function Enquire() {
                 Team available Mon-Fri, 9am-5pm AEST
               </div>
             </div>
+
           </div>
         </div>
       </div>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import SchoolRoundedIcon from '@mui/icons-material/SchoolRounded'
 import UpdateRoundedIcon from '@mui/icons-material/UpdateRounded'
+import SEO from '../SEO/SEO.jsx'
 
 /* workshops data */
 const workshopsData = [
@@ -45,33 +46,55 @@ function Workshops() {
 
   return (
     <>
+      {/* CHANGE THIS CODY */}
+      <SEO
+        title="STEM Robotics Workshops for Schools | Project Beacon NSW"
+        description="Hands-on STEM robotics workshops for NSW schools. Students design, build, and program real robots including the Alarm Bot workshop. No prior experience required."
+      />
+
       {/* main container */}
       <div className="workshops-container">
 
         {/* header */}
         <div className="workshops-header">
+
+          {/* FIX: label should NOT be H1 (keep semantic structure clean) */}
           <div className="workshops-label">
             <SchoolRoundedIcon />
             <span>Our Workshops</span>
           </div>
 
-          <div className="workshops-title">
+          {/* FIX: MAIN PAGE TITLE → H1 */}
+          <h1 className="workshops-title">
             Hands-On Engineering Workshops
-          </div>
+          </h1>
 
-          <div className="workshops-subtitle">
+          <p className="workshops-subtitle">
             Purpose-built robotics incursions that place students in the role of engineers; designing, building, and programming real systems.
-          </div>
+          </p>
         </div>
 
         {/* workshops grid */}
         <div className="workshops-grid">
           {workshopsData.map((workshop, index) => (
             <div key={index} className="workshops-card">
-              <div className="workshops-card-icon">{workshop.icon}</div>
-              <div className="workshops-card-title">{workshop.title}</div>
-              <div className="workshops-card-tagline">{workshop.tagline}</div>
-              <div className="workshops-card-description">{workshop.description}</div>
+
+              {/* FIX: workshop title → H2 (important SEO keyword target) */}
+              <h2 className="workshops-card-title">
+                {workshop.title}
+              </h2>
+
+              <div className="workshops-card-icon">
+                {workshop.icon}
+              </div>
+
+              <div className="workshops-card-tagline">
+                {workshop.tagline}
+              </div>
+
+              <p className="workshops-card-description">
+                {workshop.description}
+              </p>
 
               <div className="workshops-card-meta">
                 <span>{workshop.duration}</span>
@@ -86,18 +109,20 @@ function Workshops() {
 
           {/* upcoming workshop */}
           <div className="workshops-card upcoming">
+
+            {/* FIX: H2 so it stays part of page structure */}
+            <h2 className="workshops-card-title">
+              More Workshops Coming
+            </h2>
+
             <div className="workshops-card-icon muted">
               <UpdateRoundedIcon />
             </div>
 
-            <div className="workshops-card-title">
-              More Workshops Coming
-            </div>
-
-            <div className="workshops-card-description">
+            <p className="workshops-card-description">
               We're actively developing new hands-on engineering workshops that build on
               electronics, robotics, and real-world problem solving.
-            </div>
+            </p>
 
             <span className="workshops-upcoming-tag">
               Launching soon
@@ -108,38 +133,13 @@ function Workshops() {
         {/* divider */}
         <div className="workshops-divider"></div>
 
-        {/* summary */}
-        {/* <div className="workshops-summary">
-          <div className="workshops-summary-title">
-            Why Choose Our Workshops?
-          </div>
-
-          <div className="workshops-summary-text">
-            Our hands-on engineering workshops are designed to give students real-world skills in electronics, robotics, and problem solving.
-          </div>
-
-          <div className="workshops-summary-text">
-            Each workshop is carefully structured to be engaging, collaborative, and suitable for beginners. No prior experience required.
-          </div>
-        </div> */}
-
-        {/* info strip */}
-        {/* <div className="workshops-info">
-          {workshopsInfoData.map((item, index) => (
-            <div key={index} className="workshops-info-item">
-              {item.icon}
-
-              <div>
-                <p>{item.label}</p>
-                <span>{item.value}</span>
-              </div>
-            </div>
-          ))}
-        </div> */}
-
         {/* FAQ Section */}
         <div className="workshops-faq">
-          <div className="workshops-faq-title">Frequently Asked Questions</div>
+
+          {/* FIX: section heading → H2 */}
+          <h2 className="workshops-faq-title">
+            Frequently Asked Questions
+          </h2>
 
           <div className="workshops-faq-list">
             {faqData.map((faq, index) => (
@@ -169,7 +169,7 @@ function Workshops() {
       {/* footer */}
       <AlternativeFooter />
     </>
-  )
+  );
 }
 
 export default Workshops

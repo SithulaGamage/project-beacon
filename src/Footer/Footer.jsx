@@ -7,14 +7,16 @@ import StarBorder from '../components/StarBorder.jsx'
 
 function Footer() {
   return (
-    <div className='homepage-footer-container'>
+    <footer className='homepage-footer-container'>
       {/* CTA section */}
-      <div className='homepage-footer-cta-section'>
-        <div className='homepage-footer-cta-title'>Let's collaborate together for the next big workshop</div>
+      <section className='homepage-footer-cta-section'>
+        <h2 className='homepage-footer-cta-title'>
+          Let's collaborate together for the next big workshop
+        </h2>
 
         <StarBorder
           as={Link}
-          to="/get-started"
+          to="/enquire"
           className="homepage-footer-contact-button"
           color="white"
           speed="6s"
@@ -22,10 +24,10 @@ function Footer() {
           <EmailRoundedIcon />
           <span className='contact-link'>Contact Us</span>
         </StarBorder>
-      </div>
+      </section>
 
       <AlternativeFooter />
-    </div>
+    </footer>
   )
 }
 
