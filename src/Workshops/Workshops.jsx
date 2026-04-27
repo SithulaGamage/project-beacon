@@ -48,8 +48,8 @@ function Workshops() {
     <>
       {/* CHANGE THIS CODY */}
       <SEO
-        title="STEM Robotics Workshops for Schools | Project Beacon NSW"
-        description="Hands-on STEM robotics workshops for NSW schools. Students design, build, and program real robots including the Alarm Bot workshop. No prior experience required."
+        title="Robotics Incursions for Schools | Project Beacon NSW"
+        description="Hands-on STEM robotics incursions for NSW schools. Students design, build, and program real robots including the Alarm Bot workshop. No prior experience required."
       />
 
       {/* main container */}
