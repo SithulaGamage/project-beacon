@@ -16,11 +16,10 @@ export default function SEO({ title, description, image }) {
   const defaultDescription =
     "Project Beacon delivers hands-on STEM robotics workshops for schools across NSW. Students build and program real robots.";
 
-  const defaultImage = `${BASE_URL}/logo/pb.png`; // must be absolute URL
+  const defaultImage = "https://projectbeacon.org.au/logo/pb.png"; // must be absolute URL
 
   const finalDescription = description || defaultDescription;
   const finalTitle = title || "Project Beacon";
-  const finalImage = image || defaultImage;
 
   return (
     <Helmet>
@@ -33,7 +32,7 @@ export default function SEO({ title, description, image }) {
       {/* Open Graph */}
       <meta property="og:title" content={finalTitle} />
       <meta property="og:description" content={finalDescription} />
-      <meta property="og:image" content={finalImage} />
+      <meta property="og:image" content={defaultImage} />
       <meta property="og:url" content={canonical} />
       <meta property="og:type" content="website" />
 
@@ -41,7 +40,7 @@ export default function SEO({ title, description, image }) {
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={finalDescription} />
-      <meta name="twitter:image" content={finalImage} />
+      <meta name="twitter:image" content={defaultImage} />
     </Helmet>
   );
 }
