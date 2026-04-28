@@ -33,7 +33,7 @@ function Navbar() {
         </div>
 
         {/* CTA */}
-        <Link to="/get-started" className='navbar-call-to-action-link-container'>
+        <Link to="/enquire" className='navbar-call-to-action-link-container'>
           <div className='navbar-call-to-action-link-text'>Book Now</div>
         </Link>
 
