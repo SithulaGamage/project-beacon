@@ -14,7 +14,7 @@ export default function SEO({ title, description, image }) {
     path === "" ? BASE_URL + "/" : BASE_URL + path;
 
   const defaultDescription =
-    "Project Beacon delivers hands-on STEM robotics workshops for schools across NSW. Students build and program real robots.";
+    "Project Beacon delivers hands-on robotics STEM incursions for schools across Sydney. Students build and program real robots.";
 
   const defaultImage = "https://projectbeacon.org.au/logo/pb.png"; // must be absolute URL
 

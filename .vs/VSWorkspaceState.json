@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\public",
+    "\\public\\alarm-bot-workshop",
     "\\src",
-    "\\src\\Homepage",
     "\\src\\lib",
     "\\src\\OurMission",
     "\\src\\OurTeam",
@@ -10,6 +11,6 @@
     "\\src\\Resources",
     "\\src\\Workshops"
   ],
-  "SelectedNode": "\\src\\Homepage\\Homepage.jsx",
+  "SelectedNode": "\\src\\Workshops\\Workshops.jsx",
   "PreviewInSolutionExplorer": false
 }
