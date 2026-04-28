@@ -100,7 +100,7 @@ function Homepage() {
     <>
       {/* CHANGE THIS CODY */}
       <SEO
-        title="Project Beacon | Robotics Incursions for NSW Schools"
+        title="Robotics Incursions for Sydney Schools | Project Beacon"
         description="Hands-on robotics incursions where students build and program their robots. Designed for schools across Sydney."
       />
 
