@@ -15,7 +15,7 @@ export default function SEO({ title, description, image }) {
   const defaultTitle = "Project Beacon";
   const defaultDescription =
     "Project Beacon delivers hands-on robotics STEM incursions for schools across Sydney. Students build and program real robots.";
-  const defaultImage = `${BASE_URL}/logo/pb.png`;
+  const defaultImage = `${BASE_URL}/logo/pb_v2.png`;
 
   const finalTitle = title || defaultTitle;
   const finalDescription = description || defaultDescription;
