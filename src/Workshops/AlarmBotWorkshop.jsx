@@ -95,7 +95,7 @@ function AlarmBot() {
             {/* FIX: section heading → H2 */}
             <h2>Bring This Workshop to Your School</h2>
 
-            <Link to="/get-started" className="alarmbot-cta-button">
+            <Link to="/enquire" className="alarmbot-cta-button">
               Enquire Now
             </Link>
 
