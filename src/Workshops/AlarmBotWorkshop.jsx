@@ -80,9 +80,9 @@ function AlarmBot() {
             <p>This workshop supports learning in:</p>
 
             <ul>
-              <li>Mandatory Technology (Years 7-8)</li>
-              <li>iSTEM Elective (Years 9-10)</li>
-              <li>Computing Technology Elective (Years 9-10)</li>
+              <li>Mandatory Technology (Years 7 - 8)</li>
+              <li>iSTEM Elective (Years 9 - 10)</li>
+              <li>Computing Technology Elective (Years 9 - 10)</li>
             </ul>
 
             <p className="alarmbot-note">

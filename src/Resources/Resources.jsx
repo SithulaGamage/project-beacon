@@ -1,57 +1,761 @@
 import './Resources.css'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import AlternativeFooter from '../Footer/AlternativeFooter.jsx'
 
 import LockIcon from '@mui/icons-material/Lock'
 import DownloadIcon from '@mui/icons-material/Download'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
-import ComputerIcon from '@mui/icons-material/Computer'
-import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import CheckIcon from '@mui/icons-material/Check'
+import SchoolIcon from '@mui/icons-material/School'
 import SEO from '../SEO/SEO.jsx'
 
-const resourcesData = [
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+// import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
+const schoolAccessCodes = {
+  BCH2026: {
+    schoolName: 'Bethany College',
+    displayName: 'Bethany College students'
+  },
+  BEACON2025: {
+    schoolName: 'Project Beacon',
+    displayName: 'Project Beacon students'
+  }
+}
+
+/*
+  Replace these placeholder code strings with your full Arduino code.
+  Keep the same structure: title, description, code.
+*/
+const templates = [
   {
-    title: 'Student Resources',
-    subblocks: [
-      {
-        icon: <MenuBookIcon />,
-        title: 'Alarm Bot Manual',
-        description: 'Step-by-step assembly guide with diagrams and safety instructions.',
-        fileSize: '6.8 MB',
-        fileType: 'PDF',
-        link: '/files/AlarmBot-Build-Manual.pdf'
-      },
-      {
-        icon: <ComputerIcon />,
-        title: 'Workshop Code Templates',
-        description: 'Access pre-written Arduino code for each workshop project.',
-        fileType: 'Workshops',
-        workshops: [
-          {
-            name: 'Alarm Bot Workshop',
-            link: '/resources/alarm-bot-template-code'
-          }
-        ]
+    title: 'Movement Code',
+    fileURL: '/public/alarm-bot-workshop-code/movement_code.ino',
+    fileName: 'movement_code.ino',
+    description: 'Basic Movement Code Template',
+    code: `#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH110X.h>
+#include <Servo.h>
+
+void beginMoveSequence();
+void endMoveSequence();
+void moveLeftMotorCmd(int speed);
+void moveRightMotorCmd(int speed);
+void moveWaitCmd(unsigned long durationMs);
+
+
+#define leftMotor(x)  moveLeftMotorCmd(x)
+#define rightMotor(x) moveRightMotorCmd(x)
+#define wait(sec)     moveWaitCmd((unsigned long)((sec) * 1000))
+
+void studentMotorTest() {
+  beginMoveSequence();
+
+  /* =========================================================
+     ========= STUDENT MOVEMENT CODE (START HERE) ============
+     ========================================================= */
+
+
+  // type movement code here
+
+
+  /* =========================================================
+     ========= STUDENT MOVEMENT CODE (END HERE) ==============
+     ========================================================= */
+
+  endMoveSequence();
+}
+
+#undef leftMotor
+#undef rightMotor
+#undef wait
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+#define ENCODER_BTN 7
+#define SERVO_L_PIN 9
+#define SERVO_R_PIN 10
+
+#define L_STOP 0
+#define R_STOP 0
+
+Servo leftMotorServo;
+Servo rightMotorServo;
+
+bool testRunning = false;
+
+int moveCurrentStep = 0;
+int moveLineCounter = 0;
+bool moveWaiting = false;
+unsigned long moveWaitStartMs = 0;
+
+bool lastBtn = HIGH;
+bool btnArmed = true;
+unsigned long lastBtnChangeMs = 0;
+
+
+void setLeftMotor(int speed) {
+  speed = constrain(speed, -90, 90);
+  leftMotorServo.write(90 + speed);
+}
+
+void setRightMotor(int speed) {
+  speed = constrain(speed, -90, 90);
+  rightMotorServo.write(90 - speed);
+}
+
+void stopMotors() {
+  setLeftMotor(L_STOP);
+  setRightMotor(R_STOP);
+}
+
+void resetMoveSequence() {
+  moveCurrentStep = 0;
+  moveLineCounter = 0;
+  moveWaiting = false;
+  moveWaitStartMs = 0;
+}
+
+void beginMoveSequence() {
+  moveLineCounter = 0;
+}
+
+void endMoveSequence() {
+  if (moveLineCounter <= moveCurrentStep) {
+    moveCurrentStep = 0;
+    moveWaiting = false;
+    stopMotors();
+  }
+}
+
+void moveLeftMotorCmd(int speed) {
+  if (moveLineCounter == moveCurrentStep) {
+    setLeftMotor(speed);
+    moveCurrentStep++;
+  }
+  moveLineCounter++;
+}
+
+void moveRightMotorCmd(int speed) {
+  if (moveLineCounter == moveCurrentStep) {
+    setRightMotor(speed);
+    moveCurrentStep++;
+  }
+  moveLineCounter++;
+}
+
+void moveWaitCmd(unsigned long durationMs) {
+  if (moveLineCounter == moveCurrentStep) {
+    if (!moveWaiting) {
+      moveWaitStartMs = millis();
+      moveWaiting = true;
+    } else if (millis() - moveWaitStartMs >= durationMs) {
+      moveWaiting = false;
+      moveCurrentStep++;
+    }
+  }
+  moveLineCounter++;
+}
+
+void drawCenteredText(const char *line1, const char *line2 = "") {
+  display.clearDisplay();
+  display.setTextColor(SH110X_WHITE);
+  display.setTextSize(1);
+
+  int16_t x1, y1;
+  uint16_t w, h;
+
+  display.getTextBounds(line1, 0, 0, &x1, &y1, &w, &h);
+  display.setCursor((SCREEN_WIDTH - (int)w) / 2, 20);
+  display.print(line1);
+
+  if (line2[0] != '\0') {
+    display.getTextBounds(line2, 0, 0, &x1, &y1, &w, &h);
+    display.setCursor((SCREEN_WIDTH - (int)w) / 2, 40);
+    display.print(line2);
+  }
+
+  display.display();
+}
+
+void drawUI() {
+  if (testRunning) {
+    drawCenteredText("Motor Test Running", "Press to stop");
+  } else {
+    drawCenteredText("Press knob to start");
+  }
+}
+
+void handleButton() {
+  bool btn = digitalRead(ENCODER_BTN);
+  unsigned long now = millis();
+
+  if (btn != lastBtn) {
+    lastBtnChangeMs = now;
+    lastBtn = btn;
+  }
+
+  if ((now - lastBtnChangeMs) > 30) {
+    if (btn == LOW && btnArmed) {
+      if (!testRunning) {
+        resetMoveSequence();
+        testRunning = true;
+      } else {
+        testRunning = false;
+        resetMoveSequence();
+        stopMotors();
       }
-    ]
+      btnArmed = false;
+    }
+
+    if (btn == HIGH) {
+      btnArmed = true;
+    }
+  }
+}
+
+void setup() {
+  pinMode(ENCODER_BTN, INPUT_PULLUP);
+
+  leftMotorServo.attach(SERVO_L_PIN);
+  rightMotorServo.attach(SERVO_R_PIN);
+  stopMotors();
+
+  display.begin(0x3C, true);
+  display.clearDisplay();
+  display.display();
+}
+
+void loop() {
+  handleButton();
+
+  if (testRunning) {
+    studentMotorTest();
+  }
+
+  drawUI();
+}`
+  },
+  {
+    title: 'Alarm Code',
+    fileURL: '/alarm-bot-workshop-code/alarm_code.ino',
+    fileName: 'alarm_code.ino',
+    description: 'Basic Alarm Code Template',
+    code: `#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH110X.h>
+
+void beginSoundSequence();
+void endSoundSequence();
+void soundWaitCmd(unsigned long durationMs);
+void soundPlayToneCmd(int pitch, unsigned long durationMs);
+
+#define playTone(p, sec) soundPlayToneCmd(p, (unsigned long)((sec) * 1000))
+#define wait(sec)        soundWaitCmd((unsigned long)((sec) * 1000))
+
+void studentAlarmSound() {
+  beginSoundSequence();
+
+  /* =========================================================
+     ========= STUDENT ALARM CODE (START HERE) =================
+     ========================================================= */
+
+
+  // type alarm code here
+
+
+  /* =========================================================
+     ========= STUDENT ALARM CODE (END HERE) ===================
+     ========================================================= */
+
+  endSoundSequence();
+}
+
+#undef playTone
+#undef wait
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+#define ENCODER_BTN 7
+#define BUZZER_PIN 8
+
+bool testRunning = false;
+bool lastBtn = HIGH;
+bool btnArmed = true;
+unsigned long lastBtnChangeMs = 0;
+const unsigned long debounceMs = 30;
+
+int soundCurrentStep = 0;
+int soundLineCounter = 0;
+bool soundWaiting = false;
+unsigned long soundWaitStartMs = 0;
+
+bool toneActive = false;
+unsigned long toneStartMs = 0;
+
+void resetSoundSequence() {
+  soundCurrentStep = 0;
+  soundLineCounter = 0;
+  soundWaiting = false;
+  soundWaitStartMs = 0;
+  toneActive = false;
+  toneStartMs = 0;
+  noTone(BUZZER_PIN);
+}
+
+void beginSoundSequence() {
+  soundLineCounter = 0;
+}
+
+void endSoundSequence() {
+  if (soundLineCounter <= soundCurrentStep) {
+    soundCurrentStep = 0;
+    soundWaiting = false;
+    toneActive = false;
+    noTone(BUZZER_PIN);
+  }
+}
+
+void soundWaitCmd(unsigned long durationMs) {
+  if (soundLineCounter == soundCurrentStep) {
+    if (!soundWaiting) {
+      noTone(BUZZER_PIN);
+      soundWaitStartMs = millis();
+      soundWaiting = true;
+    } else if (millis() - soundWaitStartMs >= durationMs) {
+      soundWaiting = false;
+      soundCurrentStep++;
+    }
+  }
+  soundLineCounter++;
+}
+
+void soundPlayToneCmd(int pitch, unsigned long durationMs) {
+  if (soundLineCounter == soundCurrentStep) {
+    if (!toneActive) {
+      tone(BUZZER_PIN, pitch);
+      toneStartMs = millis();
+      toneActive = true;
+    } else if (millis() - toneStartMs >= durationMs) {
+      noTone(BUZZER_PIN);
+      toneActive = false;
+      soundCurrentStep++;
+    }
+  }
+  soundLineCounter++;
+}
+
+void drawCenteredText(const char *line1, const char *line2 = "", const char *line3 = "") {
+  display.clearDisplay();
+  display.setTextColor(SH110X_WHITE);
+  display.setTextSize(1);
+
+  int16_t x1, y1;
+  uint16_t w, h;
+
+  display.getTextBounds(line1, 0, 0, &x1, &y1, &w, &h);
+  display.setCursor((SCREEN_WIDTH - (int)w) / 2, 16);
+  display.print(line1);
+
+  if (line2[0] != '\0') {
+    display.getTextBounds(line2, 0, 0, &x1, &y1, &w, &h);
+    display.setCursor((SCREEN_WIDTH - (int)w) / 2, 32);
+    display.print(line2);
+  }
+
+  if (line3[0] != '\0') {
+    display.getTextBounds(line3, 0, 0, &x1, &y1, &w, &h);
+    display.setCursor((SCREEN_WIDTH - (int)w) / 2, 48);
+    display.print(line3);
+  }
+
+  display.display();
+}
+
+void drawUI() {
+  if (testRunning) {
+    drawCenteredText("Alarm Test Running", "Press knob to stop");
+  } else {
+    drawCenteredText("Press knob to start", "alarm sound test");
+  }
+}
+
+void handleButton() {
+  bool btn = digitalRead(ENCODER_BTN);
+  unsigned long now = millis();
+
+  if (btn != lastBtn) {
+    lastBtnChangeMs = now;
+    lastBtn = btn;
+  }
+
+  if ((now - lastBtnChangeMs) > debounceMs) {
+    if (btn == LOW && btnArmed) {
+      if (!testRunning) {
+        resetSoundSequence();
+        testRunning = true;
+      } else {
+        testRunning = false;
+        resetSoundSequence();
+      }
+      btnArmed = false;
+    }
+
+    if (btn == HIGH) {
+      btnArmed = true;
+    }
+  }
+}
+
+void setup() {
+  pinMode(ENCODER_BTN, INPUT_PULLUP);
+  pinMode(BUZZER_PIN, OUTPUT);
+  noTone(BUZZER_PIN);
+
+  display.begin(0x3C, true);
+  display.clearDisplay();
+  display.display();
+}
+
+void loop() {
+  handleButton();
+
+  if (testRunning) {
+    studentAlarmSound();
+  }
+
+  drawUI();
+}`
+  },
+  {
+    title: 'Overall Code',
+    fileURL: '/alarm-bot-workshop-code/overall_code.ino',
+    fileName: 'overall_code.ino',
+    description: 'Overall Code Template',
+    code: `#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SH110X.h>
+#include <RTClib.h>
+#include <Fonts/FreeSansBold12pt7b.h>
+#include <Servo.h>
+
+void beginMoveSequence();
+void endMoveSequence();
+void moveLeftMotorCmd(int speed);
+void moveRightMotorCmd(int speed);
+void moveWaitCmd(unsigned long durationMs);
+
+void beginSoundSequence();
+void endSoundSequence();
+void soundWaitCmd(unsigned long durationMs);
+void soundPlayToneCmd(int pitch, unsigned long durationMs);
+
+#define leftMotor(x)  moveLeftMotorCmd(x)
+#define rightMotor(x) moveRightMotorCmd(x)
+#define wait(sec)     moveWaitCmd((unsigned long)((sec) * 1000))
+
+void alarmMove() {
+  beginMoveSequence();
+
+  /* =========================================================
+     ========= STUDENT MOVEMENT CODE (START HERE) ============
+     ========================================================= */
+
+
+    // paste movement code here
+
+
+
+  /* =========================================================
+     ========= STUDENT MOVEMENT CODE (END HERE) ==============
+     ========================================================= */
+
+  endMoveSequence();
+}
+
+#undef leftMotor
+#undef rightMotor
+#undef wait
+#define playTone(p, sec) soundPlayToneCmd(p, (unsigned long)((sec) * 1000))
+#define wait(sec)        soundWaitCmd((unsigned long)((sec) * 1000))
+
+void alarmSound() {
+  beginSoundSequence();
+
+  /* =========================================================
+     ========= STUDENT ALARM CODE (START HERE) ===============
+     ========================================================= */
+    
+
+    // paste alarm code here
+
+
+  /* =========================================================
+     ========= STUDENT ALARM CODE (END HERE) =================
+     ========================================================= */
+
+  endSoundSequence();
+}
+
+#undef playTone
+#undef wait
+
+#define SCREEN_WIDTH 128
+#define SCREEN_HEIGHT 64
+Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+
+#define RTC_CE  4
+#define RTC_SCK 2
+#define RTC_IO  3
+DS1302 rtc(RTC_CE, RTC_SCK, RTC_IO);
+
+#define ENCODER_A   5
+#define ENCODER_B   6
+#define ENCODER_BTN 7
+
+#define BUZZER_PIN 8
+#define SERVO_L_PIN 9
+#define SERVO_R_PIN 10
+
+Servo leftMotorServo;
+Servo rightMotorServo;
+
+#define L_STOP 0
+#define R_STOP 0
+
+bool alarmEnabled = false;
+bool alarmEnabledPending = false;
+
+int alarmH = 7;
+int alarmM = 0;
+
+bool alarmRinging = false;
+bool alarmLatchedThisMinute = false;
+
+unsigned long lastUiMs = 0;
+const unsigned long uiPeriodMs = 120;
+
+bool lastBtn = HIGH;
+unsigned long lastBtnChangeMs = 0;
+const unsigned long debounceMs = 30;
+bool btnArmed = true;
+const int8_t QDEC[16] = {
+  0,-1,1,0,
+  1,0,0,-1,
+ -1,0,0,1,
+  0,1,-1,0
+};
+
+uint8_t oldAB = 0;
+int accum = 0;
+const int STEPS_PER_DETENT = 4;
+
+const float BAT_V_FULL = 5.60;
+const float BAT_V_EMPTY = 4.40;
+float vccFilt = 5.0f;
+
+enum Mode { MODE_TIME, MODE_ALARM_TOGGLE, MODE_ALARM_H, MODE_ALARM_M };
+Mode mode = MODE_TIME;
+
+int moveCurrentStep = 0;
+int moveLineCounter = 0;
+bool moveWaiting = false;
+unsigned long moveWaitStartMs = 0;
+
+int soundCurrentStep = 0;
+int soundLineCounter = 0;
+bool soundWaiting = false;
+unsigned long soundWaitStartMs = 0;
+
+bool toneActive = false;
+unsigned long toneStartMs = 0;
+
+void setLeftMotor(int speed) {
+  speed = constrain(speed, -90, 90);
+  leftMotorServo.write(90 + speed);
+}
+
+void setRightMotor(int speed) {
+  speed = constrain(speed, -90, 90);
+  rightMotorServo.write(90 - speed);
+}
+
+void stopMotors() {
+  setLeftMotor(0);
+  setRightMotor(0);
+}
+
+void beginMoveSequence() {
+  moveLineCounter = 0;
+}
+
+void endMoveSequence() {
+  if (moveLineCounter <= moveCurrentStep) {
+    moveCurrentStep = 0;
+    moveWaiting = false;
+    stopMotors();
+  }
+}
+
+void moveLeftMotorCmd(int speed) {
+  if (moveLineCounter == moveCurrentStep) {
+    setLeftMotor(speed);
+    moveCurrentStep++;
+  }
+  moveLineCounter++;
+}
+
+void moveRightMotorCmd(int speed) {
+  if (moveLineCounter == moveCurrentStep) {
+    setRightMotor(speed);
+    moveCurrentStep++;
+  }
+  moveLineCounter++;
+}
+
+void moveWaitCmd(unsigned long durationMs) {
+  if (moveLineCounter == moveCurrentStep) {
+    if (!moveWaiting) {
+      moveWaitStartMs = millis();
+      moveWaiting = true;
+    } else if (millis() - moveWaitStartMs >= durationMs) {
+      moveWaiting = false;
+      moveCurrentStep++;
+    }
+  }
+  moveLineCounter++;
+}
+
+void beginSoundSequence() {
+  soundLineCounter = 0;
+}
+
+void endSoundSequence() {
+  if (soundLineCounter <= soundCurrentStep) {
+    soundCurrentStep = 0;
+    soundWaiting = false;
+    toneActive = false;
+    noTone(BUZZER_PIN);
+  }
+}
+
+void soundWaitCmd(unsigned long durationMs) {
+  if (soundLineCounter == soundCurrentStep) {
+    if (!soundWaiting) {
+      noTone(BUZZER_PIN);
+      soundWaitStartMs = millis();
+      soundWaiting = true;
+    } else if (millis() - soundWaitStartMs >= durationMs) {
+      soundWaiting = false;
+      soundCurrentStep++;
+    }
+  }
+  soundLineCounter++;
+}
+
+void soundPlayToneCmd(int pitch, unsigned long durationMs) {
+  if (soundLineCounter == soundCurrentStep) {
+    if (!toneActive) {
+      tone(BUZZER_PIN, pitch);
+      toneStartMs = millis();
+      toneActive = true;
+    } else if (millis() - toneStartMs >= durationMs) {
+      noTone(BUZZER_PIN);
+      toneActive = false;
+      soundCurrentStep++;
+    }
+  }
+  soundLineCounter++;
+}
+
+int wrap(int v, int lo, int hi) {
+  int r = hi - lo + 1;
+  while (v < lo) v += r;
+  while (v > hi) v -= r;
+  return v;
+}
+
+int clampi(int v, int lo, int hi) {
+  return v < lo ? lo : (v > hi ? hi : v);
+}
+
+void setup() {
+  pinMode(ENCODER_A, INPUT_PULLUP);
+  pinMode(ENCODER_B, INPUT_PULLUP);
+  pinMode(ENCODER_BTN, INPUT_PULLUP);
+
+  pinMode(BUZZER_PIN, OUTPUT);
+  noTone(BUZZER_PIN);
+
+  leftMotorServo.attach(SERVO_L_PIN);
+  rightMotorServo.attach(SERVO_R_PIN);
+  stopMotors();
+
+  display.begin(0x3C, true);
+  display.clearDisplay();
+  display.display();
+
+  rtc.begin();
+
+  oldAB = (digitalRead(ENCODER_A) << 1) | digitalRead(ENCODER_B);
+}
+
+void loop() {
+  readEncoder();
+  handleButton();
+
+  DateTime now = rtc.now();
+  updateAlarmState(now);
+
+  if (alarmRinging) {
+    alarmMove();
+    alarmSound();
+  }
+
+  if (millis() - lastUiMs >= uiPeriodMs) {
+    drawUI(now);
+    lastUiMs = millis();
+  }
+}`
   }
 ]
 
 function Resources() {
   const [isUnlocked, setIsUnlocked] = useState(false)
   const [accessCode, setAccessCode] = useState('')
+  const [school, setSchool] = useState(null)
   const [error, setError] = useState(false)
+  const [copiedIndex, setCopiedIndex] = useState(null)
+  const [expandedCodeIndex, setExpandedCodeIndex] = useState(null)
 
   useEffect(() => {
-    const unlocked = sessionStorage.getItem('resourcesUnlocked') === 'true'
-    if (unlocked) setIsUnlocked(true)
+    const savedSchool = sessionStorage.getItem('resourcesSchool')
+
+    if (savedSchool) {
+      try {
+        setSchool(JSON.parse(savedSchool))
+        setIsUnlocked(true)
+      } catch {
+        sessionStorage.removeItem('resourcesSchool')
+      }
+    }
   }, [])
 
   const handleUnlock = () => {
-    if (accessCode === 'beacon2025') {
+    const normalisedCode = accessCode.trim().toUpperCase()
+    const matchedSchool = schoolAccessCodes[normalisedCode]
+
+    if (matchedSchool) {
+      setSchool(matchedSchool)
       setIsUnlocked(true)
-      sessionStorage.setItem('resourcesUnlocked', 'true')
+      sessionStorage.setItem('resourcesSchool', JSON.stringify(matchedSchool))
       setError(false)
     } else {
       setError(true)
@@ -63,137 +767,257 @@ function Resources() {
     if (e.key === 'Enter') handleUnlock()
   }
 
+  const handleToggleCode = (index) => {
+    setExpandedCodeIndex(expandedCodeIndex === index ? null : index)
+  }
+
+  const handleCopy = async (code, index) => {
+    try {
+      await navigator.clipboard.writeText(code)
+      setCopiedIndex(index)
+      setTimeout(() => setCopiedIndex(null), 2000)
+    } catch {
+      console.error('Copy failed')
+    }
+  }
+
   if (!isUnlocked) {
     return (
-      <div className='resources-container locked'>
+      <>
         <SEO
-          title="Resources | Project Beacon"
-          description="lorem ipsum"
+          title="Student Resources | Project Beacon"
+          description="Protected Project Beacon student resources for school robotics incursions, including Arduino code templates, manuals, and workshop materials."
         />
 
-        <div className='resources-header'>
-          <div className='resources-title'>Resources</div>
-        </div>
-
-        <div className='resources-locked-card'>
-          <div className='resources-locked-icon'>
-            <LockIcon />
+        <div className="resources-container locked">
+          <div className="resources-header">
+            <h1 className="resources-title">Student Resources</h1>
           </div>
 
-          <div className='resources-locked-title'>Protected Resources</div>
-          <p className='resources-locked-description'>
-            These resources are available to registered schools. Please enter your access code.
-          </p>
+          <div className="resources-locked-card">
+            <div className="resources-locked-icon">
+              <LockIcon />
+            </div>
 
-          <div className='resources-access-code-section'>
-            <label className='resources-access-code-label'>Access Code</label>
+            <div className="resources-locked-title">
+              Protected Student Resources
+            </div>
 
-            <input
-              type='text'
-              className={`resources-access-code-input ${error ? 'error' : ''}`}
-              placeholder='Enter access code'
-              value={accessCode}
-              onChange={(e) => setAccessCode(e.target.value)}
-              onKeyDown={handleKeyPress}
-            />
+            <p className="resources-locked-description">
+              These resources are available to students from registered schools.
+              Please enter the access code provided by your teacher.
+            </p>
 
-            <button
-              className='resources-unlock-button'
-              onClick={handleUnlock}
-            >
-              Unlock Resources
-            </button>
+            <div className="resources-access-code-section">
+              <label className="resources-access-code-label">
+                School Access Code
+              </label>
+
+              <input
+                type="text"
+                className={`resources-access-code-input ${error ? 'error' : ''}`}
+                placeholder="Enter your access code"
+                value={accessCode}
+                onChange={(e) => setAccessCode(e.target.value)}
+                onKeyDown={handleKeyPress}
+              />
+
+              <button
+                className="resources-unlock-button"
+                onClick={handleUnlock}
+              >
+                Unlock Student Resources
+              </button>
+
+              {error && (
+                <p className="resources-error-message">
+                  Invalid access code. Please check the code provided by your teacher.
+                </p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </>
     )
   }
 
   return (
     <>
-      {/* CHANGE THIS CODY */}
       <SEO
-        title="Resources | Project Beacon"
-        description="Download Project Beacon’s STEM robotics resources including Alarm Bot manuals, Arduino code templates, and workshop materials for schools."
+        title={`${school?.schoolName || 'School'} Student Resources | Project Beacon`}
+        description={`Project Beacon student resources for ${school?.schoolName || 'registered schools'}, including Arduino code templates, robotics incursion materials, and student manuals.`}
       />
 
-      <div className='resources-container unlocked'>
-        <div className='resources-header'>
-          {/* FIX: was div → now H1 */}
-          <h1 className='resources-title'>Resources</h1>
+      <div className="resources-container unlocked">
+        <div className="resources-student-welcome">
+          <div className="resources-welcome-icon">
+            <SchoolIcon />
+          </div>
 
-          <p className='resources-subtitle'>
-            Comprehensive materials for educators. Access student manuals, code templates, and curriculum documentation.
+          <p className="resources-welcome-label">Welcome</p>
+
+          <h1 className="resources-title">
+            Welcome students from
+            <br />
+            <span>{school?.schoolName || 'your school'}</span>
+          </h1>
+
+          <p className="resources-subtitle">
+            Access your robotics incursion resources below, including the student
+            manual, Arduino code templates, and downloadable project files.
           </p>
         </div>
 
-        <div className='resources-grid'>
-          {resourcesData.map((resource, index) => (
-            <div key={index} className='resources-card'>
-              
-              {/* FIX: card section title → H2 */}
-              <h2 className='resources-card-title'>{resource.title}</h2>
+        <section className="student-code-section resources-files-section">
+          <div className="student-code-header">
+            <p className="student-code-label">Student Resources</p>
 
-              {resource.subblocks.map((subblock, i) => (
-                <div key={i} className='resources-subblock'>
-                  
-                  <div className='resources-card-header'>
-                    <div className='resources-card-icon'>{subblock.icon}</div>
-                    <span className='resources-card-file-type'>{subblock.fileType}</span>
+            <h2>Incursion Materials</h2>
+
+            <p>
+              Download the student manual and supporting materials for your
+              Project Beacon robotics incursion.
+            </p>
+          </div>
+
+          <div className="student-code-grid">
+            <div className="student-code-card resource-download-card">
+              <div className="student-code-card-topbar">
+                <div>
+                  <div className="student-code-card-label">
+                    PDF Resource
                   </div>
 
-                  {/* already correct as heading-level content → keep as semantic subheading */}
-                  <h3 className='resources-card-subtitle'>{subblock.title}</h3>
+                  <h3>Alarm Bot Manual</h3>
 
-                  <p className='resources-card-description'>
-                    {subblock.description}
+                  <p>
+                    Step-by-step student guide with assembly instructions,
+                    diagrams, safety information, and workshop support material.
                   </p>
+                </div>
 
-                  <div className='resources-card-footer'>
-                    {subblock.fileSize && (
-                      <span className='resources-card-file-size'>
-                        {subblock.fileSize}
-                      </span>
-                    )}
+                <div className="student-code-actions">
+                  <a
+                    href="/alarm-bot-workshop/Alarm Bot Workshop Manual.pdf"
+                    className="student-code-download-btn resource-download-btn"
+                    download
+                  >
+                    <DownloadIcon />
+                    Download PDF
+                  </a>
+                </div>
+              </div>
 
-                    {subblock.fileType === 'Workshops' ? (
-                      <div className="resources-workshop-buttons">
-                        {subblock.workshops.map((workshop, j) => (
-                          <Link
-                            key={j}
-                            to={workshop.link}
-                            className="resources-workshop-button"
-                          >
-                            <RocketLaunchIcon />
-                            {workshop.name}
-                          </Link>
-                        ))}
-                      </div>
-                    ) : subblock.fileType === 'PDF' ? (
-                      <a
-                        href="/alarm-bot-workshop/Alarm Bot Workshop Manual.pdf"
-                        className='resources-card-download-button'
-                        download
-                      >
-                        <DownloadIcon />
-                        Download
-                      </a>
-                    ) : null}
+              <div className="resource-preview-block">
+                <div className="resource-preview-icon">
+                  <MenuBookIcon />
+                </div>
+
+                <div>
+                  <p className="resource-preview-label">Student Build Manual</p>
+
+                  <h4>Use this during the session</h4>
+
+                  <p>
+                    Follow the build process, understand each component, and
+                    complete the robotics activity with the manual open beside you.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="student-code-section">
+          <div className="student-code-header">
+            <p className="student-code-label">Arduino Templates</p>
+
+            <h2>Student Code Blocks</h2>
+
+            <p>
+              Use these Arduino code templates during the Alarm Bot robotics
+              incursion. Open the code block when needed, then copy or download it
+              as an Arduino .ino file.
+            </p>
+          </div>
+
+          <div className="student-code-grid">
+            {templates.map((template, index) => (
+              <div className="student-code-card" key={index}>
+                <div className="student-code-card-topbar">
+                  <div>
+                    <div className="student-code-card-label">
+                      Arduino Template
+                    </div>
+
+                    <h3>{template.title}</h3>
+
+                    <p>{template.description}</p>
                   </div>
 
-                  {i < resource.subblocks.length - 1 && (
-                    <hr className="resources-subblock-separator" />
-                  )}
+                  <div className="student-code-actions">
+                    <button
+                      className="student-code-toggle-btn"
+                      onClick={() => handleToggleCode(index)}
+                    >
+                      {expandedCodeIndex === index ? 'Hide Code' : 'Open Code'}
+                    </button>
+
+                    <button
+                      className={`student-code-copy-btn ${copiedIndex === index ? 'copied' : ''}`}
+                      onClick={() => handleCopy(template.code, index)}
+                    >
+                      {copiedIndex === index ? <CheckIcon /> : <ContentCopyIcon />}
+                      {copiedIndex === index ? 'Copied' : 'Copy'}
+                    </button>
+
+                    <a
+                      href={template.fileURL}
+                      download={template.fileName}
+                      className="student-code-download-btn"
+                    >
+                      <DownloadIcon />
+                      Download
+                    </a>
+                  </div>
                 </div>
-              ))}
-            </div>
-          ))}
-        </div>
+
+                {expandedCodeIndex === index && (
+                  <div className="student-code-block">
+                    <SyntaxHighlighter
+                      language="cpp"
+                      style={oneDark}
+                      showLineNumbers={true}
+                      wrapLongLines={false}
+                      customStyle={{
+                        margin: 0,
+                        padding: '28px',
+                        background: 'transparent',
+                        fontSize: '13.5px',
+                        lineHeight: '1.65',
+                        fontFamily:
+                          '"Fira Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace'
+                      }}
+                      codeTagProps={{
+                        style: {
+                          fontFamily:
+                            '"Fira Code", "SFMono-Regular", Consolas, "Liberation Mono", monospace'
+                        }
+                      }}
+                    >
+                      {template.code}
+                    </SyntaxHighlighter>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
       </div>
 
       <AlternativeFooter />
     </>
-  );
+  )
 }
 
 export default Resources

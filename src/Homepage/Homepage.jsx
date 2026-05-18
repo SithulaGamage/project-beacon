@@ -95,13 +95,18 @@ function Homepage() {
   const heroShowcaseRef = useScrollReveal()
   const sectionOneRef = useScrollReveal()
   const sectionTwoRef = useScrollReveal()
+  const sectionThreeRef = useScrollReveal()
 
   return (
     <>
       {/* CHANGE THIS CODY */}
-      <SEO
+      {/* <SEO
         title="Robotics High School Incursions | Project Beacon"
         description="Hands-on robotics incursions for NSW schools. Students build and program their own robot in an engaging STEM workshop."
+      /> */}
+      <SEO
+        title="Robotics Incursions for NSW Schools | Project Beacon"
+        description="Curriculum-aligned robotics incursions for NSW schools. Project Beacon delivers hands-on STEM incursions where students build, code, and test Arduino-powered robots."
       />
 
       <div className='dark-veil-background'>
@@ -112,18 +117,28 @@ function Homepage() {
 
         {/* HERO */}
         <section className="homepage-hero-container">
-          <div className="homepage-hero-badge">
+          {/* <div className="homepage-hero-badge">
             <RocketLaunchRoundedIcon style={{ fontSize: 16 }} />
             <span>Launching in NSW Schools</span>
-          </div>
+            <span>Robotics Incursions for NSW Schools</span>
+          </div> */}
 
           <div className="homepage-hero-text-container">
-            <h1 className="homepage-hero-title">
+            {/* <h1 className="homepage-hero-title">
               Introducing Our New Workshop
+            </h1> */}
+            <h1 className="homepage-hero-title">
+              High School Robotics Incursions
             </h1>
 
-            <p className="homepage-hero-subtitle">
+            {/* <p className="homepage-hero-subtitle">
               Students build and program their very own alarm bot with a customisable motion path and alarm tone.
+            </p> */}
+            {/* <p className="homepage-hero-subtitle">
+              Project Beacon delivers STEM robotics incursions for NSW schools, where Years 7-10 students build, code, and test their own robot while learning electronics, 3D printing, and engineering design.
+            </p> */}
+            <p className="homepage-hero-subtitle">
+              Project Beacon delivers a hands-on STEM robotics incursion where students build, code, and test their own robot through an engaging classroom experience.
             </p>
 
             <div className="homepage-hero-accent-line"></div>
@@ -131,11 +146,12 @@ function Homepage() {
 
           <div className="homepage-hero-call-to-action-container">
             <Link to="/workshops/alarm-bot" className="homepage-hero-call-to-action-incursion-pack-button">
-              <span>View Workshop Info</span>
+              {/* <span>View Workshop Info</span> */}
+              <span>View NEW Incursion Info</span>
               <ArrowForwardRoundedIcon />
             </Link>
 
-            <StarBorder
+            {/* <StarBorder
               as="a"
               href="/alarm-bot-workshop/ALARM BOT WORKSHOP INCURSION PACK.pdf"
               download
@@ -145,13 +161,18 @@ function Homepage() {
             >
               <DownloadRoundedIcon />
               <span>Download Info-Pack</span>
-            </StarBorder>
+              <span>Download Incursion Pack</span>
+            </StarBorder> */}
           </div>
 
           <div className="homepage-hero-showcase scroll-reveal" ref={heroShowcaseRef}>
             {heroImages.map((img, index) => (
               <div className="homepage-hero-showcase-card" key={index}>
-                <img src={img} alt={`Workshop moment ${index + 1}`} />
+                {/* <img src={img} alt={`Workshop moment ${index + 1}`} /> */}
+                <img
+                  src={img}
+                  alt={`Students building and coding robots during a Project Beacon school robotics incursion ${index + 1}`}
+                />
               </div>
             ))}
           </div>
@@ -163,15 +184,95 @@ function Homepage() {
             What is Project Beacon?
           </h2>
 
-          <div className='homepage-section-bubble'>
+          {/* <div className='homepage-section-bubble'>
             Project Beacon delivers engaging robotics incursions for NSW schools, bringing the world of STEM directly into the hands of young student innovators. Our workshops have been diligently aligned to NESA's cirruculum, teaching students the fundamentals of robotics, from 3D-printing through to programming and testing. Each session is built around students creating their own robot to take home, encouraging continued experimentation and learning post-workshop. 
+          </div> */}
+          <div className='homepage-section-bubble'>
+            Project Beacon delivers hands-on robotics incursions for NSW schools. 
+            Our school-based STEM programs bring robotics, electronics, coding, 
+            3D printing, and engineering design directly into the classroom.
+
+            <br /><br />
+
+            Each incursion is designed for high school students in Years 7-10 and is 
+            aligned with relevant NESA curriculum areas including Technology, iSTEM, 
+            Computing Technology, and practical STEM learning. Students build and 
+            program their own robot, test its behaviour, troubleshoot issues, and take 
+            the completed project home for continued experimentation.
+          </div>
+        </section>
+
+        <section className='homepage-section secondary scroll-reveal' ref={sectionTwoRef}>
+          <h2 className='homepage-section-title centered'>
+            Curriculum-Aligned STEM Incursions
+          </h2>
+
+          <p className='homepage-section-subtitle'>
+            Our robotics incursions are designed for teachers looking for practical, 
+            school-ready STEM activities that connect directly to classroom learning.
+          </p>
+
+          <div className='homepage-section-cards'>
+            <SpotlightCard
+              className="homepage-section-card"
+              spotlightColor={spotlightColorHEX}
+            >
+              <div className='homepage-section-card-icon-glow'></div>
+
+              <h3 className='homepage-section-card-title'>
+                <span><SchoolRoundedIcon /></span>
+                Built for NSW Schools
+              </h3>
+
+              <div className='homepage-section-card-description'>
+                Suitable for high school STEM, Technology, iSTEM, Computing Technology, 
+                robotics clubs, enrichment days, and school incursion programs.
+              </div>
+            </SpotlightCard>
+
+            <SpotlightCard
+              className="homepage-section-card"
+              spotlightColor={spotlightColorHEX}
+            >
+              <div className='homepage-section-card-icon-glow'></div>
+
+              <h3 className='homepage-section-card-title'>
+                <span><SettingsRoundedIcon /></span>
+                Practical Robotics Learning
+              </h3>
+
+              <div className='homepage-section-card-description'>
+                Students learn Arduino coding, electronics, motors, sensors, circuitry, 
+                3D printing, troubleshooting, and engineering design through a working robot.
+              </div>
+            </SpotlightCard>
+
+            <SpotlightCard
+              className="homepage-section-card"
+              spotlightColor={spotlightColorHEX}
+            >
+              <div className='homepage-section-card-icon-glow'></div>
+
+              <h3 className='homepage-section-card-title'>
+                <span><EmojiEventsRoundedIcon /></span>
+                Student-Centred Experience
+              </h3>
+
+              <div className='homepage-section-card-description'>
+                Every student builds, tests, and customises their own Alarm Bot, creating 
+                a memorable STEM experience that continues beyond the classroom.
+              </div>
+            </SpotlightCard>
           </div>
         </section>
 
         {/* SCHOOLS SECTION */}
-        <section className='homepage-section secondary scroll-reveal' ref={sectionTwoRef}>
-          <h2 className='homepage-section-title centered'>
+        <section className='homepage-section secondary scroll-reveal' ref={sectionThreeRef}>
+          {/* <h2 className='homepage-section-title centered'>
             Hassle-Free for Schools
+          </h2> */}
+          <h2 className='homepage-section-title centered'>
+            Hassle-Free STEM Incursions for Schools
           </h2>
 
           <p className='homepage-section-subtitle'>
