@@ -857,7 +857,7 @@ function Resources() {
           <p className="resources-welcome-label">Welcome</p>
 
           <h1 className="resources-title">
-            Welcome students from
+            Welcome Students from
             <br />
             <span>{school?.schoolName || 'your school'}</span>
           </h1>
