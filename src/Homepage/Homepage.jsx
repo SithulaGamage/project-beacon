@@ -48,27 +48,25 @@ const incursionImage = '/alarm-bot-workshop/DSC_4223.jpg'
 const pathsData = [
   {
     number: 'I',
-    label: 'Build',
-    tag: 'Students',
-    title: 'Build a real robot.',
+    title: 'Educate.',
     description:
-      'Students assemble, wire, code, test, and customise their own Alarm Bot through a practical robotics activity.',
+      'Students are educated on the fundamentals necessary to build a robot. This includes the 3D printing process necessary to make the robot chassis, the workings and wiring of electrical components and the Arduino skills necessary to make their bot functinal.',
   },
   {
     number: 'II',
-    label: 'Learn',
-    tag: 'Teachers',
-    title: 'Curriculum-ready STEM.',
+    // label: 'Learn',
+    // tag: 'Teachers',
+    title: 'Empower.',
     description:
-      'The workshop connects robotics, electronics, Arduino programming, sensors, motors, troubleshooting, and engineering design.',
+      'Students are empowered to tackle robotics with a hands-on building and programming experience that replicates the troubleshooting and testing environment present in real-world engineering industries.',
   },
   {
     number: 'III',
-    label: 'Take Home',
-    tag: 'Families',
-    title: 'The learning continues.',
+    // label: 'Take Home',
+    // tag: 'Families',
+    title: 'Instill.',
     description:
-      'Every student takes home their completed robot, encouraging continued experimentation beyond the classroom.',
+      'Students are instilled with a lasting curiosity for STEM through a concluding industry-focused Q&A session, alongside the opportunity to bring their robot home for continued experimentation.',
   },
 ]
 
@@ -193,13 +191,11 @@ function Homepage() {
             <p className="homepage-chapter-label">Ch. 02 Mission</p>
             <h2>Our Mission</h2>
             <p>
-              Project Beacon exists to make robotics feel less intimidating and
-              more accessible for students.
+              Project Beacon is a not-for-profit organisation based in Sydney whose goal is to bring the world of STEM directly into the hands of young student innovators. All our presenters are current university students pursuing STEM degrees, allowing them to provide an engaging and relatable learning experience for each student. 
             </p>
-            <br />
+            <br></br>
             <p>
-              We run classroom-ready STEM incursions where students learn by
-              building, testing, breaking, fixing, and customising their own robot.
+              Our interactive and curriculum-aligned workshops aim to teach students the fundamentals of robotics, from manufacturing through to programming and testing. Each workshop is built around students creating robots they can take home, inspiring continual experimentation and future learning.
             </p>
           </div>
 
