@@ -50,7 +50,7 @@ const pathsData = [
     number: 'I',
     title: 'Educate.',
     description:
-      'Students are educated on the fundamentals necessary to build a robot. This includes the 3D printing process necessary to make the robot chassis, the workings and wiring of electrical components and the Arduino skills necessary to make their bot functinal.',
+      'Students are educated on the fundamentals required to build a robot. This includes the 3D printing process to make the robot chassis, the workings and wiring of electrical components and the Arduino skills necessary to make their bot functional.',
   },
   {
     number: 'II',
@@ -246,7 +246,7 @@ function Homepage() {
           </Link>
         </section>
 
-        <section
+        {/* <section
           className="homepage-editorial-section homepage-incursions-section scroll-reveal"
           ref={incursionsRef}
         >
@@ -269,7 +269,7 @@ function Homepage() {
               through a working robot they can take home.
             </p>
           </div>
-        </section>
+        </section> */}
 
         {/* <section
           className="homepage-school-ready-section scroll-reveal"

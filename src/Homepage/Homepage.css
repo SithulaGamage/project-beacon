@@ -52,7 +52,7 @@
 
   text-align: center;
 
-  padding-top: calc(var(--section-padding-top) + 30px);
+  padding-top: calc(var(--section-padding-top) - 20px);
   padding-bottom: 80px;
 
   gap: 28px;
@@ -82,7 +82,7 @@
 /* same title style as before */
 .homepage-hero-title {
   max-width: 1120px;
-  font-size: clamp(68px, 11vw, 145px);
+  font-size: clamp(8px, 11vw, 125px);
   font-weight: 900;
   letter-spacing: -2px;
   color: #fff;
@@ -143,7 +143,7 @@
 
 .homepage-hero-showcase-card {
   width: 320px;
-  height: 220px;
+  height: 200px;
   border-radius: 28px;
   overflow: hidden;
   border: none;
@@ -218,12 +218,12 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  padding: 17px 28px;
+  padding: 14px 28px;
   border-radius: 999px;
   background: #fff;
   color: #111;
   font-family: 'Nunito', 'Baloo 2', system-ui, sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 900;
   cursor: pointer;
   transition:
@@ -389,7 +389,7 @@
 .homepage-alarm-bot-banner p {
   margin: 0;
   color: rgba(255, 255, 255, 0.68);
-  font-family: 'Nunito', system-ui, sans-serif;
+  /* font-family: 'Nunito', system-ui, sans-serif; */
   font-size: 19px;
   font-weight: 600;
   line-height: 1.62;
@@ -628,6 +628,10 @@
 
   .homepage-logo-cloud {
     justify-content: flex-start;
+  }
+
+  .homepage-hero-showcase-card {
+    width: 280px;
   }
 }
 
