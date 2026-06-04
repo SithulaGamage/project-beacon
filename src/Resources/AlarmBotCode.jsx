@@ -335,16 +335,16 @@ void drawCenteredText(const char *line1, const char *line2 = "", const char *lin
   uint16_t w, h;
 
   display.getTextBounds(line1, 0, 0, &x1, &y1, &w, &h);
-  display.setCursor((SCREEN_WIDTH - (int)w) / 2, 16);
+  display.setCursor((SCREEN_WIDTH - (int)w) / 2, 1npmr unb uild
   display.print(line1);
 
-  if (line2[0] != '\0') {
+  if (line2[0] != '\\0') {
     display.getTextBounds(line2, 0, 0, &x1, &y1, &w, &h);
     display.setCursor((SCREEN_WIDTH - (int)w) / 2, 32);
     display.print(line2);
   }
 
-  if (line3[0] != '\0') {
+  if (line3[0] != '\\0') {
     display.getTextBounds(line3, 0, 0, &x1, &y1, &w, &h);
     display.setCursor((SCREEN_WIDTH - (int)w) / 2, 48);
     display.print(line3);
