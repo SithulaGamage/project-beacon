@@ -1,110 +1,189 @@
+/**
+  * REQUIRED LIBRARIES
+  */
+#include <Arduino.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SH110X.h>
-
-void beginSoundSequence();
-void endSoundSequence();
-void soundWaitCmd(unsigned long durationMs);
-void soundPlayToneCmd(int pitch, unsigned long durationMs);
-
-#define playTone(p, sec) soundPlayToneCmd(p, (unsigned long)((sec) * 1000))
-#define wait(sec)        soundWaitCmd((unsigned long)((sec) * 1000))
-
-void studentAlarmSound() {
-  beginSoundSequence();
-
-  /* =========================================================
-     ========= STUDENT ALARM CODE (START HERE) =================
-     ========================================================= */
+#include <Adafruit_GFX.h>     // Adafruit GFX Library by Adafruit
+#include <Adafruit_SH110X.h>  // Adafruit SH110X by Adafruit
 
 
-  // type alarm code here
+/**
+  * PIN DEFINITIONS
+  */
+#define ENCODER_BTN 7
+#define BUZZER_PIN  8
 
 
-  /* =========================================================
-     ========= STUDENT ALARM CODE (END HERE) ===================
-     ========================================================= */
-
-  endSoundSequence();
-}
-
-#undef playTone
-#undef wait
-
-#define SCREEN_WIDTH 128
+/**
+  * DISPLAY CONFIGURATION
+  */
+#define SCREEN_WIDTH  128
 #define SCREEN_HEIGHT 64
 Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
-#define ENCODER_BTN 7
-#define BUZZER_PIN 8
 
+/**
+  * PROGRAM VARIABLES
+  */
 bool testRunning = false;
+
 bool lastBtn = HIGH;
 bool btnArmed = true;
+
 unsigned long lastBtnChangeMs = 0;
 const unsigned long debounceMs = 30;
 
 int soundCurrentStep = 0;
 int soundLineCounter = 0;
+
 bool soundWaiting = false;
 unsigned long soundWaitStartMs = 0;
 
 bool toneActive = false;
 unsigned long toneStartMs = 0;
 
-void resetSoundSequence() {
+
+/**
+  * FUNCTION DECLARATIONS
+  */
+
+/* Student Alarm Program */
+void studentAlarmSound(void);
+
+/* Sound Sequence */
+void resetSoundSequence(void);
+void beginSoundSequence(void);
+void endSoundSequence(void);
+
+void soundWaitCmd(unsigned long durationMs);
+void soundPlayToneCmd(int pitch, unsigned long durationMs);
+
+/* User Interface */
+void drawCenteredText(const char *line1, const char *line2 = "", const char *line3 = "");
+
+void drawUI(void);
+void handleButton(void);
+
+
+/**
+  * STUDENT ALARM MACROS
+  */
+#define playTone(p, sec) soundPlayToneCmd(p, (unsigned long)((sec) * 1000))
+#define wait(sec)        soundWaitCmd((unsigned long)((sec) * 1000))
+
+
+/**
+  * STUDENT ALARM CODE
+  */
+void studentAlarmSound(void)
+{
+  beginSoundSequence();
+
+  /** =====================================================
+    * ============== STUDENT ALARM CODE START =============
+    * ===================================================== */
+
+  // Example:
+  // playTone(1000, 0.5);
+  // wait(0.25);
+  // playTone(1500, 0.5);
+
+  /** =====================================================
+    * =============== STUDENT ALARM CODE END ==============
+    * ===================================================== */
+
+  endSoundSequence();
+}
+
+/* Undefine student alarm macros */
+#undef playTone
+#undef wait
+
+
+/**
+  * FUNCTION DEFINITIONS
+  */
+
+/* Sound Sequence Functions */
+void resetSoundSequence(void)
+{
   soundCurrentStep = 0;
   soundLineCounter = 0;
+
   soundWaiting = false;
   soundWaitStartMs = 0;
+
   toneActive = false;
   toneStartMs = 0;
+
   noTone(BUZZER_PIN);
 }
 
-void beginSoundSequence() {
+void beginSoundSequence(void)
+{
   soundLineCounter = 0;
 }
 
-void endSoundSequence() {
-  if (soundLineCounter <= soundCurrentStep) {
+void endSoundSequence(void)
+{
+  if (soundLineCounter <= soundCurrentStep)
+  {
     soundCurrentStep = 0;
     soundWaiting = false;
+
     toneActive = false;
     noTone(BUZZER_PIN);
   }
 }
 
-void soundWaitCmd(unsigned long durationMs) {
-  if (soundLineCounter == soundCurrentStep) {
-    if (!soundWaiting) {
+void soundWaitCmd(unsigned long durationMs)
+{
+  if (soundLineCounter == soundCurrentStep)
+  {
+    if (!soundWaiting)
+    {
       noTone(BUZZER_PIN);
+
       soundWaitStartMs = millis();
       soundWaiting = true;
-    } else if (millis() - soundWaitStartMs >= durationMs) {
+    }
+    else if (millis() - soundWaitStartMs >= durationMs)
+    {
       soundWaiting = false;
       soundCurrentStep++;
     }
   }
+
   soundLineCounter++;
 }
 
-void soundPlayToneCmd(int pitch, unsigned long durationMs) {
-  if (soundLineCounter == soundCurrentStep) {
-    if (!toneActive) {
+void soundPlayToneCmd(int pitch, unsigned long durationMs)
+{
+  if (soundLineCounter == soundCurrentStep)
+  {
+    if (!toneActive)
+    {
       tone(BUZZER_PIN, pitch);
+
       toneStartMs = millis();
       toneActive = true;
-    } else if (millis() - toneStartMs >= durationMs) {
+    }
+    else if (millis() - toneStartMs >= durationMs)
+    {
       noTone(BUZZER_PIN);
+
       toneActive = false;
       soundCurrentStep++;
     }
   }
+
   soundLineCounter++;
 }
 
-void drawCenteredText(const char *line1, const char *line2 = "", const char *line3 = "") {
+
+/* Display Functions */
+void drawCenteredText(const char *line1, const char *line2, const char *line3)
+{
   display.clearDisplay();
   display.setTextColor(SH110X_WHITE);
   display.setTextSize(1);
@@ -116,13 +195,15 @@ void drawCenteredText(const char *line1, const char *line2 = "", const char *lin
   display.setCursor((SCREEN_WIDTH - (int)w) / 2, 16);
   display.print(line1);
 
-  if (line2[0] != 0) {
+  if (line2[0] != (char)0)
+  {
     display.getTextBounds(line2, 0, 0, &x1, &y1, &w, &h);
     display.setCursor((SCREEN_WIDTH - (int)w) / 2, 32);
     display.print(line2);
   }
 
-  if (line3[0] != 0) {
+  if (line3[0] != (char)0)
+  {
     display.getTextBounds(line3, 0, 0, &x1, &y1, &w, &h);
     display.setCursor((SCREEN_WIDTH - (int)w) / 2, 48);
     display.print(line3);
@@ -131,44 +212,65 @@ void drawCenteredText(const char *line1, const char *line2 = "", const char *lin
   display.display();
 }
 
-void drawUI() {
-  if (testRunning) {
+void drawUI(void)
+{
+  if (testRunning)
+  {
     drawCenteredText("Alarm Test Running", "Press knob to stop");
-  } else {
+  }
+  else
+  {
     drawCenteredText("Press knob to start", "alarm sound test");
   }
 }
 
-void handleButton() {
+
+/* Button Functions */
+void handleButton(void)
+{
   bool btn = digitalRead(ENCODER_BTN);
   unsigned long now = millis();
 
-  if (btn != lastBtn) {
+  if (btn != lastBtn)
+  {
     lastBtnChangeMs = now;
     lastBtn = btn;
   }
 
-  if ((now - lastBtnChangeMs) > debounceMs) {
-    if (btn == LOW && btnArmed) {
-      if (!testRunning) {
+  if ((now - lastBtnChangeMs) > debounceMs)
+  {
+    if (btn == LOW && btnArmed)
+    {
+      if (!testRunning)
+      {
         resetSoundSequence();
         testRunning = true;
-      } else {
+      }
+      else
+      {
         testRunning = false;
         resetSoundSequence();
       }
+
       btnArmed = false;
     }
 
-    if (btn == HIGH) {
+    if (btn == HIGH)
+    {
       btnArmed = true;
     }
   }
 }
 
-void setup() {
+
+/**
+  * SETUP
+  */
+void setup()
+{
   pinMode(ENCODER_BTN, INPUT_PULLUP);
   pinMode(BUZZER_PIN, OUTPUT);
+
   noTone(BUZZER_PIN);
 
   display.begin(0x3C, true);
@@ -176,10 +278,16 @@ void setup() {
   display.display();
 }
 
-void loop() {
+
+/**
+  * MAIN LOOP
+  */
+void loop()
+{
   handleButton();
 
-  if (testRunning) {
+  if (testRunning)
+  {
     studentAlarmSound();
   }
 
