@@ -133,10 +133,20 @@ void studentMotorTest(void)
     * ============ STUDENT MOVEMENT CODE START ============
     * ===================================================== */
 
-  // Example:
+
+  /* Example: Back and Forth Movement (remove the slashes // underneath) */
   // leftMotor(50);
   // rightMotor(50);
+  // wait(10);
+  // leftMotor(10);
+  // rightMotor(40);
   // wait(2);
+
+
+  /* Example: Big Circle Movement (remove the slashes // underneath) */
+  // leftMotor(20);
+  // rightMotor(50);
+
 
   /** =====================================================
     * ============= STUDENT MOVEMENT CODE END =============
@@ -433,10 +443,57 @@ void studentAlarmSound(void)
     * ============== STUDENT ALARM CODE START =============
     * ===================================================== */
 
-  // Example:
-  // playTone(1000, 0.5);
-  // wait(0.25);
-  // playTone(1500, 0.5);
+
+  /* Example: Happy Birthday Alarm (remove the slashes // underneath) */
+  // playTone(528, 0.25); wait(0.05);
+  // playTone(528, 0.25); wait(0.05);
+  // playTone(594, 0.50); wait(0.05);
+  // playTone(528, 0.50); wait(0.05);
+  // playTone(704, 0.50); wait(0.05);
+  // playTone(660, 1.00); wait(0.20);
+
+
+  /* Example: Hogwarts Alarm (remove the slashes // underneath) */
+  // playTone(494, 0.35); wait(0.05);
+  // playTone(659, 0.50); wait(0.05);
+  // playTone(784, 0.25); wait(0.05);
+  // playTone(740, 0.25); wait(0.05);
+  // playTone(659, 0.50); wait(0.10);
+
+  // playTone(988, 0.35); wait(0.05);
+  // playTone(880, 0.75); wait(0.10);
+  // playTone(740, 0.75); wait(0.15);
+
+  // playTone(659, 0.35); wait(0.05);
+  // playTone(784, 0.25); wait(0.05);
+  // playTone(740, 0.25); wait(0.05);
+  // playTone(622, 0.50); wait(0.10);
+
+  // playTone(698, 0.35); wait(0.05);
+  // playTone(494, 0.75); wait(0.30);
+
+
+  /* Example: Mission Impossible Alarm (remove the slashes // underneath) */
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(932, 0.15); wait(0.05);
+  // playTone(1047, 0.15); wait(0.10);
+
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(699, 0.15); wait(0.05);
+  // playTone(740, 0.15); wait(0.15);
+
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(932, 0.15); wait(0.05);
+  // playTone(1047, 0.15); wait(0.10);
+
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(699, 0.15); wait(0.05);
+  // playTone(740, 0.30); wait(0.25);
+
 
   /** =====================================================
     * =============== STUDENT ALARM CODE END ==============
@@ -1529,7 +1586,7 @@ function Resources() {
 
                 <div className="student-code-actions">
                   <a
-                    href="/alarm-bot-workshop/Alarm Bot Workshop Manual.pdf"
+                    href="/alarm-bot-workshop/Alarm Bot Workshop Manual - Project Beacon.pdf"
                     className="student-code-download-btn resource-download-btn"
                     download
                   >
@@ -1553,6 +1610,35 @@ function Resources() {
                     Follow the build process, understand each component, and
                     complete the robotics activity with the manual open beside you.
                   </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="student-code-grid">
+            <div className="student-code-card resource-download-card">
+              <div className="student-code-card-topbar">
+                <div>
+                  <div className="student-code-card-label">
+                    PDF Resource
+                  </div>
+
+                  <h3>Diagnosing Connection Issues with the Arduino Nano</h3>
+
+                  <p>
+                    Instructions on how to solve/debug any Arduino Nano connection issues with your computer.
+                  </p>
+                </div>
+
+                <div className="student-code-actions">
+                  <a
+                    href="alarm-bot-workshop/Diagnosing Connection Issues with the Arduino Nano - Project Beacon.pdf"
+                    className="student-code-download-btn resource-download-btn"
+                    download
+                  >
+                    <DownloadIcon />
+                    Download PDF
+                  </a>
                 </div>
               </div>
             </div>

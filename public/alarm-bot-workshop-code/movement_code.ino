@@ -96,10 +96,20 @@ void studentMotorTest(void)
     * ============ STUDENT MOVEMENT CODE START ============
     * ===================================================== */
 
-  // Example:
+
+  /* Example: Back and Forth Movement (remove the slashes // underneath) */
   // leftMotor(50);
   // rightMotor(50);
+  // wait(10);
+  // leftMotor(10);
+  // rightMotor(40);
   // wait(2);
+
+
+  /* Example: Big Circle Movement (remove the slashes // underneath) */
+  // leftMotor(20);
+  // rightMotor(50);
+
 
   /** =====================================================
     * ============= STUDENT MOVEMENT CODE END =============

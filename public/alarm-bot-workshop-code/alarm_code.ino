@@ -83,10 +83,57 @@ void studentAlarmSound(void)
     * ============== STUDENT ALARM CODE START =============
     * ===================================================== */
 
-  // Example:
-  // playTone(1000, 0.5);
-  // wait(0.25);
-  // playTone(1500, 0.5);
+
+  /* Example: Happy Birthday Alarm (remove the slashes // underneath) */
+  // playTone(528, 0.25); wait(0.05);
+  // playTone(528, 0.25); wait(0.05);
+  // playTone(594, 0.50); wait(0.05);
+  // playTone(528, 0.50); wait(0.05);
+  // playTone(704, 0.50); wait(0.05);
+  // playTone(660, 1.00); wait(0.20);
+
+
+  /* Example: Hogwarts Alarm (remove the slashes // underneath) */
+  // playTone(494, 0.35); wait(0.05);
+  // playTone(659, 0.50); wait(0.05);
+  // playTone(784, 0.25); wait(0.05);
+  // playTone(740, 0.25); wait(0.05);
+  // playTone(659, 0.50); wait(0.10);
+
+  // playTone(988, 0.35); wait(0.05);
+  // playTone(880, 0.75); wait(0.10);
+  // playTone(740, 0.75); wait(0.15);
+
+  // playTone(659, 0.35); wait(0.05);
+  // playTone(784, 0.25); wait(0.05);
+  // playTone(740, 0.25); wait(0.05);
+  // playTone(622, 0.50); wait(0.10);
+
+  // playTone(698, 0.35); wait(0.05);
+  // playTone(494, 0.75); wait(0.30);
+
+
+  /* Example: Mission Impossible (remove the slashes // underneath) */
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(932, 0.15); wait(0.05);
+  // playTone(1047, 0.15); wait(0.10);
+
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(699, 0.15); wait(0.05);
+  // playTone(740, 0.15); wait(0.15);
+
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(932, 0.15); wait(0.05);
+  // playTone(1047, 0.15); wait(0.10);
+
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(784, 0.15); wait(0.05);
+  // playTone(699, 0.15); wait(0.05);
+  // playTone(740, 0.30); wait(0.25);
+
 
   /** =====================================================
     * =============== STUDENT ALARM CODE END ==============
