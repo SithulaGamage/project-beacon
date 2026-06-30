@@ -10,7 +10,7 @@ import SEO from '../SEO/SEO.jsx'
 
 /* workshops data */
 const workshopsData = [
-  {
+  { // Alarmbot
     icon: <img src="/logo/alarmbot_icon.png" alt="Alarm Bot Icon" style={{ width: '72px', height: '72px' }} />,
     title: 'Alarm Bot Workshop',
     tagline: 'Build, wire, and program an alarm bot to take home',
@@ -19,6 +19,16 @@ const workshopsData = [
     duration: '2 hours',
     yearLevels: 'Years 7 - 10',
     link: '/workshops/alarm-bot'
+  },
+  { // Backpack pal
+    icon: <img src="/backpack-pal-workshop/backpack_pal_logo.png" alt="Backpack Pal Icon" style={{ width: '72px', height: '72px' }} />,
+    title: 'Backpack Pal Workshop',
+    tagline: 'Build, wire, and program your own smart backpack companion',
+    description:
+      'Students learn fundamental engineering skills by assembling and programming their own Backpack Pal robot. The workshop introduces students to fundamental circuitry, Arduino programming, and user interface design as they create a smart backpack companion that displays the current time and weekly timetable.',
+    duration: '2 hours',
+    yearLevels: 'Years 7 - 10',
+    link: '/workshops/backpack-pal'
   },
 ]
 
@@ -108,9 +118,8 @@ function Workshops() {
           ))}
 
           {/* upcoming workshop */}
-          <div className="workshops-card upcoming">
+          {/* <div className="workshops-card upcoming">
 
-            {/* FIX: H2 so it stays part of page structure */}
             <h2 className="workshops-card-title">
               More Workshops Coming
             </h2>
@@ -127,7 +136,7 @@ function Workshops() {
             <span className="workshops-upcoming-tag">
               Launching soon
             </span>
-          </div>
+          </div> */}
         </div>
 
         {/* divider */}

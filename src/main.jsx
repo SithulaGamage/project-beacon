@@ -18,6 +18,7 @@ import Compliance from './Compliance/Compliance.jsx'
 import ScrollToTop from './ScrollToTop/ScrollToTop.jsx'
 
 import AlarmBotWorkshop from './Workshops/AlarmBotWorkshop.jsx'
+import BackpackPal from './Workshops/BackpackPal.jsx' 
 
 import AlarmBotCode from './Resources/AlarmBotCode.jsx'
 
@@ -42,6 +43,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/compliance" element={<Compliance />} /> */}
 
           <Route path="/workshops/alarm-bot" element={<AlarmBotWorkshop />} />
+          <Route path="/workshops/backpack-pal" element={<BackpackPal />} />
 
           <Route path="/resources/alarm-bot-template-code" element={<AlarmBotCode />} />
         </Routes>

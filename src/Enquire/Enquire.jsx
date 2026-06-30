@@ -122,6 +122,14 @@ function Enquire() {
             </div>
 
             <div className="enquire-field full">
+              <label>Workshop *</label>
+              <select name="workshop_type" required>
+                <option value="Alarmbot Workshop">Alarmbot Workshop</option>
+                <option value="Backpack Pal Workshop">Backpack Pal Workshop</option>
+              </select>
+            </div>
+
+            <div className="enquire-field full">
               <label>Preferred Date / Term</label>
               <input
                 type="text"

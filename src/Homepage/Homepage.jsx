@@ -36,9 +36,11 @@ function useScrollReveal(options = {}) {
 }
 
 const heroImages = [
+  "/alarm-bot-workshop/BCH2.jpeg",
   '/alarm-bot-workshop/DSC_4146.jpg',
-  '/alarm-bot-workshop/computer_with_code_and_bot.JPG',
-  '/alarm-bot-workshop/DSC_4223.jpg',
+  // '/alarm-bot-workshop/computer_with_code_and_bot.JPG',
+  // '/alarm-bot-workshop/DSC_4223.jpg',
+  "/alarm-bot-workshop/BCH3.jpeg",
 ]
 
 const acncLogo = '/logo/ACNC_logo.png'
@@ -233,14 +235,14 @@ function Homepage() {
         <section className="homepage-alarm-bot-banner scroll-reveal" ref={bannerRef}>
           <div>
             <p className="homepage-chapter-label">Ch. 04 Workshop</p>
-            <h2>New Alarm Bot Workshop</h2>
+            <h2>New Backpack Pal Workshop</h2>
             <p>
               A practical robotics incursion where students build, code, customise,
               and test their own robot in one classroom-ready experience.
             </p>
           </div>
 
-          <Link to="/workshops/alarm-bot" className="homepage-alarm-bot-button">
+          <Link to="/workshops/backpack-pal" className="homepage-alarm-bot-button">
             <span>View Workshop</span>
             <ArrowForwardRoundedIcon />
           </Link>

@@ -1,30 +1,26 @@
-import './AlarmBotWorkshop.css'
+import './BackpackPal.css'
 import AlternativeFooter from '../Footer/AlternativeFooter'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import SEO from '../SEO/SEO.jsx'
 
-function AlarmBot() {
+function BackpackPal() {
   const [activeImg, setActiveImg] = useState(null)
 
   const galleryImages = [
-    "/alarm-bot-workshop/BCH2.jpeg",
-    "/alarm-bot-workshop/DSC_4146.jpg",
-    "/alarm-bot-workshop/DSC_4223.jpg",
-    "/alarm-bot-workshop/computer_with_code_and_bot.JPG",
-    "/alarm-bot-workshop/BCH3.jpeg",
-    "/alarm-bot-workshop/DSC_4179.jpg",
-    "/alarm-bot-workshop/prizes_on_table.JPG",
-    "/alarm-bot-workshop/alarmbotworkshop_image.jpeg",
-    "/alarm-bot-workshop/BCH1.jpeg",
+    "/backpack-pal-workshop/DSC_4399.jpeg",
+    "/backpack-pal-workshop/DSC_4404.jpeg",
+    "/backpack-pal-workshop/DSC_4410.jpeg",
+    // "/backpack-pal-workshop/DSC_4399.jpeg",
+    // "/alarm-bot-workshop/prizes_on_table.JPG",
+    // "/backpack-pal-workshop/DSC_4399.jpeg",
   ]
 
   return (
     <>
-      {/* CHANGE THIS CODY */}
       <SEO
-        title="Alarm Bot Workshop for Schools | STEM Robotics Incursion NSW"
-        description="Hands-on STEM robotics workshop where students build and program an Alarm Bot with motors, sensors, and Arduino coding. Curriculum-aligned incursion for NSW schools."
+        title="Backpack Pal Workshop for Schools | STEM Robotics Incursion NSW"
+        description="Hands-on STEM robotics workshop where students build and program a Backpack Pal robot featuring a timetable display, joystick navigation, and Arduino coding. Curriculum-aligned incursion for NSW schools."
       />
 
       <div className="alarmbot-container">
@@ -36,21 +32,19 @@ function AlarmBot() {
             {/* small label stays non-heading (good) */}
             <span className="alarmbot-label">Workshop</span>
 
-            {/* FIX: MAIN PAGE HEADING → H1 */}
             <h1 className="alarmbot-title">
-              Alarm Bot Workshop
+              Backpack Pal Workshop
             </h1>
 
+            {/* CHANGE THE DESCRIPTION */}
             <p className="alarmbot-hero-description">
-              The Alarm Bot is a robot designed and 3D printed in-house by our team. While it includes all the similar functions of a typical alarm clock - a screen and buzzer -
-              it also features two motorised wheels to drive across the room. Students in this workshop will learn about the 3D printing manufacturing process, circuitry, electrical
-              components and the Arduino coding language. The workshop will conclude with a fun trivia session after which students can take their bots home.
+              The Backpack Pal is a robot designed and 3D printed in-house by our team. It conveniently clips onto the back of a student’s backpack and displays their school timetable. The bot has two main functions: a home screen which displays the current time and the upcoming period and a timetable screen wherein students can navigate their weekly timetable with a joystick. There is also a mounting slot on the top for students to customise their bot with a cute animal figurine.
             </p>
           </div>
 
           <div className="alarmbot-hero-media">
             <div className="alarmbot-media-box media-image">
-              <img src="/alarm-bot-workshop/DSC_4171.jpg" />
+              <img src="/backpack-pal-workshop/1782731276174.jpeg" />
             </div>
           </div>
         </div>
@@ -64,7 +58,7 @@ function AlarmBot() {
             <h2>Workshop Details</h2>
 
             <ul>
-              <li><strong>Price:</strong> $30 per student ($25 for low SES schools)</li>
+              <li><strong>Price:</strong> $20 per student ($15 for low SES schools)</li>
               <li><strong>Duration:</strong> 2 hours</li>
               <li><strong>Year Levels:</strong> Years 7 - 10</li>
               <li><strong>School Requirements:</strong> See info pack</li>
@@ -99,7 +93,7 @@ function AlarmBot() {
             </Link>
 
             <a
-              href="/alarm-bot-workshop/ALARM BOT WORKSHOP INCURSION PACK.pdf"
+              href="/backpack-pal-workshop/BACKPACK PAL WORKSHOP INCURSION PACK.pdf"
               download
               className="alarmbot-secondary-button"
               rel="noopener noreferrer"
@@ -150,4 +144,4 @@ function AlarmBot() {
   );
 }
 
-export default AlarmBot
+export default BackpackPal
