@@ -19,6 +19,10 @@ const schoolAccessCodes = {
     schoolName: 'Bethany College',
     displayName: 'Bethany College students'
   },
+  CCC2026: {
+    schoolName: 'Caroline Chisholm College',
+    displayName: 'Caroline Chisholm College students'
+  },
   BEACON2025: {
     schoolName: 'Project Beacon',
     displayName: 'Project Beacon students'
@@ -894,10 +898,10 @@ void alarmMove(void)
     * =========== STUDENT MOVEMENT CODE START =============
     * ===================================================== */
 
-  // Example:
+  // Example (remove //)
   // leftMotor(50);
-  // rightMotor(50);
-  // wait(2);
+  // rightMotor(20);
+  // wait(5);
 
   /** =====================================================
     * ============ STUDENT MOVEMENT CODE END ==============
@@ -929,8 +933,8 @@ void alarmSound(void)
   /** =====================================================
     * ============ STUDENT ALARM CODE START ===============
     * ===================================================== */
-
-  // Example:
+  
+  // Examples (remove //)
   // playTone(1000, 0.5);
   // wait(0.25);
   // playTone(1500, 0.5);
@@ -1382,7 +1386,17 @@ void setup(void)
   display.display();
 
   rtc.begin();
-  rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
+
+  DateTime rtcTime = rtc.now();
+  DateTime compileTime = DateTime(F(__DATE__), F(__TIME__));
+
+  // Pure Arduino-code RTC sync:
+  // - New upload from PC: compileTime is newer than RTC time, so RTC updates.
+  // - Normal switch off/on: RTC time is already newer, so it does not reset.
+  if (!rtc.isrunning() || compileTime.unixtime() > rtcTime.unixtime() + 10)
+  {
+    rtc.adjust(compileTime);
+  }
 
   oldAB = (digitalRead(ENCODER_A) << 1) | digitalRead(ENCODER_B);
 }
@@ -1410,8 +1424,7 @@ void loop(void)
     drawUI(now);
     lastUiMs = millis();
   }
-}
-`
+}`
   }
 ]
 
