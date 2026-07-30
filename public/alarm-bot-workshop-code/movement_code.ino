@@ -1,316 +1,562 @@
-/**
-  * REQUIRED LIBRARIES
-  */
+// Project Beacon Motor Test
+//
+// Motor speed values:
+//  90 = full speed forward
+//   0 = stopped
+// -90 = full speed backward
+//
+// Press the rotary encoder button to start the motor test.
+// Press it again to stop the test.
+//
+
+// Libraries
 #include <Arduino.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>     // Adafruit GFX Library by Adafruit
-#include <Adafruit_SH110X.h>  // Adafruit SH110X by Adafruit
-#include <Servo.h>            // Servo by Michael Margolis
+#include <Adafruit_GFX.h>      // Adafruit GFX Library by Adafruit
+#include <Adafruit_SH110X.h>   // Adafruit SH110X Library by Adafruit
+#include <Servo.h>             // Servo Library by Michael Margolis
 
 
-/**
-  * PIN DEFINITIONS
-  */
-#define ENCODER_BTN 7
-#define SERVO_L_PIN 9
-#define SERVO_R_PIN 10
-
-#define L_STOP 0
-#define R_STOP 0
+// Pin numbers
+#define ENCODER_BUTTON_PIN 7
+#define LEFT_MOTOR_PIN 9
+#define RIGHT_MOTOR_PIN 10
 
 
-/**
-  * DISPLAY CONFIGURATION
-  */
-#define SCREEN_WIDTH  128
+// Motor speed values
+#define LEFT_MOTOR_STOP_SPEED 0
+#define RIGHT_MOTOR_STOP_SPEED 0
+
+#define MINIMUM_MOTOR_SPEED -90
+#define MAXIMUM_MOTOR_SPEED 90
+
+
+// OLED screen settings
+#define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
-Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
+#define OLED_I2C_ADDRESS 0x3C
+
+Adafruit_SH1106G oledDisplay(
+  SCREEN_WIDTH,
+  SCREEN_HEIGHT,
+  &Wire,
+  -1
+);
 
 
-/**
-  * SERVO CONFIGURATION
-  */
+// Motor objects
 Servo leftMotorServo;
 Servo rightMotorServo;
 
 
-/**
-  * PROGRAM VARIABLES
-  */
-bool testRunning = false;
-
-int moveCurrentStep = 0;
-int moveLineCounter = 0;
-
-bool moveWaiting = false;
-unsigned long moveWaitStartMs = 0;
-
-bool lastBtn = HIGH;
-bool btnArmed = true;
-unsigned long lastBtnChangeMs = 0;
+// Motor test state
+bool motorTestRunning = false;
 
 
-/**
-  * FUNCTION DECLARATIONS
-  */
+// Movement sequence state
+//
+// These variables allow the student movement commands to run
+// one step at a time without using delay().
+int currentMovementStep = 0;
+int currentMovementCommand = 0;
 
-/* Student Movement Program */
-void studentMotorTest(void);
-
-/* Motor Control */
-void setLeftMotor(int speed);
-void setRightMotor(int speed);
-void stopMotors(void);
-
-/* Movement Sequencer */
-void resetMoveSequence(void);
-void beginMoveSequence(void);
-void endMoveSequence(void);
-
-void moveLeftMotorCmd(int speed);
-void moveRightMotorCmd(int speed);
-void moveWaitCmd(unsigned long durationMs);
-
-/* User Interface */
-void drawCenteredText(const char *line1, const char *line2 = "");
-void drawUI(void);
-void handleButton(void);
+bool movementWaitActive = false;
+unsigned long movementWaitStartTimeMs = 0;
 
 
-/**
- * STUDENT MOVEMENT MACROS
- */
-#define leftMotor(x)  moveLeftMotorCmd(x)
-#define rightMotor(x) moveRightMotorCmd(x)
-#define wait(sec)     moveWaitCmd((unsigned long)((sec) * 1000))
+// Button state
+//
+// INPUT_PULLUP is used for the button.
+// This means:
+// HIGH = button released
+// LOW  = button pressed
+bool previousButtonState = HIGH;
+bool buttonReadyForPress = true;
+
+unsigned long lastButtonStateChangeTimeMs = 0;
+const unsigned long BUTTON_DEBOUNCE_TIME_MS = 30;
 
 
-/**
- * STUDENT MOVEMENT CODE
- */
-void studentMotorTest(void)
+// Function declarations
+
+// Student movement program
+void runStudentMotorTest(void);
+
+// Motor control
+void setLeftMotorSpeed(int speed);
+void setRightMotorSpeed(int speed);
+void stopBothMotors(void);
+
+// Movement sequence control
+void resetMovementSequence(void);
+void beginMovementSequence(void);
+void endMovementSequence(void);
+
+void runLeftMotorCommand(int speed);
+void runRightMotorCommand(int speed);
+void runMovementWaitCommand(unsigned long durationMs);
+
+// OLED screen
+void drawCenteredText(const char *firstLine, const char *secondLine = "");
+void drawUserInterface(void);
+
+// Button
+void updateEncoderButton(void);
+
+
+// Student movement commands
+//
+// These commands are used only inside runStudentMotorTest().
+//
+// leftMotor(speed)
+// rightMotor(speed)
+// wait(seconds)
+#define leftMotor(speed) runLeftMotorCommand(speed)
+#define rightMotor(speed) runRightMotorCommand(speed)
+#define wait(seconds) runMovementWaitCommand((unsigned long)((seconds) * 1000.0))
+
+
+// Student movement code
+void runStudentMotorTest(void)
 {
-  beginMoveSequence();
+  // Reset the command counter before reading the student commands.
+  beginMovementSequence();
 
-  /** =====================================================
-    * ============ STUDENT MOVEMENT CODE START ============
-    * ===================================================== */
+  // =====================================================
+  // =========== STUDENT MOVEMENT CODE START =============
+  // =====================================================
+
+  // Motor speed values:
+  //
+  //  90 = full speed forward
+  //   0 = stopped
+  // -90 = full speed backward
+  //
+  // Any number between -90 and 90 can be used.
+  //
+  // Both motors use the same direction system.
+  // Positive values move both wheels forward.
+  // Negative values move both wheels backward.
 
 
-  /* Example: Back and Forth Movement (remove the slashes // underneath) */
+  // Example: move forward, then move backward
+  //
+  // Remove the // symbols to use this example.
+  //
   // leftMotor(50);
   // rightMotor(50);
-  // wait(10);
-  // leftMotor(10);
-  // rightMotor(40);
-  // wait(2);
+  // wait(3);
+  //
+  // leftMotor(-50);
+  // rightMotor(-50);
+  // wait(3);
+  //
+  // leftMotor(0);
+  // rightMotor(0);
 
 
-  /* Example: Big Circle Movement (remove the slashes // underneath) */
+  // Example: turn in a large circle
+  //
+  // The left motor moves more slowly than the right motor.
+  //
   // leftMotor(20);
   // rightMotor(50);
+  // wait(4);
+  //
+  // leftMotor(0);
+  // rightMotor(0);
 
 
-  /** =====================================================
-    * ============= STUDENT MOVEMENT CODE END =============
-    * ===================================================== */
+  // Example: spin on the spot
+  //
+  // One wheel moves forward while the other moves backward.
+  //
+  // leftMotor(50);
+  // rightMotor(-50);
+  // wait(2);
+  //
+  // leftMotor(0);
+  // rightMotor(0);
 
-  endMoveSequence();
+
+  // =====================================================
+  // ============ STUDENT MOVEMENT CODE END ==============
+  // =====================================================
+
+  // Check whether every student command has finished.
+  endMovementSequence();
 }
 
-/* Undefine student movement macros */
+
+// Remove the student command macros outside the student section.
 #undef leftMotor
 #undef rightMotor
 #undef wait
 
 
-/**
- * FUNCTION DEFINITIONS
- */
+// Motor functions
 
-/* Motor Functions */
-void setLeftMotor(int speed)
+// Set the speed of the left continuous-rotation servo.
+//
+// The student speed value is limited to between -90 and 90.
+//
+// The Servo library uses values from 0 to 180:
+//   0   = full speed in one direction
+//   90  = stopped
+//   180 = full speed in the other direction
+//
+// Adding 90 changes the student speed into a Servo library value.
+void setLeftMotorSpeed(int speed)
 {
-  speed = constrain(speed, -90, 90);
-  leftMotorServo.write(90 + speed);
+  speed = constrain(
+    speed,
+    MINIMUM_MOTOR_SPEED,
+    MAXIMUM_MOTOR_SPEED
+  );
+
+  int servoCommand = 90 + speed;
+
+  leftMotorServo.write(servoCommand);
 }
 
-void setRightMotor(int speed)
+
+// Set the speed of the right continuous-rotation servo.
+//
+// The right motor is mounted in the opposite direction to the left motor.
+// Because of this, its Servo library value must be reversed.
+//
+// Subtracting the speed from 90 makes matching positive values
+// move both wheels forward.
+void setRightMotorSpeed(int speed)
 {
-  speed = constrain(speed, -90, 90);
-  rightMotorServo.write(90 - speed);
+  speed = constrain(
+    speed,
+    MINIMUM_MOTOR_SPEED,
+    MAXIMUM_MOTOR_SPEED
+  );
+
+  int servoCommand = 90 - speed;
+
+  rightMotorServo.write(servoCommand);
 }
 
-void stopMotors(void)
+
+// Stop both motors.
+void stopBothMotors(void)
 {
-  setLeftMotor(L_STOP);
-  setRightMotor(R_STOP);
+  setLeftMotorSpeed(LEFT_MOTOR_STOP_SPEED);
+  setRightMotorSpeed(RIGHT_MOTOR_STOP_SPEED);
 }
 
-/* Movement Sequence Functions */
-void resetMoveSequence(void)
+
+// Movement sequence functions
+
+// Reset all movement sequence variables.
+//
+// This prepares the movement program to start again from
+// the first student command.
+void resetMovementSequence(void)
 {
-  moveCurrentStep = 0;
-  moveLineCounter = 0;
-  moveWaiting = false;
-  moveWaitStartMs = 0;
+  currentMovementStep = 0;
+  currentMovementCommand = 0;
+
+  movementWaitActive = false;
+  movementWaitStartTimeMs = 0;
 }
 
-void beginMoveSequence(void)
+
+// Start reading the student commands from the first line.
+//
+// This function is called repeatedly while the motor test is running.
+void beginMovementSequence(void)
 {
-  moveLineCounter = 0;
+  currentMovementCommand = 0;
 }
 
-void endMoveSequence(void)
+
+// Check whether the full movement sequence has finished.
+//
+// When every student command is complete:
+// - The movement sequence is reset.
+// - Both motors are stopped.
+void endMovementSequence(void)
 {
-  if (moveLineCounter <= moveCurrentStep)
+  if (currentMovementCommand <= currentMovementStep)
   {
-    moveCurrentStep = 0;
-    moveWaiting = false;
-    stopMotors();
+    resetMovementSequence();
+    stopBothMotors();
   }
 }
 
-void moveLeftMotorCmd(int speed)
+
+// Run one left motor command.
+//
+// The command runs only when its command number matches
+// the current movement step.
+void runLeftMotorCommand(int speed)
 {
-  if (moveLineCounter == moveCurrentStep)
+  if (currentMovementCommand == currentMovementStep)
   {
-    setLeftMotor(speed);
-    moveCurrentStep++;
+    setLeftMotorSpeed(speed);
+
+    // Move to the next student command.
+    currentMovementStep++;
   }
-  moveLineCounter++;
+
+  // Count this student command.
+  currentMovementCommand++;
 }
 
-void moveRightMotorCmd(int speed)
+
+// Run one right motor command.
+//
+// The command runs only when its command number matches
+// the current movement step.
+void runRightMotorCommand(int speed)
 {
-  if (moveLineCounter == moveCurrentStep)
+  if (currentMovementCommand == currentMovementStep)
   {
-    setRightMotor(speed);
-    moveCurrentStep++;
+    setRightMotorSpeed(speed);
+
+    // Move to the next student command.
+    currentMovementStep++;
   }
-  moveLineCounter++;
+
+  // Count this student command.
+  currentMovementCommand++;
 }
 
-void moveWaitCmd(unsigned long durationMs)
+
+// Wait without using delay().
+//
+// delay() would freeze the whole Arduino program.
+// millis() allows the button and OLED screen to keep working.
+//
+// durationMs is the wait time in milliseconds.
+void runMovementWaitCommand(unsigned long durationMs)
 {
-  if (moveLineCounter == moveCurrentStep)
+  if (currentMovementCommand == currentMovementStep)
   {
-    if (!moveWaiting)
+    // Start timing when this wait command is first reached.
+    if (!movementWaitActive)
     {
-      moveWaitStartMs = millis();
-      moveWaiting = true;
+      movementWaitStartTimeMs = millis();
+      movementWaitActive = true;
     }
-    else if (millis() - moveWaitStartMs >= durationMs)
+
+    // Finish the wait after enough time has passed.
+    else if (millis() - movementWaitStartTimeMs >= durationMs)
     {
-      moveWaiting = false;
-      moveCurrentStep++;
+      movementWaitActive = false;
+
+      // Move to the next student command.
+      currentMovementStep++;
     }
   }
-  moveLineCounter++;
+
+  // Count this student command.
+  currentMovementCommand++;
 }
 
-/* Display Functions */
-void drawCenteredText(const char *line1, const char *line2)
+
+// OLED screen functions
+
+// Draw one or two lines of text in the middle of the OLED screen.
+void drawCenteredText(const char *firstLine, const char *secondLine)
 {
-  display.clearDisplay();
-  display.setTextColor(SH110X_WHITE);
-  display.setTextSize(1);
+  // Clear the screen memory before drawing the new screen.
+  oledDisplay.clearDisplay();
 
-  int16_t x1, y1;
-  uint16_t w, h;
+  oledDisplay.setTextColor(SH110X_WHITE);
+  oledDisplay.setTextSize(1);
+  oledDisplay.setFont(NULL);
 
-  display.getTextBounds(line1, 0, 0, &x1, &y1, &w, &h);
-  display.setCursor((SCREEN_WIDTH - (int)w) / 2, 20);
-  display.print(line1);
+  int16_t textStartX;
+  int16_t textStartY;
+  uint16_t textWidth;
+  uint16_t textHeight;
 
-  if (line2[0] != (char)0)
+
+  // Measure and centre the first line.
+  oledDisplay.getTextBounds(
+    firstLine,
+    0,
+    0,
+    &textStartX,
+    &textStartY,
+    &textWidth,
+    &textHeight
+  );
+
+  int firstLineX =
+    (SCREEN_WIDTH - (int)textWidth) / 2;
+
+  oledDisplay.setCursor(firstLineX, 20);
+  oledDisplay.print(firstLine);
+
+
+  // Draw the second line only when it is not empty.
+  if (secondLine[0] != '\0')
   {
-    display.getTextBounds(line2, 0, 0, &x1, &y1, &w, &h);
-    display.setCursor((SCREEN_WIDTH - (int)w) / 2, 40);
-    display.print(line2);
+    oledDisplay.getTextBounds(
+      secondLine,
+      0,
+      0,
+      &textStartX,
+      &textStartY,
+      &textWidth,
+      &textHeight
+    );
+
+    int secondLineX =
+      (SCREEN_WIDTH - (int)textWidth) / 2;
+
+    oledDisplay.setCursor(secondLineX, 40);
+    oledDisplay.print(secondLine);
   }
 
-  display.display();
+
+  // Send the completed screen image to the OLED.
+  oledDisplay.display();
 }
 
-void drawUI(void)
+
+// Draw the correct screen for the current motor test state.
+void drawUserInterface(void)
 {
-  if (testRunning)
+  if (motorTestRunning)
   {
-    drawCenteredText("Motor Test Running", "Press to stop");
+    drawCenteredText(
+      "Motor Test Running",
+      "Press to stop"
+    );
   }
   else
   {
-    drawCenteredText("Press knob to start");
+    drawCenteredText(
+      "Press knob to start"
+    );
   }
 }
 
-/* Button Functions */
-void handleButton(void)
-{
-  bool btn = digitalRead(ENCODER_BTN);
-  unsigned long now = millis();
 
-  if (btn != lastBtn)
+// Button function
+
+// Read and debounce the rotary encoder push button.
+//
+// Debouncing prevents one physical press from being
+// counted several times because of electrical noise.
+void updateEncoderButton(void)
+{
+  bool currentButtonState =
+    digitalRead(ENCODER_BUTTON_PIN);
+
+  unsigned long currentTimeMs = millis();
+
+
+  // Save the time whenever the button changes state.
+  if (currentButtonState != previousButtonState)
   {
-    lastBtnChangeMs = now;
-    lastBtn = btn;
+    lastButtonStateChangeTimeMs = currentTimeMs;
+    previousButtonState = currentButtonState;
   }
 
-  if ((now - lastBtnChangeMs) > 30)
+
+  // Accept the button state only after it has stayed stable
+  // for the debounce time.
+  if (
+    currentTimeMs - lastButtonStateChangeTimeMs
+    > BUTTON_DEBOUNCE_TIME_MS
+  )
   {
-    if (btn == LOW && btnArmed)
+    // LOW means the button is pressed because INPUT_PULLUP is used.
+    if (
+      currentButtonState == LOW
+      && buttonReadyForPress
+    )
     {
-      if (!testRunning)
+      // Start the test when it is currently stopped.
+      if (!motorTestRunning)
       {
-        resetMoveSequence();
-        testRunning = true;
+        resetMovementSequence();
+        motorTestRunning = true;
       }
+
+      // Stop the test when it is currently running.
       else
       {
-        testRunning = false;
-        resetMoveSequence();
-        stopMotors();
+        motorTestRunning = false;
+
+        resetMovementSequence();
+        stopBothMotors();
       }
-      btnArmed = false;
+
+      // Prevent this press from being counted again.
+      buttonReadyForPress = false;
     }
 
-    if (btn == HIGH)
+
+    // Allow another press after the button is released.
+    if (currentButtonState == HIGH)
     {
-      btnArmed = true;
+      buttonReadyForPress = true;
     }
   }
 }
 
 
-/**
-  * SETUP
-  */
-void setup()
+// Setup
+//
+// setup() runs once when the Arduino starts or resets.
+void setup(void)
 {
-  pinMode(ENCODER_BTN, INPUT_PULLUP);
+  // Use the Arduino's internal pull-up resistor for the button.
+  pinMode(
+    ENCODER_BUTTON_PIN,
+    INPUT_PULLUP
+  );
 
-  leftMotorServo.attach(SERVO_L_PIN);
-  rightMotorServo.attach(SERVO_R_PIN);
 
-  stopMotors();
+  // Connect each Servo object to its motor signal pin.
+  leftMotorServo.attach(LEFT_MOTOR_PIN);
+  rightMotorServo.attach(RIGHT_MOTOR_PIN);
 
-  display.begin(0x3C, true);
-  display.clearDisplay();
-  display.display();
+
+  // Make sure both motors are stopped when the Arduino starts.
+  stopBothMotors();
+
+
+  // Start the OLED screen.
+  Wire.begin();
+
+  oledDisplay.begin(
+    OLED_I2C_ADDRESS,
+    true
+  );
+
+
+  // Clear any random pixels left in the OLED memory.
+  oledDisplay.clearDisplay();
+  oledDisplay.display();
 }
 
-/**
-  * MAIN LOOP
-  */
-void loop()
-{
-  handleButton();
 
-  if (testRunning)
+// Main loop
+//
+// loop() repeats continuously while the Arduino has power.
+void loop(void)
+{
+  // Check whether the encoder button was pressed.
+  updateEncoderButton();
+
+
+  // Run the student motor test while the test is active.
+  if (motorTestRunning)
   {
-    studentMotorTest();
+    runStudentMotorTest();
   }
 
-  drawUI();
+
+  // Draw the current motor test state on the OLED.
+  drawUserInterface();
 }
