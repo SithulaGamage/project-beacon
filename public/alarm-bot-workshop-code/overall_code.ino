@@ -167,14 +167,14 @@ void runAlarmMovementProgram(void)
   beginMovementSequence();
 
   // =====================================================
-// =========== STUDENT MOVEMENT CODE START =============
-// =====================================================
+  // =========== STUDENT MOVEMENT CODE START =============
+  // =====================================================
 
   // COPY AND PASTE MOVEMENT CODE HERE
 
   // =====================================================
-// ============ STUDENT MOVEMENT CODE END ==============
-// =====================================================
+  // ============ STUDENT MOVEMENT CODE END ==============
+  // =====================================================
 
   endMovementSequence();
 }
@@ -196,17 +196,17 @@ void runAlarmSoundProgram(void)
   beginSoundSequence();
 
   // =====================================================
-// ============ STUDENT ALARM CODE START ===============
-// =====================================================
+  // ============ STUDENT ALARM CODE START ===============
+  // =====================================================
 
   //
-// Examples (REMOVE SLASHES):
-//
-// COPY AND PASTE ALARM CODEH ERE
+  // Examples (REMOVE SLASHES):
+  //
+  // COPY AND PASTE ALARM CODEH ERE
 
   // =====================================================
-// ============= STUDENT ALARM CODE END ================
-// =====================================================
+  // ============= STUDENT ALARM CODE END ================
+  // =====================================================
 
   endSoundSequence();
 }
