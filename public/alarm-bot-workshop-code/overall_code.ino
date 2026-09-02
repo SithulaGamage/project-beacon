@@ -199,7 +199,7 @@ void runAlarmSoundProgram(void)
   // ============ STUDENT ALARM CODE START ===============
   // =====================================================
 
-  // COPY AND PASTE ALARM CODEH ERE
+  // COPY AND PASTE ALARM CODE HERE
 
   // =====================================================
   // ============= STUDENT ALARM CODE END ================
